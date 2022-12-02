@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+.swiftpm/xcode/xcuserdata
+
+.swiftpm/xcode/package.xcworkspace/xcuserdata/james.xcuserdatad
+*.xcworkspacedata
+
