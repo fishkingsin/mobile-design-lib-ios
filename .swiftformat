@@ -1,0 +1,25 @@
+# SwiftFormat config compliant with Google Swift Guideline
+# https://google.github.io/swift/#control-flow-statements
+
+# Specify version used in a project
+
+--swiftversion 5.0
+
+# Rules explicitly required by the guideline
+
+--rules                           \
+isEmpty,                           \
+fileHeader,                        \
+redundantSelf
+
+# header template
+--header "\n{file}\n\nCopyright © {year} New Media Group. All rights reserved.\n"
+
+
+# Option for additional rules
+
+--self init-only
+
+# Excluded folders
+
+--exclude BuildScripts,Carthage,fastlane

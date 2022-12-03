@@ -1,28 +1,40 @@
-// swift-tools-version: 5.7
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "MobileDesignLibrary",
+    name: "MobileDesign",
+    platforms: [.iOS(.v13)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "MobileDesignLibrary",
-            targets: ["MobileDesignLibrary"]),
+            name: "MobileDesign",
+            targets: ["MobileDesign"]
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.9.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "MobileDesignLibrary",
-            dependencies: []),
+            name: "MobileDesign",
+            dependencies: [
+            ],
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
-            name: "MobileDesignLibraryTests",
-            dependencies: ["MobileDesignLibrary"]),
+            name: "MobileDesignTests",
+            dependencies: [
+                "MobileDesign",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ],
+            exclude: ["__Snapshots__"]
+        )
     ]
 )

@@ -1,0 +1,43 @@
+### 1. Description
+
+_Replace this text with your description._
+
+### 2 Tickets
+
+**Please note one PR for one task**
+
+- https://app.clickup.com/t/{ClickUp-Ticket-Id}
+
+### 3 What's Changed?
+
+- <!-- List changes here with any custom implementation Explain any 'custom' implementation Is it a bugfix -->
+
+### 4 Type of change
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Fine tune (non-breaking change for code quality optimization, refactoring)
+- [ ] Tests
+
+### 5 Tests
+
+**Have you added relevant tests?** Please describe the tests that you wrote and ran to verify your changes.
+
+- [ ] Unit tests
+- [ ] Snapshot tests
+
+### 6 PR Dependency
+
+Are there any dependent pull requests that are required for this change?
+
+- [ ] No
+- [ ] Yes, wait until below PRs completement
+- _Attach those PR URL_
+
+### 7 Technical Design
+
+Does the JIRA ticket contains information about the Technical Design of this implementation?
+
+- [ ] Yes and approved by peer review @{staff_id}
+- [ ] No, since it is a bug fix or UI changes only
