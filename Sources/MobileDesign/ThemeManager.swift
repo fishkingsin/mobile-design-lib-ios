@@ -44,7 +44,7 @@ extension Theme {
                 return OSColors()
             case .NM:
                 return NMColors()
-            case .Ddefault:
+            case .Default:
                 return NMGDefaultColors()
         }
     }
