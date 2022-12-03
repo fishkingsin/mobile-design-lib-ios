@@ -20,26 +20,32 @@ public enum Theme: String {
     case GOTRIP
     case OS
     case NM
+    case Default
+
+    init(rawValue: String) {
+        self = Theme(rawValue: Theme) ?? .Default
+    }
 }
 
 extension Theme {
     var themeableColors: any NMGThemeableColors {
         switch self {
-        case .ED:
-            return EDColors()
-        case .WW:
-            return WWColors()
-
-        case .KISS:
-            return KISSColors()
-        case .MORE:
-            return MOREColors()
-        case .GOTRIP:
-            return GOTRIPColors()
-        case .OS:
-            return OSColors()
-        case .NM:
-            return NMColors()
+            case .ED:
+                return EDColors()
+            case .WW:
+                return WWColors()
+            case .KISS:
+                return KISSColors()
+            case .MORE:
+                return MOREColors()
+            case .GOTRIP:
+                return GOTRIPColors()
+            case .OS:
+                return OSColors()
+            case .NM:
+                return NMColors()
+            case .Ddefault:
+                return NMGDefaultColors()
         }
     }
 }
@@ -63,6 +69,10 @@ public final class ThemeManager: ThemeManageable {
             _currentTheme = NMGDefaultTheme()
         }
         return _currentTheme
+    }
+    public func applyTheme(name theme: String) {
+        let theme = Theme(rawValue: theme)
+        applyTheme(theme)
     }
 
     public func applyTheme(_ theme: Theme) {
