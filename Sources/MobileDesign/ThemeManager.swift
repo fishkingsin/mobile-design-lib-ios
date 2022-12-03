@@ -71,7 +71,7 @@ public final class ThemeManager: ThemeManageable {
         return _currentTheme
     }
     public func applyTheme(name theme: String) {
-        let theme = Theme(rawValue: theme)
+        let theme = Theme(rawValueString: theme)
         applyTheme(theme)
     }
 
