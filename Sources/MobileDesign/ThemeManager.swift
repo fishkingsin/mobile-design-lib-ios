@@ -22,7 +22,7 @@ public enum Theme: String {
     case NM
     case Default
 
-    init(rawValue: String) {
+    public init(rawValue: String) {
         self = Theme(rawValue: Theme) ?? .Default
     }
 }
