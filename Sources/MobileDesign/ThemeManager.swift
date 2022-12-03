@@ -12,7 +12,7 @@ protocol ThemeManageable {
     func applyTheme(_ theme: NMGThemeable)
 }
 
-public enum Theme: String {
+public enum Theme {
     case ED
     case WW
     case KISS
@@ -20,10 +20,36 @@ public enum Theme: String {
     case GOTRIP
     case OS
     case NM
-    case Default
+    case OH
+    case Default(String)
 
     public init(rawValueString: String) {
-        self = Theme(rawValue: rawValueString) ?? .Default
+        self = rawValueString.theme
+    }
+}
+
+extension String {
+    var theme: Theme {
+        switch self {
+            case "ED":
+                return .ED
+            case "WW":
+                return .WW
+            case "KISS":
+                return .KISS
+            case "MORE":
+                return .MORE
+            case "GOTRIP":
+                return .GOTRIP
+            case "OS":
+                return .OS
+            case "NM":
+                return .NM
+            case "OH":
+                return .OH
+            default:
+                return .Default(self)
+        }
     }
 }
 
@@ -44,8 +70,10 @@ extension Theme {
                 return OSColors()
             case .NM:
                 return NMColors()
-            case .Default:
-                return NMGDefaultColors()
+            case .OH:
+                return OHColors()
+            case .Default(let customTheme):
+                return NMGDefaultColors(customTheme)
         }
     }
 }
