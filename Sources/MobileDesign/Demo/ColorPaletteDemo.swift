@@ -8,10 +8,14 @@ import SwiftUI
 
 public struct ColorPaletteDemo: View {
     let colors: [any NMGThemeableColors] = [
+        WWColors(),
+        MOREColors(),
         EDColors(),
-        GOTRIPColors(),
         KISSColors(),
-        MOREColors()
+        GOTRIPColors(),
+        OSColors(),
+        NMColors(),
+        OHColors()
     ]
 
     public init() {}
@@ -31,12 +35,14 @@ public struct ColorPaletteDemo: View {
                             }
                         }.padding()
                     }
+                    Spacer(minLength: 10)
                     Text("Common")
                     LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50)), count: 3)) {
                         ForEach(EDColors().common().keys.sorted { a, b in
                             a < b
                         }, id: \.self) { key in
                             ColorItem(key: key, color: EDColors().common()[key])
+                                .padding([.bottom], 10)
                         }
                     }.padding()
                 }

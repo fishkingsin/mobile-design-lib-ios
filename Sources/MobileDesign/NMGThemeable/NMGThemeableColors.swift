@@ -9,14 +9,15 @@ import UIKit
 
 public protocol NMGThemeableColors: AnyObject, Hashable {
     var baseFolder: String { get }
-    var secondaryHightlight: UIColor { get }
-    var secondaryElementbg2: UIColor { get }
-    var secondaryElementbg5: UIColor { get }
-    var secondaryElementbg10: UIColor { get }
-    var secondaryUnactivated: UIColor { get }
+
     var primaryMain: UIColor { get }
 
     // common
+    var black: UIColor { get }
+    var white: UIColor { get }
+    var alert: UIColor { get }
+    var success: UIColor { get }
+
     var neutralGray5: UIColor { get }
     var neutralGray80: UIColor { get }
     var neutralGray70: UIColor { get }
@@ -31,31 +32,21 @@ public protocol NMGThemeableColors: AnyObject, Hashable {
 
 public extension NMGThemeableColors {
     static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.secondaryHightlight == rhs.secondaryHightlight &&
-            lhs.secondaryElementbg2 == rhs.secondaryElementbg2 &&
-            lhs.secondaryElementbg5 == rhs.secondaryElementbg5 &&
-            lhs.secondaryElementbg10 == rhs.secondaryElementbg10 &&
-            lhs.secondaryUnactivated == rhs.secondaryUnactivated &&
-            lhs.primaryMain == rhs.primaryMain
+        return lhs.primaryMain == rhs.primaryMain
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(secondaryHightlight)
-        hasher.combine(secondaryElementbg2)
-        hasher.combine(secondaryElementbg5)
-        hasher.combine(secondaryElementbg10)
-        hasher.combine(secondaryUnactivated)
+
         hasher.combine(primaryMain)
     }
 }
 
 public extension NMGThemeableColors {
-    var secondaryHightlight: UIColor { UIColor.color(from: baseFolder, named: "SecondaryHightlight")! }
-    var secondaryElementbg2: UIColor { UIColor.color(from: baseFolder, named: "SecondaryElementbg2")! }
-    var secondaryElementbg5: UIColor { UIColor.color(from: baseFolder, named: "SecondaryElementbg5")! }
-    var secondaryElementbg10: UIColor { UIColor.color(from: baseFolder, named: "SecondaryElementbg10")! }
-    var secondaryUnactivated: UIColor { UIColor.color(from: baseFolder, named: "SecondaryUnactivated")! }
     var primaryMain: UIColor { UIColor.color(from: baseFolder, named: "PrimaryMain")! }
+    var black: UIColor { UIColor.color(from: "Common", named: "Black")! }
+    var white: UIColor { UIColor.color(from: "Common", named: "White")! }
+    var alert: UIColor { UIColor.color(from: "Common", named: "Alert")! }
+    var success: UIColor { UIColor.color(from: "Common", named: "Success")! }
 
     var neutralGray5: UIColor { UIColor.color(from: "Common", named: "NeutralGray5")! }
     var neutralGray80: UIColor { UIColor.color(from: "Common", named: "NeutralGray80")! }
@@ -70,17 +61,16 @@ public extension NMGThemeableColors {
     //    public var textPrimary: UIColor { UIColor.color(from: "Default", named: "primary")! }
     internal func properties() -> [String: UIColor] {
         [
-            "secondaryHightlight": secondaryHightlight,
-            "secondaryElementbg2": secondaryElementbg2,
-            "secondaryElementbg5": secondaryElementbg5,
-            "secondaryElementbg10": secondaryElementbg10,
-            "secondaryUnactivated": secondaryUnactivated,
             "primaryMain": primaryMain
         ]
     }
 
     internal func common() -> [String: UIColor] {
         [
+            "Black": black,
+            "White": white,
+            "Alert": alert,
+            "Success": success,
             "neutralGray5": neutralGray5,
             "neutralGray80": neutralGray80,
             "neutralGray70": neutralGray70,
