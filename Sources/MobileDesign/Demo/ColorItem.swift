@@ -18,7 +18,7 @@ public struct ColorItem: View {
                     Rectangle()
                         .fill(c)
                         .frame(width: 50, height: 50)
-                        .shadow(radius: 3)
+                        .shadow(color: Color.secondary, radius: 8)
 
                     Text("\(rgb)")
                         .font(.footnote)

@@ -10,7 +10,7 @@ import SwiftUI
 import XCTest
 final class ColorPaletteTests: XCTestCase {
     override func setUpWithError() throws {
-        isRecording = true
+//        isRecording = true
     }
 
     func test_color_Common_snapshot() {
@@ -27,6 +27,7 @@ final class ColorPaletteTests: XCTestCase {
             assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
         }
     }
+    
 
     func test_color_ED_snapshot() {
         let colors = EDColors().properties()
