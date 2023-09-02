@@ -17,6 +17,8 @@ public protocol NMGThemeableColors: AnyObject, Hashable {
     var white: UIColor { get }
     var alert: UIColor { get }
     var success: UIColor { get }
+    var headline: UIColor { get }
+    var footnote: UIColor { get }
     var neutralGray2: UIColor { get }
     var neutralGray5: UIColor { get }
     var neutralGray80: UIColor { get }
@@ -51,6 +53,8 @@ public extension NMGThemeableColors {
     var white: UIColor { UIColor.color(from: "Common", named: "White")! }
     var alert: UIColor { UIColor.color(from: "Common", named: "Alert")! }
     var success: UIColor { UIColor.color(from: "Common", named: "Success")! }
+    var headline: UIColor { neutralGray70 }
+    var footnote: UIColor { neutralGray30 }
     var neutralGray2: UIColor { UIColor.color(from: "Common", named: "NeutralGray2")! }
     var neutralGray5: UIColor { UIColor.color(from: "Common", named: "NeutralGray5")! }
     var neutralGray80: UIColor { UIColor.color(from: "Common", named: "NeutralGray80")! }

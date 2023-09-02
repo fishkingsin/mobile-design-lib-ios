@@ -12,7 +12,7 @@ final class TabbarTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        isRecording = true
+//        isRecording = true
     }
 
     override func tearDown() {

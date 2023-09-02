@@ -1,7 +1,7 @@
 //
 // ColorItem.swift
 //
-// Copyright © 2022 New Media Group. All rights reserved.
+// Copyright © 2023 New Media Group. All rights reserved.
 //
 
 import SwiftUI
@@ -30,7 +30,7 @@ public struct ColorItem: View {
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
+struct ColorItem_Previews: PreviewProvider {
     static var previews: some View {
         ColorItem(key: "Red", color: .red)
     }

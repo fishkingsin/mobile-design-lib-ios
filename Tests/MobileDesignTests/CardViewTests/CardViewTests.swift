@@ -1,5 +1,5 @@
 //
-// TopImageCardViewTests.swift
+// CardViewTests.swift
 //
 // Copyright © 2023 New Media Group. All rights reserved.
 //
@@ -9,11 +9,11 @@ import SwiftUI
 import SnapshotTesting
 import MobileDesign
 
-class TopImageCardViewTests: XCTestCase {
+class CardViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        isRecording = true
+//        isRecording = true
     }
 
     override func tearDown() {
@@ -59,19 +59,13 @@ class TopImageCardViewTests: XCTestCase {
     }
 
     private var sut: some View {
-        TopImageCardView(
-            imageUrl: "https://placehold.co/358x200/png",
-            imageWidth: nil,
-            imageHeight: 120)
-        {
-            Rectangle()
-        } contentView: {
-            Text("Content View")
-                .padding()
-        }.background(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.gray.opacity(0.5), lineWidth: 1)
-        )
-        .padding()
+        VideoCardView<CardData>(
+            data: CardData(
+                imageURL: "https://placehold.co/358x200/png",
+                headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
+                leadingFootnote: "4小時前",
+                secondFootnote: "經人觀點",
+                timecode: "22:22"
+            ))
     }
 }
