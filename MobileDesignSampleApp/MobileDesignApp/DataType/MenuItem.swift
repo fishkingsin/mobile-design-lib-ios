@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-struct MenuItem<Content: View>: Identifiable {
+struct MenuItem: Identifiable {
     static func == (lhs: MenuItem, rhs: MenuItem) -> Bool {
         lhs.id == rhs.id
     }
@@ -16,5 +16,5 @@ struct MenuItem<Content: View>: Identifiable {
 
     var name: String
 
-    @ViewBuilder let content: Content
+    @ViewBuilder let content: AnyView
 }
