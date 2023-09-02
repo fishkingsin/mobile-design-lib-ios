@@ -6,7 +6,8 @@
 
 import SwiftUI
 
-public struct CardData: CardDisplayable, TimecodeDisplayable {
+public struct CardData: CardDisplayable, TimecodeDisplayable, Identifiable {
+    public var id: UUID = UUID()
     public var timecode: String { _timecode ?? "--:--" }
 
     public var imageURL: String

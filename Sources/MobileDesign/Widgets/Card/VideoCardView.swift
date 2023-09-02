@@ -14,11 +14,9 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
     public var body: some View {
         TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
             // MARK: update placeholder
-            Image("TopImageCardViewPlaceholder", bundle: .module)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            Rectangle()
                 .frame(maxHeight: 200)
-                .clipped()
+                
         } contentView: {
             CardContentView(
                 headline: data.headline,

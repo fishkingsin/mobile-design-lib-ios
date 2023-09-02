@@ -23,6 +23,12 @@ struct Gallery: View {
             content: {
                 AnyView(TabbarDemo(index: 0))
             }
+        ),
+        MenuItem(
+            name: "CardView",
+            content: {
+            AnyView(CardViewGallery())
+            }
         )
     ]
     var body: some View {
