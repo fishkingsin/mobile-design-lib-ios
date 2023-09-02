@@ -10,12 +10,20 @@ struct Gallery: View {
     var data = [
         MenuItem(
             name: "Colors",
-            content:  { AnyView(ColorPaletteDemo())
+            content:  {
+                AnyView(ColorPaletteDemo())
             }),
         MenuItem(
             name: "Fonts",
-            content:  { AnyView(FontsDemo())
-            })
+            content:  {
+                AnyView(FontsDemo())
+            }),
+        MenuItem(
+            name: "Tabbar",
+            content: {
+                AnyView(TabbarDemo(index: 0))
+            }
+        )
     ]
     var body: some View {
         NavigationView(content: {

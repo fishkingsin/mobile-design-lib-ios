@@ -1,7 +1,7 @@
 //
 // NMGThemeableColors.swift
 //
-// Copyright © 2022 New Media Group. All rights reserved.
+// Copyright © 2023 New Media Group. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ public protocol NMGThemeableColors: AnyObject, Hashable {
     var white: UIColor { get }
     var alert: UIColor { get }
     var success: UIColor { get }
-
+    var neutralGray2: UIColor { get }
     var neutralGray5: UIColor { get }
     var neutralGray80: UIColor { get }
     var neutralGray70: UIColor { get }
@@ -28,6 +28,10 @@ public protocol NMGThemeableColors: AnyObject, Hashable {
     var neutralGray20: UIColor { get }
     var neutralGray10: UIColor { get }
     var neutralGray90: UIColor { get }
+    var tabSelectedForegroud: UIColor { get }
+    var tabSelectedBackgroud: UIColor { get }
+    var tabForegroud: UIColor { get }
+    var tabBackgroud: UIColor { get }
 }
 
 public extension NMGThemeableColors {
@@ -47,7 +51,7 @@ public extension NMGThemeableColors {
     var white: UIColor { UIColor.color(from: "Common", named: "White")! }
     var alert: UIColor { UIColor.color(from: "Common", named: "Alert")! }
     var success: UIColor { UIColor.color(from: "Common", named: "Success")! }
-
+    var neutralGray2: UIColor { UIColor.color(from: "Common", named: "NeutralGray2")! }
     var neutralGray5: UIColor { UIColor.color(from: "Common", named: "NeutralGray5")! }
     var neutralGray80: UIColor { UIColor.color(from: "Common", named: "NeutralGray80")! }
     var neutralGray70: UIColor { UIColor.color(from: "Common", named: "NeutralGray70")! }
@@ -58,6 +62,10 @@ public extension NMGThemeableColors {
     var neutralGray20: UIColor { UIColor.color(from: "Common", named: "NeutralGray20")! }
     var neutralGray10: UIColor { UIColor.color(from: "Common", named: "NeutralGray10")! }
     var neutralGray90: UIColor { UIColor.color(from: "Common", named: "NeutralGray90")! }
+    var tabSelectedForegroud: UIColor { neutralGray2 }
+    var tabSelectedBackgroud: UIColor { neutralGray90 }
+    var tabForegroud: UIColor { neutralGray90 }
+    var tabBackgroud: UIColor { neutralGray5 }
     //    public var textPrimary: UIColor { UIColor.color(from: "Default", named: "primary")! }
     internal func properties() -> [String: UIColor] {
         [
