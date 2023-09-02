@@ -1,7 +1,7 @@
 //
 // ViewController.swift
 //
-// Copyright © 2022 New Media Group. All rights reserved.
+// Copyright © 2023 New Media Group. All rights reserved.
 //
 
 import MobileDesign
@@ -12,7 +12,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         ThemeManager.shared.applyTheme(NMGDefaultTheme())
-        let hostingView = UIHostingController(rootView: ColorPaletteDemo())
+//        let hostingView = UIHostingController(rootView: ColorPaletteDemo())
+        let hostingView = UIHostingController(rootView: Gallery())
         addChild(hostingView)
         if let subview = hostingView.view {
             subview.translatesAutoresizingMaskIntoConstraints = false
