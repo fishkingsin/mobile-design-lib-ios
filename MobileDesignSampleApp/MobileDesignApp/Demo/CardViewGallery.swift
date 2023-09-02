@@ -24,7 +24,9 @@ struct CardViewGallery: View {
                 VideoCardView(data: data)
             }
         }.listRowSeparator(.hidden)
+            .listStyle(.plain)
     }
+
 }
 
 struct CardViewGallery_Previews: PreviewProvider {
