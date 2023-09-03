@@ -17,13 +17,13 @@ public struct ReelCard<Data>: View where Data: CardDisplayable & TimecodeDisplay
         TopImageCardView(imageUrl: data.imageURL, imageWidth: 124, imageHeight: 224)  {
             Rectangle()
                 .frame(maxWidth: 124, maxHeight: 224)
-                .clipped()
+                .cornerRadius(4)
         } contentView: {
             Text("")
         } overlayView: {
             CardTimecodeOverlayView(timecode: "--:--")
                 .padding(4)
-        }
+        }.frame(minWidth: 124, minHeight: 224)
     }
 }
 

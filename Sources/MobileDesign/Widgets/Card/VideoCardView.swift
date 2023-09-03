@@ -12,23 +12,27 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
         self.data = data
     }
     public var body: some View {
-        
-        TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
-            // MARK: update placeholder
-            Rectangle()
-                .frame(maxHeight: 200)
+        VStack {
+            TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
+                // MARK: update placeholder
+                Rectangle()
+                    .frame(maxHeight: 200)
                 
-        } contentView: {
-            CardContentView(
-                headline: data.headline,
-                leadingFootnote: data.leadingFootnote,
-                secondFootnote: data.secondFootnote
-            ).padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
-        } overlayView: {
-            CardTimecodeOverlayView(timecode: data.timecode).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 4))
-        }
+            } contentView: {
+                CardContentView(
+                    headline: data.headline,
+                    leadingFootnote: data.leadingFootnote,
+                    secondFootnote: data.secondFootnote
+                ).padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
+            } overlayView: {
+                CardTimecodeOverlayView(timecode: data.timecode).padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 4))
+            }
 
-        .padding(12)
+            .padding(12)
+            Rectangle()
+                .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
+                .frame(width: .infinity, height: 2)
+        }
     }
 }
 
