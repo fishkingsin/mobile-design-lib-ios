@@ -20,6 +20,14 @@ struct CardViewGallery: View {
     }()
     var body: some View {
         List {
+            Section(header: Text("header")) {
+                LazyHStack {
+                    ForEach(datas) { data in
+                        ReelCard(data: data)
+                    }
+                }
+            }
+
             ForEach(datas) { data in
                 VideoCardView(data: data)
             }

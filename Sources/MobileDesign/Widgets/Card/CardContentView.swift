@@ -15,8 +15,6 @@ struct CardContentView: View {
             CardContentHeadlineView(headline: headline)
             CardContentFootnoteView(leadingFootnote: leadingFootnote, secondFootnote: secondFootnote)
         }
-        .padding(.horizontal, 0)
-        .padding(.vertical, 12)
         .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 }
