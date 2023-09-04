@@ -33,20 +33,21 @@ struct CardViewGallery: View {
     }()
     var body: some View {
         List(datas.enumerated().map { $0 }, id: \.element.id) { index ,data in
-            Section(header: Text("最新的連續短片")
-                .font(theme.fonts.headlineEmphasize.uiFont)
-                .foregroundColor(theme.colors.headline.color)
-            ) {
-                ScrollView(.horizontal) {
-                    LazyHStack {
-                        ForEach(reel_datas) { data in
-                            ReelCard(data: data)
+            if index == 0 {
+                Section(header: Text("最新的連續短片")
+                    .font(theme.fonts.headlineEmphasize.uiFont)
+                    .foregroundColor(theme.colors.headline.color)
+                ) {
+                    ScrollView(.horizontal) {
+                        LazyHStack {
+                            ForEach(reel_datas) { data in
+                                ReelCard(data: data)
+                            }
                         }
                     }
                 }
+                .listRowSeparator(.hidden)
             }
-            .listRowSeparator(.hidden)
-
 
             VideoCardView(data: data)
                 .onAppear {
