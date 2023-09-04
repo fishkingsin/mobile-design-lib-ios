@@ -18,6 +18,7 @@
 		1A3926A7289A712F006D6A00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3926A5289A712F006D6A00 /* LaunchScreen.storyboard */; };
 		1A3926BC289A7130006D6A00 /* MobileDesignAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3926BB289A7130006D6A00 /* MobileDesignAppUITests.swift */; };
 		1A3926BE289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3926BD289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift */; };
+		1A5D1EC72AA32F7200E08139 /* CardViewGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */; };
 		1AA3393B293A2CDB00D82AA1 /* MobileDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA3393A293A2CDB00D82AA1 /* MobileDesign */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		1A3926B7289A7130006D6A00 /* MobileDesignSampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileDesignSampleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3926BB289A7130006D6A00 /* MobileDesignAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDesignAppUITests.swift; sourceTree = "<group>"; };
 		1A3926BD289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDesignAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewGallery.swift; sourceTree = "<group>"; };
 		1AA33937293A234F00D82AA1 /* mobile-design-lib-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-design-lib-ios"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				1A22E9382AA2EE7100EC564A /* Gallery.swift */,
+				1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5D1EC72AA32F7200E08139 /* CardViewGallery.swift in Sources */,
 				1A22E9392AA2EE7100EC564A /* Gallery.swift in Sources */,
 				1A39269F289A712E006D6A00 /* ViewController.swift in Sources */,
 				1A39269B289A712E006D6A00 /* AppDelegate.swift in Sources */,

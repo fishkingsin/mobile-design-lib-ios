@@ -8,22 +8,48 @@ import SwiftUI
 import MobileDesign
 struct Gallery: View {
     var data = [
-        MenuItem<ColorPaletteDemo>(name: "Color", content:  { ColorPaletteDemo()
-        })
+        MenuItem(
+            name: "Colors",
+            content:  {
+                AnyView(ColorPaletteDemo())
+            }),
+        MenuItem(
+            name: "Fonts",
+            content:  {
+                AnyView(FontsDemo())
+            }),
+        MenuItem(
+            name: "Tabbar",
+            content: {
+                AnyView(TabbarDemo(index: 0))
+            }
+        ),
+        MenuItem(
+            name: "CardView",
+            content: {
+            AnyView(CardViewGallery())
+            }
+        )
     ]
     var body: some View {
         NavigationView(content: {
             List {
                 ForEach(data) { item in
-                NavigationLink(
-                    destination: item.content,
-                    label: {
-                        Text(item.name)
-                    })
+                    NavigationLink(
+                        destination: item.content,
+                        label: {
+                            Text(item.name)
+                        })
 
                 }
             }
-        }).navigationTitle("NMG MDL")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("NMG Mobile Design Library 🏛️")
+                }
+            }
+        })
     }
 }
 
