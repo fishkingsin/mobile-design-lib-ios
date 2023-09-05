@@ -6,6 +6,7 @@
 
 import SwiftUI
 import MobileDesign
+import AVKit
 struct Gallery: View {
     var data = [
         MenuItem(
@@ -27,10 +28,25 @@ struct Gallery: View {
         MenuItem(
             name: "CardView",
             content: {
-            AnyView(CardViewGallery())
+                AnyView(CardViewGallery())
             }
-        )
+        ),
+        MenuItem(name: "ReelPager",
+                 content: {
+                     AnyView(
+                        ReelPager<Reel<MediaFile>>(
+                            reels: stride(from: 0, through: 3, by: 1)
+                                .map {
+
+
+                                return Reel(player: nil, title: "\($0)", mediaFile: MediaFile(url: "https://www.pexels.com/download/video/5913482/", title: "\($0)", isExpanded: true))
+
+                            }))
+                 }
+                )
     ]
+
+
     var body: some View {
         NavigationView(content: {
             List {
@@ -43,12 +59,8 @@ struct Gallery: View {
 
                 }
             }
+            .navigationTitle("NMG Mobile Design Library 🏛️")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("NMG Mobile Design Library 🏛️")
-                }
-            }
         })
     }
 }

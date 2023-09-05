@@ -20,6 +20,8 @@ struct CardViewGallery: View {
         }
     }()
 
+    @State public var index: Int = 0
+
     var datas: [CardData] = {
         return stride(from: 0, to: 100, by: 1).map { index in
             CardData(
@@ -34,6 +36,16 @@ struct CardViewGallery: View {
     var body: some View {
         List(datas.enumerated().map { $0 }, id: \.element.id) { index ,data in
             if index == 0 {
+                Tabbar(index: .constant(0), datas: stride(from: 1, to: 10, by: 1).map {
+                    "Title \($0)"
+                }) { index, _ in
+                    self.index = index
+                } content: { i, element in
+                    TabbarCell(element: element, index: self.$index, selfIndex: i)
+                }
+
+                EmptyView()
+            } else if index == 1 {
                 Section(header: Text("最新的連續短片")
                     .font(theme.fonts.headlineEmphasize.uiFont)
                     .foregroundColor(theme.colors.headline.color)
@@ -47,14 +59,16 @@ struct CardViewGallery: View {
                     }
                 }
                 .listRowSeparator(.hidden)
+
+                EmptyView()
+            } else {
+                VideoCardView(data: data)
+                    .onAppear {
+
+                    }
+
+                    .listRowSeparator(.hidden)
             }
-
-            VideoCardView(data: data)
-                .onAppear {
-
-                }
-
-            .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
 

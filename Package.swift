@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "MobileDesign",
-    platforms: [.iOS(.v14)],
+    platforms: [.iOS(.v15)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -15,7 +15,9 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0")
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0"),
+        .package(url: "https://github.com/fermoya/SwiftUIPager", from: "2.5.0"),
+        .package(name: "CircularBuffer", url: "https://github.com/Hyun-je/CircularBuffer-swift", from: "0.1.2")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -23,6 +25,8 @@ let package = Package(
         .target(
             name: "MobileDesign",
             dependencies: [
+                "SwiftUIPager",
+                "CircularBuffer"
             ],
             resources: [
                 .process("Resources")

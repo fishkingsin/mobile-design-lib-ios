@@ -2,12 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "CircularBuffer",
+        "repositoryURL": "https://github.com/Hyun-je/CircularBuffer-swift",
+        "state": {
+          "branch": null,
+          "revision": "fc5130c277b4caf916c5150c5a18dc5b72a5923a",
+          "version": "0.1.2"
+        }
+      },
+      {
         "package": "swift-snapshot-testing",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
           "revision": "26ed3a2b4a2df47917ca9b790a57f91285b923fb",
           "version": "1.12.0"
+        }
+      },
+      {
+        "package": "SwiftUIPager",
+        "repositoryURL": "https://github.com/fermoya/SwiftUIPager",
+        "state": {
+          "branch": null,
+          "revision": "4ddc04c801aac143090bb14cf26603a3bf9c74cb",
+          "version": "2.5.0"
         }
       }
     ]
