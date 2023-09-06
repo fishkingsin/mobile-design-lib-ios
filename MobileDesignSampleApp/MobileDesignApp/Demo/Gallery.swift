@@ -35,13 +35,15 @@ struct Gallery: View {
                  content: {
                      AnyView(
                         ReelPager<Reel<MediaFile>>(
-                            reels: stride(from: 0, through: 3, by: 1)
-                                .map {
-
-
-                                return Reel(player: nil, title: "\($0)", mediaFile: MediaFile(url: "https://www.pexels.com/download/video/5913482/", title: "\($0)", isExpanded: true))
-
-                            }))
+//                            reels: stride(from: 0, through: 3, by: 1)
+//                                .map {
+//
+//
+//                                return Reel(player: nil, title: "\($0)", mediaFile: MediaFile(url: "https://www.pexels.com/download/video/5913482/", title: "\($0)", isExpanded: true))
+//
+//                            }
+                        )
+                     )
                  }
                 )
     ]
@@ -59,8 +61,8 @@ struct Gallery: View {
 
                 }
             }
-            .navigationTitle("NMG Mobile Design Library 🏛️")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("NMG Mobile Design Library 🏛️", displayMode: .inline)
+            .navigationBarTitleDisplayMode(.inline)    
         })
     }
 }

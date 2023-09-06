@@ -6,30 +6,44 @@
 
 import SwiftUI
 import AVKit
-//import SwiftUIIntrospect
+import SwiftUIIntrospect
+
 
 public struct ReelPager<Data>: View where Data: ReelDataProtocol {
 
+    public init () {}
+
+    let colors: [Color] = [
+        .red, .green, .blue, .gray
+    ]
+
 
     public var body: some View {
-        ZStack {
-            Color.red
-        }
         GeometryReader { proxy in
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach([Color.red, Color.green, Color.blue], id: \.self) { color in
-                        Rectangle()
-                            .fill(Color.yellow)
-//                        color.frame(proxy.size)
+            TabView {
+                ForEach(colors, id: \.self) { color in
+                    color.onAppear {
+                        print("\(color) Appear")
+                    }.onDisappear{
+                        print("\(color) Disppear")
                     }
                 }
+                .rotationEffect(.degrees(-90)) // Rotate content
+                .frame(
+                    width: proxy.size.width,
+                    height: proxy.size.height
+                )
             }
-//            .introspect(.scrollView, on: .iOS(.v15, .v16, .v17)) { sv in
-//                sv.isPagingEnabled = true
-//            }
+            .frame(
+                width: proxy.size.height, // Height & width swap
+                height: proxy.size.width
+            )
+            .rotationEffect(.degrees(90), anchor: .topLeading) // Rotate TabView
+            .offset(x: proxy.size.width) // Offset back into screens bounds
+            .tabViewStyle(
+                PageTabViewStyle(indexDisplayMode: .never)
+            )
         }
-
     }
 }
 
