@@ -36,6 +36,7 @@ let package = Package(
             name: "MobileDesignTests",
             dependencies: [
                 "MobileDesign",
+                "CircularBuffer",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
             exclude: ["__Snapshots__"]
