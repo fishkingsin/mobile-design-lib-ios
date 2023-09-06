@@ -6,44 +6,43 @@
 
 import SwiftUI
 import AVKit
-import SwiftUIPager
+//import SwiftUIIntrospect
 
 public struct ReelPager<Data>: View where Data: ReelDataProtocol {
-    @StateObject var page1: Page = .first()
-    @State var reels: [Data]
-    @State var playerViewModel: PlayerViewModel
 
-    public init(reels: [Data]) {
-        self.reels = reels
-        self.playerViewModel = PlayerViewModel()
-    }
 
     public var body: some View {
-        GeometryReader { proxy in
-            VStack(spacing: 10) {
-                Pager(page: self.page1,
-                      data: self.reels,
-                      id: \.self) {
-                    CustomPlayerView(url: URL(string: $0.mediaFile.url)!)
-                        .environmentObject(playerViewModel)
-                }
-                      .vertical()
-                      .alignment(.start)
-                      .itemSpacing(10)
-            }
+        ZStack {
+            Color.red
         }
+        GeometryReader { proxy in
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    ForEach([Color.red, Color.green, Color.blue], id: \.self) { color in
+                        Rectangle()
+                            .fill(Color.yellow)
+//                        color.frame(proxy.size)
+                    }
+                }
+            }
+//            .introspect(.scrollView, on: .iOS(.v15, .v16, .v17)) { sv in
+//                sv.isPagingEnabled = true
+//            }
+        }
+
     }
 }
 
 struct ReelPager_Previews: PreviewProvider {
     static var previews: some View {
-        ReelPager<Reel<MediaFile>>(reels: MediaFileJSON.map { item -> Reel in
-
-            let url = Bundle.main.path(forResource: item.url, ofType: "mp4") ?? ""
-
-            let player = AVPlayer(url:  URL(string: "https://www.pexels.com/download/video/5913482/")!)
-
-            return Reel(player: player, title: item.title, mediaFile: item)
-        })
+        ReelPager<Reel<MediaFile>>()
+//        ReelPager<Reel<MediaFile>>(reels: MediaFileJSON.map { item -> Reel in
+//
+//            let url = Bundle.main.path(forResource: item.url, ofType: "mp4") ?? ""
+//
+//            let player = AVPlayer(url:  URL(string: "https://www.pexels.com/download/video/5913482/")!)
+//
+//            return Reel(player: player, title: item.title, mediaFile: item)
+//        })
     }
 }

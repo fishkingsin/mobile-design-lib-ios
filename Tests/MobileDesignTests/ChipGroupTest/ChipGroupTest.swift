@@ -1,5 +1,5 @@
 //
-// TabbarTest.swift
+// ChipGroupTest.swift
 //
 // Copyright © 2023 New Media Group. All rights reserved.
 //
