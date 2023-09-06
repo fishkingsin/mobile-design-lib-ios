@@ -20,9 +20,9 @@ struct Gallery: View {
                 AnyView(FontsDemo())
             }),
         MenuItem(
-            name: "Tabbar",
+            name: "ChipGroup",
             content: {
-                AnyView(TabbarDemo(index: 0))
+                AnyView(ChipGroupDemo(index: 0))
             }
         ),
         MenuItem(

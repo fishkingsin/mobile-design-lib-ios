@@ -36,12 +36,12 @@ struct CardViewGallery: View {
     var body: some View {
         List(datas.enumerated().map { $0 }, id: \.element.id) { index ,data in
             if index == 0 {
-                Tabbar(index: .constant(0), datas: stride(from: 1, to: 10, by: 1).map {
+                ChipGroup(index: .constant(0), datas: stride(from: 1, to: 10, by: 1).map {
                     "Title \($0)"
                 }) { index, _ in
                     self.index = index
                 } content: { i, element in
-                    TabbarCell(element: element, index: self.$index, selfIndex: i)
+                    Chip(element: element, index: self.$index, selfIndex: i)
                 }
 
                 EmptyView()

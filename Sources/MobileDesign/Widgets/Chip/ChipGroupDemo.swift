@@ -1,5 +1,5 @@
 //
-// TabbarDemo.swift
+// ChipGroupDemo.swift
 //
 // Copyright © 2023 New Media Group. All rights reserved.
 //
@@ -8,7 +8,7 @@ import Foundation
 import SwiftUI
 
 
-public struct TabbarDemo: View {
+public struct ChipGroupDemo: View {
     public let theme: NMGThemeable = ThemeManager.shared.currentTheme
     @State public var index: Int = 0
 
@@ -23,19 +23,19 @@ public struct TabbarDemo: View {
     }
 
     public var body: some View {
-        Tabbar(index: $index, datas: data) { index, element in
+        ChipGroup(index: $index, datas: data) { index, element in
             self.index = index
         } content: { i, element in
-            TabbarCell(element: element, index: self.$index, selfIndex: i)
+            Chip(element: element, index: self.$index, selfIndex: i)
         }
     }
 }
 
 
 
-struct Tabbar_Previews: PreviewProvider {
+struct ChipGroup_Previews: PreviewProvider {
     static var previews: some View {
-        TabbarDemo(index: 0)
+        ChipGroupDemo(index: 0)
     }
 }
 

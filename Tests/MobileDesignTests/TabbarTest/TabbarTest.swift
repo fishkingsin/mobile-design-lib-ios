@@ -8,7 +8,7 @@ import XCTest
 import SwiftUI
 @testable import MobileDesign
 import SnapshotTesting
-final class TabbarTest: XCTestCase {
+final class ChipGroupTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -58,7 +58,7 @@ final class TabbarTest: XCTestCase {
     }
 
     private var sut: some View {
-        TabbarDemo(index: 0)
+        ChipGroupDemo(index: 0)
     }
 
 }

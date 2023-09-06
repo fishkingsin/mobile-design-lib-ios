@@ -1,5 +1,5 @@
 //
-// TabbarCell.swift
+// Chip.swift
 //
 // Copyright © 2023 New Media Group. All rights reserved.
 //
@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-public struct TabbarCell: View {
+public struct Chip: View {
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
     let element: String
     @Binding var index: Int
@@ -42,11 +42,11 @@ public struct TabbarCell: View {
 }
 
 
-struct TabbarCell_Previews: PreviewProvider {
+struct Chip_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            TabbarCell(element: "Title", index: .constant(1), selfIndex: 0)
-            TabbarCell(element: "Title", index: .constant(1), selfIndex: 1)
+            Chip(element: "Title", index: .constant(1), selfIndex: 0)
+            Chip(element: "Title", index: .constant(1), selfIndex: 1)
         }
     }
 }

@@ -1,15 +1,15 @@
 //
-// Tabbar.swift
+// ChipGroup.swift
 //
 // Copyright © 2023 New Media Group. All rights reserved.
 //
 
 import SwiftUI
 
-public struct Tabbar<Data: Collection, Content: View>: View where Data.Element: Hashable {
+public struct ChipGroup<Data: Collection, Content: View>: View where Data.Element: Hashable {
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
     @Binding var index: Int
-    let content: (Int, Data.Element) -> Content
+    let content: ((Int, Data.Element) -> Content)?
     var onTabChanged: (Int, Data.Element) -> Void
     var datas: Data
 
@@ -33,13 +33,15 @@ public struct Tabbar<Data: Collection, Content: View>: View where Data.Element: 
                         Button(action: {
                             onTabChanged(index, element)
                         }) {
-                            content(index, element)
+                            content?(index, element)
+
                         }
                     }
                 }.padding([.leading, .trailing], 16).padding(.top, 10)
             }
 
     }
+
 
 }
 
