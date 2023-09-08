@@ -198,30 +198,25 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
     }
 }
 
-struct ReelPlayer_Previews: PreviewProvider {
-    typealias MediaFileType = MedieFile
-    typealias ReelType = Reel<MediaFileType>
-    static var previews: some View {
-        
-        ReelPlayer<ReelType>(reel: .constant(ReelType(title: "", mediaFile: MediaFileType(url: "", title: "", isExpanded: false))), currentReel: .constant("reel"))
-    }
-}
+//struct ReelPlayer_Previews: PreviewProvider {
+//    typealias ReelType = Reel<MediaFile>
+//    static var previews: some View {
+//        
+//        ReelPlayer<ReelType>(
+//            reel: .constant(
+//                MediaFileJSON.map { item -> ReelType in
+//                    return Reel(player: nil, mediaFile: item)
+//                }.first!
+//            ),
+//            currentReel: .constant("Fantastic mountains")
+//        )
+//    }
+//}
 
 
-public struct MediaFile: MediaFileConsumerable {
-    public var id = UUID().uuidString
-    public var url: String
-    public var title: String
-    public var isExpanded: Bool = false
-    public init(url: String, title: String, isExpanded: Bool = false) {
-        self.url = url
-        self.title = title
-        self.isExpanded = isExpanded
-    }
-}
 
 public var MediaFileJSON = [
-    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
+    MediaFile(url: "Reel-2", title: "Fantastic mountains"),
     MediaFile(url: "Reel-2", title: "Work Work Work!"),
     MediaFile(url: "Reel-3", title: "Gorgeous City")
 ]

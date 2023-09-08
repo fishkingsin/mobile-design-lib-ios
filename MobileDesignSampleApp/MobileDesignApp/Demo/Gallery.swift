@@ -31,24 +31,16 @@ struct Gallery: View {
                 AnyView(CardViewGallery())
             }
         ),
-        MenuItem(name: "ReelPager",
-                 content: {
-                     AnyView(
-                        ReelPager<Reel<MediaFile>>(
-//                            reels: stride(from: 0, through: 3, by: 1)
-//                                .map {
-//
-//
-//                                return Reel(player: nil, title: "\($0)", mediaFile: MediaFile(url: "https://www.pexels.com/download/video/5913482/", title: "\($0)", isExpanded: true))
-//
-//                            }
-                        )
-                     )
-                 }
-                )
+        MenuItem(
+            name: "ReelPager",
+            content: {
+                AnyView(ReelPager(reels: reels))
+                
+            }
+        )
     ]
-
-
+    
+    
     var body: some View {
         NavigationView(content: {
             List {
@@ -58,11 +50,11 @@ struct Gallery: View {
                         label: {
                             Text(item.name)
                         })
-
+                    
                 }
             }
             .navigationBarTitle("NMG Mobile Design Library 🏛️", displayMode: .inline)
-            .navigationBarTitleDisplayMode(.inline)    
+            .navigationBarTitleDisplayMode(.inline)
         })
     }
 }

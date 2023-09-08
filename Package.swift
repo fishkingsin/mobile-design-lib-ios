@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0"),
-        .package(url: "https://github.com/fermoya/SwiftUIPager.git", from: "2.5.0"),
+        .package(url: "https://github.com/fredyshox/PageView.git", .upToNextMajor(from: "1.5.0")),
         .package(url: "https://github.com/siteline/swiftui-introspect", from: "0.12.0"),
     ],
     targets: [
@@ -25,7 +25,7 @@ let package = Package(
         .target(
             name: "MobileDesign",
             dependencies: [
-                "SwiftUIPager",
+                "PageView",
                 .product(name: "SwiftUIIntrospect", package: "swiftui-introspect"),
             ],
             resources: [

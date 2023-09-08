@@ -8,32 +8,28 @@ import Foundation
 import AVKit
 
 
-public struct Reel<MedieFile>: ReelDataProtocol where MedieFile: MediaFileConsumerable {
-    public static func == (lhs: Reel<MedieFile>, rhs: Reel<MedieFile>) -> Bool {
-        lhs.id == rhs.id && lhs.title == rhs.title
+public struct Reel<MediaFile>: ReelDataProtocol where MediaFile: MediaFileConsumerable {
+    public static func == (lhs: Reel<MediaFile>, rhs: Reel<MediaFile>) -> Bool {
+        lhs.id == rhs.id
     }
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(title)
-        hasher.combine(title)
+        hasher.combine(id)
         hasher.combine(mediaFile.title)
         hasher.combine(mediaFile.id)
         hasher.combine(mediaFile.isExpanded)
     }
 
-    public typealias MedieFile = MedieFile
+    public typealias MediaFile = MediaFile
 
     public var player: AVPlayer?
 
     public var id = UUID().uuidString
 
-    public var title: String
+    public var mediaFile: MediaFile
 
-    public var mediaFile: MedieFile
-
-    public init(player: AVPlayer? = nil, title: String, mediaFile: MedieFile) {
+    public init(player: AVPlayer? = nil, mediaFile: MediaFile) {
         self.player = player
-        self.title = title
         self.mediaFile = mediaFile
     }
 }

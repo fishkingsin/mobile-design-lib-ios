@@ -6,16 +6,12 @@
 
 import Foundation
 
-public struct MedieFile: MediaFileConsumerable {
-    public var url: String = ""
-
-    public var title: String = ""
-
-    public var isExpanded: Bool = false
-
+public struct MediaFile: MediaFileConsumerable {
     public var id = UUID().uuidString
-
-    public init(url: String, title: String, isExpanded: Bool) {
+    public var url: String
+    public var title: String
+    public var isExpanded: Bool = false
+    public init(url: String, title: String, isExpanded: Bool = false) {
         self.url = url
         self.title = title
         self.isExpanded = isExpanded

@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "pageview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fredyshox/PageView.git",
+      "state" : {
+        "revision" : "b70afdef6379006bc91444f144d83ffe4e48f949",
+        "version" : "1.5.1"
+      }
+    },
+    {
       "identity" : "swift-snapshot-testing",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-snapshot-testing.git",
@@ -16,15 +25,6 @@
       "state" : {
         "revision" : "121c146fe591b1320238d054ae35c81ffa45f45a",
         "version" : "0.12.0"
-      }
-    },
-    {
-      "identity" : "swiftuipager",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/fermoya/SwiftUIPager",
-      "state" : {
-        "revision" : "4ddc04c801aac143090bb14cf26603a3bf9c74cb",
-        "version" : "2.5.0"
       }
     }
   ],

@@ -5,58 +5,43 @@
 //
 
 import SwiftUI
+import PageView
 import AVKit
-import SwiftUIIntrospect
 
 
-public struct ReelPager<Data>: View where Data: ReelDataProtocol {
+public struct ReelPager: View {
+    public typealias Data = Reel<MediaFile>
+    @State var pageIndex: Int
+    @State var reels: [Data]
+    @State var currentReel: String
+    public init(pageIndex: Int = 0, reels: [Data] = []) {
+        self.pageIndex = pageIndex
+        self.reels = reels
 
-    public init () {}
-
-    let colors: [Color] = [
-        .red, .green, .blue, .gray
-    ]
-
+        currentReel = reels.first?.id ?? ""
+    }
 
     public var body: some View {
-        GeometryReader { proxy in
-            TabView {
-                ForEach(colors, id: \.self) { color in
-                    color.onAppear {
-                        print("\(color) Appear")
-                    }.onDisappear{
-                        print("\(color) Disppear")
-                    }
-                }
-                .rotationEffect(.degrees(-90)) // Rotate content
-                .frame(
-                    width: proxy.size.width,
-                    height: proxy.size.height
-                )
-            }
-            .frame(
-                width: proxy.size.height, // Height & width swap
-                height: proxy.size.width
-            )
-            .rotationEffect(.degrees(90), anchor: .topLeading) // Rotate TabView
-            .offset(x: proxy.size.width) // Offset back into screens bounds
-            .tabViewStyle(
-                PageTabViewStyle(indexDisplayMode: .never)
-            )
-        }
+
+        VPageView(selectedPage: $pageIndex, data: 0..<reels.count) { index in
+
+            ReelPlayer<Data>(reel: $reels[index], currentReel: $currentReel)
+                .tag(reels[index].id)
+
+        }.onAppear {
+            currentReel = reels.first?.id ?? ""
+        }.navigationBarBackButtonHidden(true)
+
+
     }
 }
-
+public let reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
+    let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
+    let player = AVPlayer(url: URL(fileURLWithPath: path))
+    return Reel<MediaFile>(player: player, mediaFile: medialFile)
+}
 struct ReelPager_Previews: PreviewProvider {
     static var previews: some View {
-        ReelPager<Reel<MediaFile>>()
-//        ReelPager<Reel<MediaFile>>(reels: MediaFileJSON.map { item -> Reel in
-//
-//            let url = Bundle.main.path(forResource: item.url, ofType: "mp4") ?? ""
-//
-//            let player = AVPlayer(url:  URL(string: "https://www.pexels.com/download/video/5913482/")!)
-//
-//            return Reel(player: player, title: item.title, mediaFile: item)
-//        })
+        ReelPager(reels: reels)
     }
 }
