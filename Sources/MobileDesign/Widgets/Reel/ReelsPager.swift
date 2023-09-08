@@ -30,7 +30,7 @@ public struct ReelPager: View {
 
         }.onAppear {
             currentReel = reels.first?.id ?? ""
-        }.navigationBarBackButtonHidden(true)
+        }
 
 
     }
