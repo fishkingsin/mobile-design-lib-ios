@@ -18,7 +18,7 @@ public struct ReelPager: View {
         self.pageIndex = pageIndex
         self.reels = reels
 
-        currentReel = reels.first?.id ?? ""
+        self.currentReel = reels.first?.id ?? ""
     }
 
     public var body: some View {

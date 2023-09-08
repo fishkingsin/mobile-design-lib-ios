@@ -6,6 +6,18 @@
 
 import SwiftUI
 import MobileDesign
+
+struct ChipDataDemo: ChipData {
+    var id: String = UUID().uuidString
+
+    var title: String
+
+    init(_ title: String) {
+        self.title = title
+    }
+
+}
+
 struct CardViewGallery: View {
     let theme = ThemeManager.shared.currentTheme
     var reel_datas: [CardData] = {
@@ -36,13 +48,11 @@ struct CardViewGallery: View {
     var body: some View {
         List(datas.enumerated().map { $0 }, id: \.element.id) { index ,data in
             if index == 0 {
-                ChipGroup(index: .constant(0), datas: stride(from: 1, to: 10, by: 1).map {
-                    "Title \($0)"
-                }) { index, _ in
+                ChipGroup(datas: stride(from: 1, to: 10, by: 1).map {
+                    ChipDataDemo("Title \($0)")
+                }, index: 0) { index, _ in
                     self.index = index
-                } content: { i, element in
-                    Chip(element: element, index: self.$index, selfIndex: i)
-                }
+                } 
 
                 EmptyView()
             } else if index == 1 {

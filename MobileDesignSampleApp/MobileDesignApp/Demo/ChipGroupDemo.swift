@@ -6,23 +6,23 @@
 
 import Foundation
 import SwiftUI
+import MobileDesign
 
+struct ChipGroupDemo: View {
+    let theme: NMGThemeable = ThemeManager.shared.currentTheme
+    @State var index: Int = 0
 
-public struct ChipGroupDemo: View {
-    public let theme: NMGThemeable = ThemeManager.shared.currentTheme
-    @State public var index: Int = 0
-
-    public var data: [String] {
+    var data: [ChipDataDemo] {
         stride(from: 1, to: 10, by: 1).map {
-            "Title \($0)"
+            ChipDataDemo("Title \($0)")
         }
     }
 
-    public init(index: Int) {
+    init(index: Int) {
         self.index = index
     }
 
-    public var body: some View {
+    var body: some View {
         ChipGroup(index: $index, datas: data) { index, element in
             self.index = index
         } content: { i, element in

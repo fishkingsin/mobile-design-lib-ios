@@ -7,14 +7,14 @@
 import Foundation
 import SwiftUI
 
-public struct Chip: View {
+public struct Chip<Element>: View where Element: ChipData {
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
-    let element: String
+    let element: Element
     @Binding var index: Int
     let selfIndex: Int
     let font: Font
 
-    public init(element: String, index: Binding<Int>, selfIndex: Int, font: Font = Font(ThemeManager.shared.currentTheme.fonts.headline)) {
+    public init(element: Element, index: Binding<Int>, selfIndex: Int, font: Font = Font(ThemeManager.shared.currentTheme.fonts.headline)) {
         self.element = element
         self._index = index
         self.selfIndex = selfIndex
@@ -23,7 +23,7 @@ public struct Chip: View {
 
     public var body: some View {
         HStack(alignment: .top, spacing: 8) {
-            Text(element)
+            Text(element.title)
                 .foregroundColor(
                     isSelected ? Color(theme.colors.tabSelectedForegroud) : Color(theme.colors.tabForegroud))
                 .font(font)
@@ -41,12 +41,22 @@ public struct Chip: View {
     }
 }
 
+fileprivate struct ChipElement: ChipData {
+    var id: String = UUID().uuidString
+
+    var title: String
+
+    init(title: String) {
+        self.title = title
+    }
+}
+
 
 struct Chip_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            Chip(element: "Title", index: .constant(1), selfIndex: 0)
-            Chip(element: "Title", index: .constant(1), selfIndex: 1)
+            Chip(element: ChipElement(title: "Title"), index: .constant(1), selfIndex: 0)
+            Chip(element: ChipElement(title: "Title"), index: .constant(1), selfIndex: 1)
         }
     }
 }

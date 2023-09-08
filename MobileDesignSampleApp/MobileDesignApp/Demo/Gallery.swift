@@ -19,12 +19,12 @@ struct Gallery: View {
             content:  {
                 AnyView(FontsDemo())
             }),
-        MenuItem(
-            name: "ChipGroup",
-            content: {
-                AnyView(ChipGroupDemo(index: 0))
-            }
-        ),
+//        MenuItem(
+//            name: "ChipGroup",
+//            content: {
+//                AnyView(ChipGroupDemo(index: 0))
+//            }
+//        ),
         MenuItem(
             name: "CardView",
             content: {

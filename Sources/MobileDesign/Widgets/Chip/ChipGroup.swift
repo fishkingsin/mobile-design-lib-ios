@@ -6,7 +6,7 @@
 
 import SwiftUI
 
-public struct ChipGroup<Data: Collection, Content: View>: View where Data.Element: Hashable {
+struct ChipGroupInternal<Data: Collection, Content: View>: View where Data.Element: ChipData {
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
     @Binding var index: Int
     let content: ((Int, Data.Element) -> Content)?
@@ -45,3 +45,28 @@ public struct ChipGroup<Data: Collection, Content: View>: View where Data.Elemen
 
 }
 
+public protocol ChipData: Identifiable, Hashable {
+    var id: String { get }
+    var title: String { get }
+}
+
+public struct ChipGroup<Data>: View where Data: ChipData {
+
+    var datas: [Data]
+    @State public var index: Int = 0
+    var onTabChanged: (Int, Data) -> Void
+
+    public init(datas: [Data], index: Int, onTabChanged: @escaping (Int, Data) -> Void) {
+        self.datas = datas
+        self.index = index
+        self.onTabChanged = onTabChanged
+    }
+
+    public var body: some View {
+        ChipGroupInternal(index: $index, datas: datas) { index, data in
+            onTabChanged(index, data)
+        } content: { i, element in
+            Chip(element: element, index: self.$index, selfIndex: i)
+        }
+    }
+}
