@@ -20,6 +20,7 @@
 		1A3926BE289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3926BD289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift */; };
 		1A5D1EC72AA32F7200E08139 /* CardViewGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */; };
 		1AA3393B293A2CDB00D82AA1 /* MobileDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA3393A293A2CDB00D82AA1 /* MobileDesign */; };
+		1AE9FDA62AAC32E6002F9CEB /* ChipGroupDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9FDA52AAC32E6002F9CEB /* ChipGroupDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		1A3926BD289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileDesignAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewGallery.swift; sourceTree = "<group>"; };
 		1AA33937293A234F00D82AA1 /* mobile-design-lib-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-design-lib-ios"; path = ..; sourceTree = "<group>"; };
+		1AE9FDA52AAC32E6002F9CEB /* ChipGroupDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				1A22E9382AA2EE7100EC564A /* Gallery.swift */,
 				1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */,
+				1AE9FDA52AAC32E6002F9CEB /* ChipGroupDemo.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				1A22E9392AA2EE7100EC564A /* Gallery.swift in Sources */,
 				1A39269F289A712E006D6A00 /* ViewController.swift in Sources */,
 				1A39269B289A712E006D6A00 /* AppDelegate.swift in Sources */,
+				1AE9FDA62AAC32E6002F9CEB /* ChipGroupDemo.swift in Sources */,
 				1A39269D289A712E006D6A00 /* SceneDelegate.swift in Sources */,
 				1A22E93E2AA2EF7700EC564A /* MenuSection.swift in Sources */,
 				1A22E93C2AA2EF6400EC564A /* MenuItem.swift in Sources */,

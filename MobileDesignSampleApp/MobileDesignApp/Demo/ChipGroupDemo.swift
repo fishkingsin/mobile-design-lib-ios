@@ -23,10 +23,9 @@ struct ChipGroupDemo: View {
     }
 
     var body: some View {
-        ChipGroup(index: $index, datas: data) { index, element in
+        ChipGroup(datas: data, index: index) { index, _ in
             self.index = index
-        } content: { i, element in
-            Chip(element: element, index: self.$index, selfIndex: i)
+            debugPrint("index \(index)")
         }
     }
 }

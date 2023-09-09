@@ -64,6 +64,7 @@ public struct ChipGroup<Data>: View where Data: ChipData {
 
     public var body: some View {
         ChipGroupInternal(index: $index, datas: datas) { index, data in
+            self.index = index
             onTabChanged(index, data)
         } content: { i, element in
             Chip(element: element, index: self.$index, selfIndex: i)

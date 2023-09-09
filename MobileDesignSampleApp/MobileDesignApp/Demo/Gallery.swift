@@ -26,6 +26,12 @@ struct Gallery: View {
             }
         ),
         MenuItem(
+            name: "ChipGroup",
+            content: {
+                AnyView(ChipGroupDemo(index: 0))
+            }
+        ),
+        MenuItem(
             name: "ReelPager",
             content: {
                 AnyView(ReelPager(reels: reels))
