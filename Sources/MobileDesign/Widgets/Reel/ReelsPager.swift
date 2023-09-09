@@ -9,34 +9,51 @@ import PageView
 import AVKit
 
 
-public struct ReelPager: View {
-    public typealias Data = Reel<MediaFile>
-    @State var pageIndex: Int
-    @State var reels: [Data]
-    @State var currentReel: String
-    public init(pageIndex: Int = 0, reels: [Data] = []) {
-        self.pageIndex = pageIndex
-        self.reels = reels
+public struct ReelsPager: View {
+    @State var currentReel = ""
 
-        self.currentReel = reels.first?.id ?? ""
+    // demo
+    @State var reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
+        let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        return Reel<MediaFile>(player: player, mediaFile: medialFile)
+    }
+
+    public init(currentReel: String = "", reels: [Reel<MediaFile>]) {
+        self.currentReel = currentReel
     }
 
     public var body: some View {
+        GeometryReader { proxy in
 
-        VPageView(selectedPage: $pageIndex, data: 0..<reels.count) { index in
+            TabView(selection: $currentReel) {
+                ForEach($reels) { $reel in
+                    ReelPlayer(reel: $reel, currentReel: $currentReel)
+                        .frame(width: proxy.size.width)
+                        .padding()
+                        .rotationEffect(Angle(degrees: -90))
+                        .ignoresSafeArea(.all, edges: .top)
+                        .tag(reel.id)
+                        .onAppear {
+                            let path = Bundle.main.path(forResource: reel.mediaFile.url, ofType: "mp4") ?? ""
+                            reel.player?.replaceCurrentItem(with: AVPlayerItem(url: URL(fileURLWithPath: path)))
+                        }
+                        .onDisappear() {
+                            reel.player?.replaceCurrentItem(with: nil)
+                        }
 
-            ReelPlayer<Data>(reel: $reels[index], currentReel: $currentReel)
-                .tag(reels[index].id)
-                .onDisappear {
-                    reels[index].player?.replaceCurrentItem(with: nil)
                 }
-
+            }
+            .rotationEffect(Angle(degrees: 90))
+            .frame(width: proxy.size.height)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .frame(maxWidth: proxy.size.width)
         }
+        .ignoresSafeArea(.all, edges: .top)
+        .background(.black)
         .onAppear {
             currentReel = reels.first?.id ?? ""
         }
-
-
     }
 }
 public let reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
@@ -46,6 +63,6 @@ public let reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
 }
 struct ReelPager_Previews: PreviewProvider {
     static var previews: some View {
-        ReelPager(reels: reels)
+        ReelsPager(currentReel: reels.first!.id, reels: reels)
     }
 }

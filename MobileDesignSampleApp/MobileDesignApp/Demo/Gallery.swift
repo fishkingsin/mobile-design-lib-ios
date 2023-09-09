@@ -34,7 +34,7 @@ struct Gallery: View {
         MenuItem(
             name: "ReelPager",
             content: {
-                AnyView(ReelPager(reels: reels))
+                AnyView(ReelsPager(reels: reels))
                 
             }
         )
@@ -66,9 +66,3 @@ struct Gallery_Previews: PreviewProvider {
 }
 
 
-
-public var MediaFileJSON = [
-    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
-    MediaFile(url: "Reel-2", title: "Work Work Work!"),
-    MediaFile(url: "Reel-3", title: "Gorgeous City")
-]
