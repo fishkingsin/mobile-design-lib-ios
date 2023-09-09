@@ -6,7 +6,7 @@
 
 import SwiftUI
 
-public struct CardData: CardDisplayable, TimecodeDisplayable, Identifiable {
+public struct CardData: CardDisplayable, TimecodeDisplayable, Identifiable, Hashable {
     public var id: UUID = UUID()
     public var timecode: String { _timecode ?? "--:--" }
 
@@ -15,6 +15,11 @@ public struct CardData: CardDisplayable, TimecodeDisplayable, Identifiable {
     public var leadingFootnote: String
     public var secondFootnote: String
     public var _timecode: String?
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
     public init(imageURL: String, headline: String, leadingFootnote: String, secondFootnote: String, timecode: String? = nil) {
         self.imageURL = imageURL
         self.headline = headline
