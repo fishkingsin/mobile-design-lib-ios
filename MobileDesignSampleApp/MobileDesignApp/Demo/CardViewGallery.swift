@@ -18,6 +18,10 @@ struct ChipDataDemo: ChipData {
 
 }
 
+class CardViewGalleryState: ObservableObject {
+    
+}
+
 
 struct CardViewGallery: View {
     @EnvironmentObject var themeManager: ThemeManager
@@ -48,15 +52,15 @@ struct CardViewGallery: View {
     }()
     var body: some View {
         List(datas.enumerated().map { $0 }, id: \.element.id) { index ,data in
-            if index == 0 {
-                ChipGroup(datas: stride(from: 1, to: 10, by: 1).map {
-                    ChipDataDemo("Title \($0)")
-                }, index: 0) { index, _ in
-                    self.index = index
-                } 
-
-                EmptyView()
-            } else if index == 1 {
+            if (index == 0) {
+                Section {
+                    ChipGroup(datas: stride(from: 1, to: 10, by: 1).map {
+                        ChipDataDemo("Title \($0)")
+                    }, index: 0) { index, _ in
+                        self.index = index
+                    }
+                }
+                .listRowSeparator(.hidden)
                 Section(header: Text("最新的連續短片")
                     .font(themeManager.currentTheme.fonts.headlineEmphasize.uiFont)
                     .foregroundColor(themeManager.currentTheme.colors.headline.color)
@@ -70,16 +74,15 @@ struct CardViewGallery: View {
                     }
                 }
                 .listRowSeparator(.hidden)
-
-                EmptyView()
-            } else {
-                VideoCardView(data: data)
-                    .onAppear {
-
-                    }
-
-                    .listRowSeparator(.hidden)
             }
+
+            VideoCardView(data: data)
+                .onAppear {
+
+                }
+
+                .listRowSeparator(.hidden)
+
         }
         .listStyle(.plain)
 
