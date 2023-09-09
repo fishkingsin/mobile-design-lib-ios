@@ -16,7 +16,7 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
             TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
                 // MARK: update placeholder
                 Rectangle()
-                    .frame(maxHeight: 200)
+                    .fill(.gray)
                 
             } contentView: {
                 CardContentView(
@@ -31,7 +31,7 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
             .padding(12)
             Rectangle()
                 .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
-                .frame(width: .infinity, height: 2)
+                .frame(height: 2)
         }
     }
 }

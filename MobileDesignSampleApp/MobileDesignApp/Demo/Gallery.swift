@@ -61,6 +61,6 @@ struct Gallery: View {
 
 struct Gallery_Previews: PreviewProvider {
     static var previews: some View {
-        Gallery()
+        Gallery().environmentObject(ThemeManager.shared)
     }
 }

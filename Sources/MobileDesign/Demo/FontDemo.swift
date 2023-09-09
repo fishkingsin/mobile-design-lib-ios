@@ -55,7 +55,7 @@ public struct FontsDemo: View {
                     .shadow(radius: 13)
 
                 }
-                .frame(maxWidth: .infinity)
+                .frame(width: .infinity)
                 .padding()
             }
 

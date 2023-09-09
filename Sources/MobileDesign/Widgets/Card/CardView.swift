@@ -14,9 +14,7 @@ public struct CardView<Data>: View where Data: CardDisplayable {
     public var body: some View {
         TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
             // MARK: update placeholder
-            Rectangle()
-                .frame(maxHeight: 200)
-                .clipped()
+            Rectangle().fill(.gray)
         } contentView: {
             CardContentView(
                 headline: data.headline,

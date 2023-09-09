@@ -120,7 +120,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                                                 .foregroundColor(Color.gray)
                                         }
                                         .padding(.top, 6)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .frame(width: .infinity, alignment: .leading)
                                     }
 
                                 }

@@ -13,7 +13,7 @@ struct CardContentHeadlineView: View {
             .lineLimit(2)
             .font(ThemeManager.shared.currentTheme.fonts.headline.uiFont)
             .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
-            .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .topLeading)
+            .frame(height: 44, alignment: .topLeading)
     }
 }
 

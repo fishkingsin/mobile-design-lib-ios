@@ -18,8 +18,9 @@ struct ChipDataDemo: ChipData {
 
 }
 
+
 struct CardViewGallery: View {
-    let theme = ThemeManager.shared.currentTheme
+    @EnvironmentObject var themeManager: ThemeManager
     var reel_datas: [CardData] = {
         return stride(from: 0, to: 100, by: 1).map { index in
             CardData(
@@ -57,8 +58,8 @@ struct CardViewGallery: View {
                 EmptyView()
             } else if index == 1 {
                 Section(header: Text("最新的連續短片")
-                    .font(theme.fonts.headlineEmphasize.uiFont)
-                    .foregroundColor(theme.colors.headline.color)
+                    .font(themeManager.currentTheme.fonts.headlineEmphasize.uiFont)
+                    .foregroundColor(themeManager.currentTheme.colors.headline.color)
                 ) {
                     ScrollView(.horizontal) {
                         LazyHStack {
@@ -88,6 +89,6 @@ struct CardViewGallery: View {
 
 struct CardViewGallery_Previews: PreviewProvider {
     static var previews: some View {
-        CardViewGallery()
+        CardViewGallery().environmentObject(ThemeManager.shared)
     }
 }

@@ -15,7 +15,7 @@ struct CardContentView: View {
             CardContentHeadlineView(headline: headline)
             CardContentFootnoteView(leadingFootnote: leadingFootnote, secondFootnote: secondFootnote)
         }
-        .frame(maxWidth: .infinity, alignment: .topLeading)
+        .frame(alignment: .topLeading)
     }
 }
 

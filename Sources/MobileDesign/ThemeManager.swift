@@ -1,11 +1,12 @@
 //
 // ThemeManager.swift
 //
-// Copyright © 2022 New Media Group. All rights reserved.
+// Copyright © 2023 New Media Group. All rights reserved.
 //
 
 import Foundation
-
+import SwiftUI
+import Combine
 protocol ThemeManageable {
     associatedtype ImplementationType
     var currentTheme: NMGThemeable { get }
@@ -78,7 +79,7 @@ extension Theme {
     }
 }
 
-public final class ThemeManager: ThemeManageable {
+public final class ThemeManager: ThemeManageable, ObservableObject {
     public typealias ImplementationType = ThemeManager
     public enum Static {
         public static var instance: ImplementationType?
