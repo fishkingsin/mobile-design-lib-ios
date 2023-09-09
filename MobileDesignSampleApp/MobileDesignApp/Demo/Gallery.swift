@@ -64,3 +64,11 @@ struct Gallery_Previews: PreviewProvider {
         Gallery().environmentObject(ThemeManager.shared)
     }
 }
+
+
+
+public var MediaFileJSON = [
+    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
+    MediaFile(url: "Reel-2", title: "Work Work Work!"),
+    MediaFile(url: "Reel-3", title: "Gorgeous City")
+]

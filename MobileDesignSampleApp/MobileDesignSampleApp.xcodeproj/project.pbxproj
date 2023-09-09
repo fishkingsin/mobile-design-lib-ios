@@ -21,6 +21,9 @@
 		1A5D1EC72AA32F7200E08139 /* CardViewGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */; };
 		1AA3393B293A2CDB00D82AA1 /* MobileDesign in Frameworks */ = {isa = PBXBuildFile; productRef = 1AA3393A293A2CDB00D82AA1 /* MobileDesign */; };
 		1AE9FDA62AAC32E6002F9CEB /* ChipGroupDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9FDA52AAC32E6002F9CEB /* ChipGroupDemo.swift */; };
+		1AE9FDAE2AAC531D002F9CEB /* Reel-2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1AE9FDAB2AAC531D002F9CEB /* Reel-2.mp4 */; };
+		1AE9FDAF2AAC531D002F9CEB /* Reel-1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1AE9FDAC2AAC531D002F9CEB /* Reel-1.mp4 */; };
+		1AE9FDB02AAC531D002F9CEB /* Reel-3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1AE9FDAD2AAC531D002F9CEB /* Reel-3.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		1A5D1EC62AA32F7200E08139 /* CardViewGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewGallery.swift; sourceTree = "<group>"; };
 		1AA33937293A234F00D82AA1 /* mobile-design-lib-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-design-lib-ios"; path = ..; sourceTree = "<group>"; };
 		1AE9FDA52AAC32E6002F9CEB /* ChipGroupDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipGroupDemo.swift; sourceTree = "<group>"; };
+		1AE9FDAB2AAC531D002F9CEB /* Reel-2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Reel-2.mp4"; sourceTree = "<group>"; };
+		1AE9FDAC2AAC531D002F9CEB /* Reel-1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Reel-1.mp4"; sourceTree = "<group>"; };
+		1AE9FDAD2AAC531D002F9CEB /* Reel-3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Reel-3.mp4"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,7 @@
 		1A392699289A712E006D6A00 /* MobileDesignApp */ = {
 			isa = PBXGroup;
 			children = (
+				1AE9FDA72AAC52FF002F9CEB /* Resources */,
 				1A22E93A2AA2EF5400EC564A /* DataType */,
 				1B0D4335289BA2E500D2782D /* Demo */,
 				1A39269A289A712E006D6A00 /* AppDelegate.swift */,
@@ -155,6 +162,16 @@
 				1A3926BD289A7130006D6A00 /* MobileDesignAppUITestsLaunchTests.swift */,
 			);
 			path = MobileDesignAppUITests;
+			sourceTree = "<group>";
+		};
+		1AE9FDA72AAC52FF002F9CEB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1AE9FDAC2AAC531D002F9CEB /* Reel-1.mp4 */,
+				1AE9FDAB2AAC531D002F9CEB /* Reel-2.mp4 */,
+				1AE9FDAD2AAC531D002F9CEB /* Reel-3.mp4 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		1B0D4335289BA2E500D2782D /* Demo */ = {
@@ -286,8 +303,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE9FDAE2AAC531D002F9CEB /* Reel-2.mp4 in Resources */,
+				1AE9FDB02AAC531D002F9CEB /* Reel-3.mp4 in Resources */,
 				1A3926A7289A712F006D6A00 /* LaunchScreen.storyboard in Resources */,
 				1A3926A4289A712F006D6A00 /* Assets.xcassets in Resources */,
+				1AE9FDAF2AAC531D002F9CEB /* Reel-1.mp4 in Resources */,
 				1A3926A2289A712E006D6A00 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

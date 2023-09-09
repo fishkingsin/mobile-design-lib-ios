@@ -120,7 +120,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                                                 .foregroundColor(Color.gray)
                                         }
                                         .padding(.top, 6)
-                                        .frame(width: .infinity, alignment: .leading)
+                                        .frame(alignment: .leading)
                                     }
 
                                 }
@@ -130,9 +130,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
                         Spacer(minLength: 20)
 
-                        //
-
-                        //                        ActionButtons(reel: reel)
+                        ReelActionButtonGroup()
 
                     }
 
@@ -216,7 +214,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
 
 public var MediaFileJSON = [
-    MediaFile(url: "Reel-2", title: "Fantastic mountains"),
+    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
     MediaFile(url: "Reel-2", title: "Work Work Work!"),
     MediaFile(url: "Reel-3", title: "Gorgeous City")
 ]

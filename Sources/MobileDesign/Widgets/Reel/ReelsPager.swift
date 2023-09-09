@@ -27,8 +27,12 @@ public struct ReelPager: View {
 
             ReelPlayer<Data>(reel: $reels[index], currentReel: $currentReel)
                 .tag(reels[index].id)
+                .onDisappear {
+                    reels[index].player?.replaceCurrentItem(with: nil)
+                }
 
-        }.onAppear {
+        }
+        .onAppear {
             currentReel = reels.first?.id ?? ""
         }
 
