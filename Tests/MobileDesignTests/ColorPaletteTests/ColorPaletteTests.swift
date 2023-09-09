@@ -1,7 +1,7 @@
 //
 // ColorPaletteTests.swift
 //
-// Copyright © 2022 New Media Group. All rights reserved.
+// Copyright © 2023 New Media Group. All rights reserved.
 //
 
 @testable import MobileDesign
@@ -10,7 +10,7 @@ import SwiftUI
 import XCTest
 final class ColorPaletteTests: XCTestCase {
     override func setUpWithError() throws {
-//        isRecording = true
+        isRecording = true
     }
 
     func test_color_Common_snapshot() {

@@ -8,11 +8,23 @@ import XCTest
 import SwiftUI
 @testable import MobileDesign
 import SnapshotTesting
+
+fileprivate struct ChipDataDemo: ChipData {
+    var id: String = UUID().uuidString
+
+    var title: String
+
+    init(_ title: String) {
+        self.title = title
+    }
+
+}
+
 final class ChipGroupTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-//        isRecording = true
+        isRecording = true
     }
 
     override func tearDown() {
@@ -57,8 +69,16 @@ final class ChipGroupTest: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 
+    fileprivate var data: [ChipDataDemo] {
+        stride(from: 1, to: 10, by: 1).map {
+            ChipDataDemo("Title \($0)")
+        }
+    }
+
+
     private var sut: some View {
-        ChipGroupDemo(index: 0)
+        ChipGroup(datas: data, index: 0) { index, _ in
+        }
     }
 
 }

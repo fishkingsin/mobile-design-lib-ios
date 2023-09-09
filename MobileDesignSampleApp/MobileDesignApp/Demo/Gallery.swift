@@ -34,7 +34,7 @@ struct Gallery: View {
         MenuItem(
             name: "ReelPager",
             content: {
-                AnyView(ReelsPager(reels: reels))
+                AnyView(ReelsPager(currentReel: reels.first!.id, reels: reels))
                 
             }
         )
