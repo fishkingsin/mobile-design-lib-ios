@@ -10,7 +10,7 @@ import SwiftUI
 import XCTest
 final class ColorPaletteTests: XCTestCase {
     override func setUpWithError() throws {
-        isRecording = true
+//        isRecording = true
     }
 
     func test_color_Common_snapshot() {

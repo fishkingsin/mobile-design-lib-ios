@@ -12,7 +12,7 @@ import SnapshotTesting
 final class FontsSnapshotTests: XCTestCase {
 
     override func setUpWithError() throws {
-        isRecording = true
+//        isRecording = true
 
     }
 
