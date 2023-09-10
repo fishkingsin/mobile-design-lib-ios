@@ -28,7 +28,7 @@ struct ChipGroupInternal<Data: Collection, Content: View>: View where Data.Eleme
     public var body: some View {
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack() {
+                HStack {
                     ForEach(Array(datas.enumerated()), id: \.offset) { index, element in
                         Button(action: {
                             onTabChanged(index, element)
@@ -41,7 +41,6 @@ struct ChipGroupInternal<Data: Collection, Content: View>: View where Data.Eleme
             }
 
     }
-
 
 }
 

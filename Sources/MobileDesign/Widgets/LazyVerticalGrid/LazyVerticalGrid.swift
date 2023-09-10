@@ -40,7 +40,7 @@ struct LazyVerticalGrid_Previews: PreviewProvider {
 
         let data = [
             "", "56,364.19萬", "56,364.19萬", "56,364.19萬", "56,364.19萬", "56,364.19萬",
-            "", "11%", "131.34%", "31.34%", "31.34%", "31.34%",
+            "", "11%", "131.34%", "31.34%", "31.34%", "31.34%"
         ]
         if #available(iOS 14.0, *) {
             LazyVerticalGrid(
@@ -51,10 +51,9 @@ struct LazyVerticalGrid_Previews: PreviewProvider {
                         GridItem(.flexible(minimum: 30)),
                         GridItem(.flexible(minimum: 30)),
                         GridItem(.flexible(minimum: 30)),
-                        GridItem(.flexible(minimum: 30)),
+                        GridItem(.flexible(minimum: 30))
                     ],
-                data: data)
-            { index, element in
+                data: data) { _, element in
                 Text(element).font(.caption2)
             }
         } else {
@@ -62,7 +61,6 @@ struct LazyVerticalGrid_Previews: PreviewProvider {
         }
     }
 }
-
 
 struct LazyVerticalGrid_OneRow_Previews: PreviewProvider {
     static var previews: some View {
@@ -72,7 +70,7 @@ struct LazyVerticalGrid_OneRow_Previews: PreviewProvider {
             "2022/Q2",
             "2022/Q3",
             "2022/Q4",
-            "2022/FY",
+            "2022/FY"
         ]
         if #available(iOS 14.0, *) {
             HStack(alignment: .center) {
@@ -84,8 +82,7 @@ struct LazyVerticalGrid_OneRow_Previews: PreviewProvider {
                         },
                     data: data,
                     horizontalAlignment: .center
-                )
-                { index, element in
+                ) { _, element in
                     ZStack {
                         Color.red
                         Text(element).font(.caption2)

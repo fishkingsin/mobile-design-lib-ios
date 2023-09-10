@@ -10,7 +10,7 @@ import SnapshotTesting
 import MobileDesign
 
 class CardViewTests: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
 //        isRecording = true

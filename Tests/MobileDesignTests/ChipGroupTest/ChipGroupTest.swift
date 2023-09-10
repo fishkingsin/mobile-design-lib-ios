@@ -9,7 +9,7 @@ import SwiftUI
 @testable import MobileDesign
 import SnapshotTesting
 
-fileprivate struct ChipDataDemo: ChipData {
+private struct ChipDataDemo: ChipData {
     var id: String = UUID().uuidString
 
     var title: String
@@ -75,9 +75,8 @@ final class ChipGroupTest: XCTestCase {
         }
     }
 
-
     private var sut: some View {
-        ChipGroup(datas: data, index: 0) { index, _ in
+        ChipGroup(datas: data, index: 0) { _, _ in
         }
     }
 

@@ -21,13 +21,13 @@ public struct TagViewModifier: ViewModifier {
 }
 
 public struct TagView: View {
-    
+
     let value: String
-    
+
     private let theme: NMGThemeable
-    
+
     var modifier: TagViewModifier
-    
+
     let action: (String) -> Void
     public init(
         value: String,
@@ -45,7 +45,7 @@ public struct TagView: View {
         )
         self.action = action
     }
-    
+
     public var body: some View {
         Text(value)
             .font(Font(theme.fonts.caption as CTFont))

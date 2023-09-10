@@ -8,7 +8,6 @@ import SwiftUI
 import PageView
 import AVKit
 
-
 public struct ReelsPager: View {
     @State var currentReel = ""
 
@@ -38,7 +37,7 @@ public struct ReelsPager: View {
                             let path = Bundle.main.path(forResource: reel.mediaFile.url, ofType: "mp4") ?? ""
                             reel.player?.replaceCurrentItem(with: AVPlayerItem(url: URL(fileURLWithPath: path)))
                         }
-                        .onDisappear() {
+                        .onDisappear {
                             reel.player?.replaceCurrentItem(with: nil)
                         }
 

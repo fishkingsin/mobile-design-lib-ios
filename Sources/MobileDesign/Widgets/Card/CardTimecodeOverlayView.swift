@@ -34,4 +34,3 @@ struct CardTimecodeOverlayView_Previews: PreviewProvider {
         CardTimecodeOverlayView(timecode: "22:22")
     }
 }
-

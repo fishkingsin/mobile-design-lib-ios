@@ -6,7 +6,6 @@
 
 import SwiftUI
 
-
 struct ReelActionButtonGroup: View {
 
     var body: some View {
@@ -25,7 +24,6 @@ struct ReelActionButtonGroup: View {
                 }
             }
 
-
             Button {
 
             } label: {
@@ -38,7 +36,6 @@ struct ReelActionButtonGroup: View {
 
                 }
             }
-
 
             Button {
 
@@ -64,7 +61,6 @@ struct ReelActionButtonGroup: View {
         }
     }
 }
-
 
 struct ReelActionButtonGroup_Previews: PreviewProvider {
     static var previews: some View {

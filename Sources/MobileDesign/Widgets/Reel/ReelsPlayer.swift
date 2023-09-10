@@ -38,7 +38,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                         }
                         isMuted.toggle()
                         player.isMuted = isMuted
-                        withAnimation{
+                        withAnimation {
                             volumeAnimation.toggle()
                         }
 
@@ -98,13 +98,13 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                                     }
                                     .frame(height: 120)
                                     .onTapGesture {
-                                        withAnimation{showMore.toggle()}
+                                        withAnimation {showMore.toggle()}
                                     }
                                 } else {
 
                                     Button {
 
-                                        withAnimation{showMore.toggle()}
+                                        withAnimation {showMore.toggle()}
 
                                     } label: {
                                         HStack {
@@ -184,8 +184,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
             if -minY < (size.height / 2) && minY < (size.height / 2) && currentReel == reel.id {
 
                 player.play()
-            }
-            else {
+            } else {
                 player.pause()
             }
         }
@@ -196,7 +195,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
     }
 }
 
-//struct ReelPlayer_Previews: PreviewProvider {
+// struct ReelPlayer_Previews: PreviewProvider {
 //    typealias ReelType = Reel<MediaFile>
 //    static var previews: some View {
 //        
@@ -209,9 +208,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 //            currentReel: .constant("Fantastic mountains")
 //        )
 //    }
-//}
-
-
+// }
 
 public var MediaFileJSON = [
     MediaFile(url: "Reel-1", title: "Fantastic mountains"),

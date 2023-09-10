@@ -10,18 +10,18 @@ public struct PagerView<Content: View>: View {
     let pageCount: Int
     @Binding var currentIndex: Int
     let content: Content
-    
+
     let bounce: Bool
-    
+
     @GestureState private var translation: CGFloat = 0
-    
+
     public init(pageCount: Int, currentIndex: Binding<Int>, bounce: Bool = true, @ViewBuilder content: () -> Content) {
         self.pageCount = pageCount
         self.bounce = bounce
         self._currentIndex = currentIndex
         self.content = content()
     }
-    
+
     public var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
@@ -49,17 +49,17 @@ public struct PagerView<Content: View>: View {
 
 struct PagerViewDemo: View {
     @State private var currentPage: Int
-    
+
     public init() {
         self.currentPage = 2
     }
-    
+
     public var body: some View {
         ZStack {
             Color.gray
             VStack(alignment: .center, spacing: 10) {
                 PagerView(pageCount: 5, currentIndex: $currentPage) {
-                    
+
                     /*ShareCardViewBuilderNAV(data: NAVData(
                         headnote: "2022-02-10 14:35",
                         title: "累計盈虧",
@@ -141,25 +141,23 @@ struct PagerViewDemo: View {
                     ShareCardBuilderDefault {
                         Text("Default")
                     }*/
-                    
-                    
+
                 }
                 PageControl(selectedPage: .constant(currentPage + 1),
                             pages: 5,
                             circleDiameter: 5.0,
                             circleMargin: 10.0)
             }
-            
-            
+
         }
     }
-    
+
 }
 
 struct PagerView_Previews: PreviewProvider {
 
     static var previews: some View {
         PagerViewDemo()
-        
+
     }
 }

@@ -22,7 +22,7 @@ public struct TagCollectionView: View {
             TagView(
                 value: value,
                 action: { _ in
-                
+
             })
                 .background(Color(theme.colors.primaryMain))
                 .clipShape(Capsule())

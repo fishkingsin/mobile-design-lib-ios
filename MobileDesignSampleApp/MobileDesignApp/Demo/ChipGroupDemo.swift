@@ -30,11 +30,8 @@ struct ChipGroupDemo: View {
     }
 }
 
-
-
 struct ChipGroup_Previews: PreviewProvider {
     static var previews: some View {
         ChipGroupDemo(index: 0)
     }
 }
-

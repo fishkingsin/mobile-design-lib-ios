@@ -7,7 +7,6 @@
 import Foundation
 import AVKit
 
-
 public struct Reel<MediaFile>: ReelDataProtocol where MediaFile: MediaFileConsumerable {
     public static func == (lhs: Reel<MediaFile>, rhs: Reel<MediaFile>) -> Bool {
         lhs.id == rhs.id

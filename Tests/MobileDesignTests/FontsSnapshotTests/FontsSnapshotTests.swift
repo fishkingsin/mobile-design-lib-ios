@@ -21,7 +21,7 @@ final class FontsSnapshotTests: XCTestCase {
 
         Array(fonts).sorted { a, b in
             a.value.pointSize > b.value.pointSize
-        }.map{ $0.key }.forEach { key in
+        }.map { $0.key }.forEach { key in
             let vc = UIHostingController(
                 rootView: FontItem(
                     key: key,

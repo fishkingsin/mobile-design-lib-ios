@@ -7,7 +7,6 @@
 import Foundation
 import UIKit
 
-
 public protocol NMGThemeableFonts: AnyObject {
     var largeTitleEmphasize: UIFont { get }
     var titleEmphasize: UIFont { get }
@@ -59,4 +58,3 @@ extension NMGThemeableFonts {
         ]
     }
 }
-

@@ -49,7 +49,7 @@ public struct TopImageCardView<
         }
 
     }
-    
+
     private func getPlaceholder() -> AnyView {
         AnyView(
             placeholderView()
@@ -57,9 +57,6 @@ public struct TopImageCardView<
         )
     }
 }
-
-
-
 
 struct TopImageCardView_Previews: PreviewProvider {
     static var previews: some View {

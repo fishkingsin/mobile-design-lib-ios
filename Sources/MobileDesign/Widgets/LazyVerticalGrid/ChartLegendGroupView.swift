@@ -58,24 +58,22 @@ public struct LineIndicator: View {
 }
 
 public struct SimpleKeyValueData: Hashable {
-    
+
     public var key: String
     public var value: String
-    
+
     public init(_ key: String, _ value: String) {
         self.key = key
         self.value = value
     }
-    
+
     public static func == (lhs: SimpleKeyValueData, rhs: SimpleKeyValueData) -> Bool {
         return lhs.key == rhs.key && lhs.value == rhs.value
     }
 }
 
-
-
 public struct ChartHeading<Data: Collection, Content: View>: View where Data.Element: Hashable {
-    
+
     let data: Data
     let content: (Data.Element) -> Content
 
@@ -83,7 +81,7 @@ public struct ChartHeading<Data: Collection, Content: View>: View where Data.Ele
         self.data = data
         self.content = content
     }
-    
+
     public var body: some View {
         VStack {
             HStack {
@@ -122,7 +120,6 @@ public struct ChartLegendGroupView: View {
         }
     }
 }
-
 
 struct ChartLegendGroupView_Previews: PreviewProvider {
     static var previews: some View {

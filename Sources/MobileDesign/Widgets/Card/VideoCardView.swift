@@ -17,7 +17,7 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
                 // MARK: update placeholder
                 Rectangle()
                     .fill(.gray)
-                
+
             } contentView: {
                 CardContentView(
                     headline: data.headline,

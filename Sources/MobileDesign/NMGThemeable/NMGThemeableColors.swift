@@ -92,7 +92,7 @@ extension NMGThemeableColors {
       "neutralGray30": neutralGray30,
       "neutralGray20": neutralGray20,
       "neutralGray10": neutralGray10,
-      "neutralGray90": neutralGray90,
+      "neutralGray90": neutralGray90
     ]
   }
 }

@@ -11,7 +11,7 @@ public struct VolumTextModifier: ViewModifier {
     public init(color: Color) {
         self.color = color
     }
-    
+
     public func body(content: Content) -> some View {
         content
             .foregroundColor(color)
@@ -24,7 +24,7 @@ public struct VolumTextBuilder: View {
     let titleSuffix: String?
     let subtitle: String?
     let modifier: VolumTextModifier
-    
+
     public init(titlePrefix: String, titleSuffix: String? = nil, subtitle: String? = nil, modifier: VolumTextModifier, theme: NMGThemeable = ThemeManager.shared.currentTheme) {
         self.theme = theme
         self.titlePrefix = titlePrefix
@@ -32,7 +32,7 @@ public struct VolumTextBuilder: View {
         self.subtitle = subtitle
         self.modifier = modifier
     }
-    
+
     public var body: some View {
         VStack {
             VStack {

@@ -11,12 +11,12 @@ struct Gallery: View {
     var data = [
         MenuItem(
             name: "Colors",
-            content:  {
+            content: {
                 AnyView(ColorPaletteDemo())
             }),
         MenuItem(
             name: "Fonts",
-            content:  {
+            content: {
                 AnyView(FontsDemo())
             }),
         MenuItem(
@@ -35,12 +35,11 @@ struct Gallery: View {
             name: "ReelPager",
             content: {
                 AnyView(ReelsPager(currentReel: reels.first!.id, reels: reels))
-                
+
             }
         )
     ]
-    
-    
+
     var body: some View {
         NavigationView(content: {
             List {
@@ -50,7 +49,7 @@ struct Gallery: View {
                         label: {
                             Text(item.name)
                         })
-                    
+
                 }
             }
             .navigationBarTitle("NMG Mobile Design Library 🏛️", displayMode: .inline)
@@ -64,5 +63,3 @@ struct Gallery_Previews: PreviewProvider {
         Gallery().environmentObject(ThemeManager.shared)
     }
 }
-
-

@@ -43,7 +43,7 @@ public struct RightArrowShapeWithTextViewStyle: ViewModifier {
 }
 
 public struct RightArrowShapeWithTextView: View {
-    
+
     let text: String
     let modifier: RightArrowShapeWithTextViewStyle
     let theme: NMGThemeable
@@ -62,7 +62,7 @@ public struct RightArrowShapeWithTextView: View {
                 .foregroundColor(.white)
         }
     }
-    
+
     private func caluateSize() -> CGFloat {
         let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 15)
         let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: theme.fonts.caption3Emphasize], context: nil)
