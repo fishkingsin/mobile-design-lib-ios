@@ -1,25 +1,32 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "swift-snapshot-testing",
-        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing",
-        "state": {
-          "branch": null,
-          "revision": "26ed3a2b4a2df47917ca9b790a57f91285b923fb",
-          "version": "1.12.0"
-        }
-      },
-      {
-        "package": "SwiftUIPager",
-        "repositoryURL": "https://github.com/fermoya/SwiftUIPager",
-        "state": {
-          "branch": null,
-          "revision": "4ddc04c801aac143090bb14cf26603a3bf9c74cb",
-          "version": "2.5.0"
-        }
+  "pins" : [
+    {
+      "identity" : "pageview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fredyshox/PageView.git",
+      "state" : {
+        "revision" : "b70afdef6379006bc91444f144d83ffe4e48f949",
+        "version" : "1.5.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "26ed3a2b4a2df47917ca9b790a57f91285b923fb",
+        "version" : "1.12.0"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/swiftui-introspect",
+      "state" : {
+        "revision" : "121c146fe591b1320238d054ae35c81ffa45f45a",
+        "version" : "0.12.0"
+      }
+    }
+  ],
+  "version" : 2
 }
