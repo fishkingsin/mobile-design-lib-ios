@@ -62,6 +62,7 @@ struct LazyVerticalGrid_Previews: PreviewProvider {
     }
 }
 
+// swiftlint:disable:next type_name
 struct LazyVerticalGrid_OneRow_Previews: PreviewProvider {
     static var previews: some View {
 

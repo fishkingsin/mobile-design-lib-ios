@@ -70,7 +70,7 @@ struct VolumTextBuilder_Previews: PreviewProvider {
         VolumTextBuilder(titlePrefix: "+18.50%", modifier: VolumTextModifier(color: .green))
     }
 }
-
+// swiftlint:disable:next type_name
 struct VolumTextBuilder_2_Previews: PreviewProvider {
     static var previews: some View {
         VolumTextBuilder(titlePrefix: "1234899837393899877393838", titleSuffix: ".56", subtitle: "HKD", modifier: VolumTextModifier(color: .green))

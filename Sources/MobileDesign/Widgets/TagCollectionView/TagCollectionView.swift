@@ -30,6 +30,7 @@ public struct TagCollectionView: View {
     }
 }
 
+// swiftlint:disable:next type_name
 struct TagCollectionView_Preview: PreviewProvider {
     static var previews: some View {
         TagCollectionView(tags: (Int(0)...Int(5)).map {

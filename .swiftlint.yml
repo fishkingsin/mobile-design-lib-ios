@@ -21,6 +21,9 @@ line_length:
   - 200
   - 250
 
+type_name:
+  severity: warning # explicitly. Give warning only for force try
+  unallowed_symbols_severity: warning # explicitly. Give warning only for force try
 force_try:
   severity: warning # explicitly. Give warning only for force try
 
