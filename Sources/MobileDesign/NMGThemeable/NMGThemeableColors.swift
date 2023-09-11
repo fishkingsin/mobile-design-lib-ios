@@ -11,6 +11,7 @@ public protocol NMGThemeableColors: AnyObject, Hashable {
   var baseFolder: String { get }
 
   var primaryMain: UIColor { get }
+    var BG_LinkInBlock: UIColor { get }
 
   // common
   var black: UIColor { get }
@@ -70,10 +71,11 @@ extension NMGThemeableColors {
   public var chipSelectedBackground: UIColor { neutralGray90 }
   public var chipForeground: UIColor { neutralGray90 }
   public var chipBackground: UIColor { neutralGray5 }
+    public var BG_LinkInBlock: UIColor { UIColor.color(from: baseFolder, named: "BG_LinkInBlock")!}
   //    public var textPrimary: UIColor { UIColor.color(from: "Default", named: "primary")! }
   internal func properties() -> [String: UIColor] {
     [
-      "primaryMain": primaryMain
+      "primaryMain": primaryMain,
     ]
   }
 
