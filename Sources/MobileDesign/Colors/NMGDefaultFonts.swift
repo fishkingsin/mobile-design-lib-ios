@@ -33,4 +33,5 @@ open class NMGDefaultFonts: NMGThemeableFonts {
     open var futuraCondenseBold: UIFont { UIFont(name: "Futura-CondensedExtraBold", size: 20)! }
     open var futura18: UIFont { UIFont(name: "Futura", size: 18)! }
     open var futuraCondenseBold18: UIFont { UIFont(name: "Futura-CondensedExtraBold", size: 18)! }
+    open var pingFangHK16: UIFont { UIFont(name: "PingFangHK-Regular", size: 16)! }
 }

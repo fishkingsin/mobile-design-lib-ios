@@ -32,6 +32,7 @@ public protocol NMGThemeableFonts: AnyObject {
     var futuraCondenseBold: UIFont { get }
     var futura18: UIFont { get }
     var futuraCondenseBold18: UIFont { get }
+    var pingFangHK16: UIFont {get}
 }
 
 extension NMGThemeableFonts {
@@ -54,7 +55,8 @@ extension NMGThemeableFonts {
             "caption3Emphasize": caption3Emphasize,
             "naviTitle": naviTitle,
             "body": body,
-            "bodyEmphasize": bodyEmphasize
+            "bodyEmphasize": bodyEmphasize,
+            "pingFangHK16": pingFangHK16
         ]
     }
 }
