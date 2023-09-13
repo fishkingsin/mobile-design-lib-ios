@@ -13,7 +13,6 @@ class CardViewTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    isRecording = true
   }
 
   override func tearDown() {
