@@ -15,14 +15,11 @@ struct ReelActionButtonGroup: View {
 
             } label: {
                 VStack(spacing: 10) {
-                    Image(systemName: "suit.heart")
-                        .font(.title)
-
-                    Text("100k")
-                        .font(.caption.bold())
-
+                    LikeAnimationView().frame(width: 30, height: 20)
                 }
             }
+            Text("100k")
+                .font(.caption.bold())
 
             Button {
 
