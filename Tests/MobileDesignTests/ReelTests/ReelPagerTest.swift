@@ -13,7 +13,7 @@ import SnapshotTesting
 final class ReelPagerTest: XCTestCase {
 
     override func setUpWithError() throws {
-        isRecording = true
+        // isRecording = true
     }
 
     override func tearDownWithError() throws {
