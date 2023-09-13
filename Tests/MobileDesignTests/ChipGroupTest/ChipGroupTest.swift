@@ -41,7 +41,8 @@ final class ChipGroupTest: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
             if let view = vc.view {
-                assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize))
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
+
             } else {
                 XCTFail("view not found")
             }
@@ -59,7 +60,7 @@ final class ChipGroupTest: XCTestCase {
         vc.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if let view = vc.view {
-                assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize))
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
             } else {
                 XCTFail("view not found")
             }
