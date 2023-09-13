@@ -24,14 +24,14 @@ final class ChipGroupTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-//        isRecording = true
+       isRecording = true
     }
 
     override func tearDown() {
         super.tearDown()
     }
 
-    func test_top_image_card_view_light_mode() {
+    func test_chip_group_view_light_mode() {
         let rootView = sut
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .light
@@ -52,7 +52,7 @@ final class ChipGroupTest: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 
-    func test_top_image_card_view_dark_mode() {
+    func test_chip_group_view_dark_mode() {
         let rootView = sut
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .dark
