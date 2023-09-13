@@ -29,9 +29,8 @@ public struct ReelsPager: View {
                 ForEach($reels) { $reel in
                     ReelPlayer(reel: $reel, currentReel: $currentReel)
                         .frame(width: proxy.size.width)
-                        .padding()
                         .rotationEffect(Angle(degrees: -90))
-                        .ignoresSafeArea(.all, edges: .top)
+                        .ignoresSafeArea(.all, edges: .all)
                         .tag(reel.id)
                         .onAppear {
                             let path = Bundle.main.path(forResource: reel.mediaFile.url, ofType: "mp4") ?? ""
@@ -48,7 +47,7 @@ public struct ReelsPager: View {
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: proxy.size.width)
         }
-        .ignoresSafeArea(.all, edges: .top)
+        .ignoresSafeArea(.all, edges: .all)
         .background(.black)
         .onAppear {
             currentReel = reels.first?.id ?? ""
