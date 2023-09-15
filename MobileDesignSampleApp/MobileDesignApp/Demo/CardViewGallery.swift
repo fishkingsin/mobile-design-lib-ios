@@ -87,8 +87,11 @@ struct CardViewGallery: View {
                 ) {
                     ScrollView(.horizontal) {
                         LazyHStack {
-                            ForEach(reelDatas) { data in
-                                ReelCard(data: data)
+                            ForEach(Array(reelDatas.enumerated()), id: \.element.id) { index, data in
+                                ReelCard(data: data,
+                                         viewDidClick: {
+                                    debugPrint("click reel \(index)")
+                                })
                             }
                         }
                     }

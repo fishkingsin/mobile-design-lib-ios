@@ -54,7 +54,6 @@ public struct TopImageCardView<
       }
       contentView()
     }
-
   }
 
   private func getPlaceholder() -> AnyView {
