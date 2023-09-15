@@ -21,7 +21,7 @@ public struct ReelCard<Data>: View where Data: CardDisplayable & TimecodeDisplay
         } contentView: {
             Text("")
         } overlayView: {
-            CardTimecodeOverlayView(timecode: "--:--")
+            CardTimecodeOverlayView(timecode: data.timecode)
                 .padding(4)
         }.frame(minWidth: 124, minHeight: 224)
     }
