@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LikeAnimationView: View {
-    
     static let darkPink = Color( UIColor.color(from: "Default", named: "darkPink")!)
     static let lightGreen = Color( UIColor.color(from: "Default", named: "lightGreen")!)
     static let lightBlue = Color( UIColor.color(from: "Default", named: "lightBlue")!)
@@ -39,7 +38,7 @@ struct LikeAnimationView: View {
                 .opacity(self.hideTwoCircles ? 0: 1)
 
             Circle()
-                .foregroundColor(.white)
+                .stroke(Color.white, lineWidth: 1)
                 .scaleEffect(whiteCircleScaleRate)
                 .frame(width: 20, height: 20)
                 .opacity(self.hideTwoCircles ? 0: 1)
@@ -129,7 +128,7 @@ extension LikeAnimationView {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation(.easeInOut(duration: 0.3)) {
-                self.colorCircleColor = .purple
+                self.colorCircleColor = .clear
                 self.whiteCircleScaleRate = 1.13
             }
         }

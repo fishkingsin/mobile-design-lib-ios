@@ -9,50 +9,29 @@ import SwiftUI
 struct ReelActionButtonGroup: View {
 
     var body: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 15) {
 
             Button {
 
             } label: {
-                VStack(spacing: 10) {
-                    LikeAnimationView().frame(width: 30, height: 20)
-                }
-            }
-            Text("100k")
-                .font(.caption.bold())
-
-            Button {
-
-            } label: {
-                VStack(spacing: 10) {
-                    Image(systemName: "bubble.right")
+                VStack(spacing: 6) {
+                    Image("deeplink", bundle: Bundle.module)
                         .font(.title)
-
-                    Text("120")
-                        .font(.caption.bold())
-
-                }
+                }.frame(width: 36, height: 36)
             }
-
             Button {
 
             } label: {
-                VStack(spacing: 10) {
-                    Image(systemName: "paperplane")
-                        .font(.title)
+                VStack(spacing: 6) {
+                    LikeAnimationView().frame(width: 36, height: 36)
                 }
             }
-
             Button {
 
             } label: {
-                VStack(spacing: 10) {
-                    Image("menu")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .rotationEffect(Angle(degrees: 90))
+                VStack(spacing: 6) {
+                    Image("Share", bundle: Bundle.module)
+                        .font(.title).frame(width: 36, height: 36)
                 }
             }
         }
