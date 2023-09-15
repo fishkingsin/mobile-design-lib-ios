@@ -8,11 +8,16 @@ import SwiftUI
 
 public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDisplayable {
     var data: Data
-    public init(data: Data) {
+    var onTabChanged: () -> Void
+    
+    public init(data: Data, onTabChanged: @escaping () -> Void) {
         self.data = data
+        self.onTabChanged = onTabChanged
     }
     public var body: some View {
-        VStack {
+        Button(action: {
+            onTabChanged()
+        }) {VStack {
             TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
                 // MARK: update placeholder
                 Rectangle()
@@ -32,7 +37,8 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
             Rectangle()
                 .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
                 .frame(height: 2)
-        }
+        }}
+
     }
 }
 
@@ -47,7 +53,9 @@ struct VideoCardView_Previews: PreviewProvider {
                 leadingFootnote: "4小時前",
                 secondFootnote: "經人觀點",
                 timecode: "22:22"
-            ))
+            ), onTabChanged: {
+                debugPrint("22:22")
+            })
         }
     }
 }
