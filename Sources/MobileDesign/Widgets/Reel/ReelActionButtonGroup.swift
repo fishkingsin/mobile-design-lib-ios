@@ -6,48 +6,50 @@
 
 import SwiftUI
 
-struct ReelActionButtonGroup: View {
+struct ReelActionButton: View{
+    var imageName: String
+    var content: String?
+    var additionData: String?
+    var onClick :() -> Void
+    
+    init(imageName: String, content: String?, onClick: @escaping () -> Void) {
+        self.imageName = imageName
+        self.content = content
+        self.onClick = onClick
+    }
+    
+    var body: some View {
+        Button {
+            onClick()
+        } label: {
+            VStack(spacing: 10) {
+                Image(systemName: imageName)
+                    .font(.title)
+                if let aContent = content {
+                    Text(aContent).font(.caption.bold())
+                }
+            }
+        }
+    }
+}
 
+struct ReelActionButtonGroup: View {
+//    var reelActionBtnList:[ReelActionButton]
+    
+    
     var body: some View {
         VStack(spacing: 25) {
-
+            ReelActionButton(imageName: "link", content: "120", onClick: {
+                debugPrint("click bubble")
+            })
+            ReelActionButton(imageName: "suit.heart", content: "100k", onClick: {
+                debugPrint("click heart")
+            })
+            ReelActionButton(imageName: "square.and.arrow.up", content: nil, onClick: {
+                debugPrint("click paperplane")
+            })
+/*
             Button {
-
-            } label: {
-                VStack(spacing: 10) {
-                    Image(systemName: "suit.heart")
-                        .font(.title)
-
-                    Text("100k")
-                        .font(.caption.bold())
-
-                }
-            }
-
-            Button {
-
-            } label: {
-                VStack(spacing: 10) {
-                    Image(systemName: "bubble.right")
-                        .font(.title)
-
-                    Text("120")
-                        .font(.caption.bold())
-
-                }
-            }
-
-            Button {
-
-            } label: {
-                VStack(spacing: 10) {
-                    Image(systemName: "paperplane")
-                        .font(.title)
-                }
-            }
-
-            Button {
-
             } label: {
                 VStack(spacing: 10) {
                     Image("menu")
@@ -58,6 +60,7 @@ struct ReelActionButtonGroup: View {
                         .rotationEffect(Angle(degrees: 90))
                 }
             }
+ */
         }
     }
 }
