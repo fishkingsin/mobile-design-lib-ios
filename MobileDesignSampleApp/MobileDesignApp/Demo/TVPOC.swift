@@ -10,7 +10,6 @@ import MobileDesign
 import WebKit
 import M3U8Parser
 
-
 class TVPOCViewModel: ObservableObject {
     var url: NSURL
     init(url: NSURL) {
@@ -40,7 +39,7 @@ struct TVPOC<ContentView>: View where ContentView: View {
         GeometryReader { proxy in
             VStack {
                 content(url).frame(maxHeight: (proxy.size.width / 16) * 9)
-                    .onAppear{
+                    .onAppear {
                         viewModel.load()
                     }
                 ScrollView {

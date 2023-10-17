@@ -11,8 +11,8 @@ import MobileDesign
 
 public struct YoutubePlayerView: ViewRepresentableHelper {
     var isAutoplay: Bool
-    
-    public var completion: (YTPlayerView) -> ()
+
+    public var completion: (YTPlayerView) -> Void
     public init(isAutoplay: Bool = false, completion: @escaping (YTPlayerView) -> Void) {
         self.isAutoplay = isAutoplay
         self.completion = completion
@@ -45,7 +45,6 @@ public struct YoutubePlayerView: ViewRepresentableHelper {
         public func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
             debugPrint("playerView error \(error)")
         }
-
 
     }
 }

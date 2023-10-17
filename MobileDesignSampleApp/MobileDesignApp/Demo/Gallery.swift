@@ -4,7 +4,7 @@
 // Copyright © 2023 New Media Group. All rights reserved.
 //
 
-//import SwiftUI
+// import SwiftUI
 import MobileDesign
 import AVKit
 import SwiftUI
@@ -22,7 +22,6 @@ struct VideoPlayerView: UIViewControllerRepresentable {
 }
 
 struct Gallery: View {
-    
     var data = [
         MenuItem(
             name: "Video",

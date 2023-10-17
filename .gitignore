@@ -57,3 +57,5 @@ Thumbs.db
 .build
 *.ipa
 *.dSYM.zip
+**DerivedData**
+GeneratedModuleMaps-iphonesimulator/MobileDesign-Swift.h
