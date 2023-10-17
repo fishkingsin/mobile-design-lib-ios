@@ -4,6 +4,10 @@
 
 run `sh ./bootstrap.sh`
 
+## Testing iOS Simualtor
+
+- iPhone 14 Pro 16.6
+
 # Snapshot testing
 | | | | | | | | | | | |
 |-|-|-|-|-|-|-|-|-|-|-|
