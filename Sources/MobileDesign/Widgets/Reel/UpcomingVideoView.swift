@@ -50,7 +50,7 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
                     KFImage.url(URL(string: item.imageURL))
                         .resizable()
                         .frame(width: 144, height: 75)
-                        .background(Color.black)
+                        .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                     Text(item.timeCode)
                         .font(.system(size: 12))
@@ -108,7 +108,7 @@ struct UpcomingVideoView_Previews: PreviewProvider {
 
 struct MockUpcomingItem: UpcomingItem {
     var secCountDown: Int = 10
-    var imageURL: String = "https://placehold.co/144x75/png"
+    var imageURL: String = ""
     var headline: String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
     var timeCode: String = "22:22"
 }
