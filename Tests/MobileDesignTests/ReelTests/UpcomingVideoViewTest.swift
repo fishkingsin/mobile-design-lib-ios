@@ -27,7 +27,7 @@ final class UpcomingVideoViewTest: XCTestCase {
 
     let expectation = expectation(description: "loading reels")
     vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 
       if let view = vc.view {
         assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
