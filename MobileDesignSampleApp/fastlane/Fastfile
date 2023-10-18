@@ -1,0 +1,67 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :staging do
+  
+    # sync_code_signing(
+    #   type: "adhoc",
+    #   app_identifier: [ENV['BUNDLE_IDENTIFIER']] 
+    # )
+    
+    build_app(
+      project: "MobileDesignSampleApp.xcodeproj", 
+      scheme: "MobileDesignApp",
+      export_method: "ad-hoc",
+      export_xcargs: "-allowProvisioningUpdates"
+    )
+
+    appcenter_upload(
+      api_token: ENV['APPCENTER_API_TOKEN'],
+      owner_name: "Media-Publishing-Limited",
+      app_name: ENV['APPCENTER_APP_NAME'],
+      destinations: "*", # Default is 'Collaborators', use '*' for all distribution groups
+    )
+  end
+
+  desc "Register new device"
+  lane :register_new_device do  |options|
+    DEVICE_UUID = options[:device_uuid]
+    DEVICE_NAME = options[:device_name]
+    if DEVICE_UUID == nil || DEVICE_NAME == nil
+      register_devices(
+        devices_file: ENV["DEVICES_TXT"]
+      )
+    else 
+      register_devices(
+        devices: {
+          DEVICE_NAME => DEVICE_UUID
+        }
+      )
+      
+    end
+    match(
+      type: "adhoc", 
+      app_identifier: [ENV['BUNDLE_IDENTIFIER']],
+      force_for_new_devices: true
+    )
+    if options[:deploy_build] || false
+      staging
+    end
+  end
+end

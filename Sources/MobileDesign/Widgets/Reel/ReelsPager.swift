@@ -12,14 +12,15 @@ public struct ReelsPager: View {
     @State var currentReel = ""
 
     // demo
-    @State var reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
-        let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
-        return Reel<MediaFile>(player: player, mediaFile: medialFile)
-    }
+    @State var reels: [Reel<MediaFile>]
 
-    public init(currentReel: String = "", reels: [Reel<MediaFile>]) {
+    public init(currentReel: String = "", reels: [Reel<MediaFile>] = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
+        let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
+        let player = AVPlayer()
+        return Reel<MediaFile>(player: player, mediaFile: medialFile)
+    }) {
         self.currentReel = currentReel
+        self.reels = reels
     }
 
     public var body: some View {
