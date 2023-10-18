@@ -30,7 +30,7 @@ final class UpcomingVideoViewTest: XCTestCase {
       DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
 
       if let view = vc.view {
-        assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
+        assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro(.portrait)))
       } else {
         XCTFail("view not found")
       }
