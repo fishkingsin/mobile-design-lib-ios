@@ -21,7 +21,7 @@ public struct HorizontalCard<Data>: View where Data: CardDisplayable & TimecodeD
         VStack{
             HStack {
                 HorizontalCardView(imageUrl: data.imageURL, overLayViewAlign: OLVAlign) {
-                    Rectangle().fill(.gray)
+                    Rectangle().fill(.gray).frame(width: 133, height: 75)
                 } contentView: {
                     CardContentHeadlineView(headline:  data.headline, lineLimit: 3)
                 } overlayView: {
@@ -39,9 +39,9 @@ public struct HorizontalCard<Data>: View where Data: CardDisplayable & TimecodeD
 struct HorizontalCard_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.red
+//            Color.red
             HorizontalCard<CardData>(data: CardData(
-                imageURL: "https://placehold.co/133x75/png",
+                imageURL: "",
                 headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
                 leadingFootnote: "4小時前",
                 secondFootnote: "經人觀點",

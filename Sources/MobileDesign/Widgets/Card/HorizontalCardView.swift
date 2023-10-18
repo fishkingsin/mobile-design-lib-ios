@@ -64,7 +64,7 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
 
 struct HorizontalCardView_Previews: PreviewProvider {
     static var previews: some View {
-        HorizontalCardView(imageUrl: "",
+        HorizontalCardView(imageUrl: "https://placehold.co/133x75/png",
                            overLayViewAlign: .center) {
             Rectangle()
                 .foregroundColor(.red)
