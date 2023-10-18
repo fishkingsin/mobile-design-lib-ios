@@ -22,22 +22,7 @@ final class UpcomingVideoViewTest: XCTestCase {
 
   func test_default_upcoming_video_snapshot() throws {
     let rootView = sut
-    let vc = UIHostingController(rootView: rootView)
-    vc.overrideUserInterfaceStyle = .light
-
-    let expectation = expectation(description: "loading reels")
-    vc.viewDidLoad()
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-
-      if let view = vc.view {
-        assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro(.portrait)))
-      } else {
-        XCTFail("view not found")
-      }
-      expectation.fulfill()
-    }
-
-    wait(for: [expectation], timeout: 2)
+    assertSnapshot(matching: rootView, as: .image(layout: .fixed(width: 390, height: 219)))
   }
 
   var sut: some View {
