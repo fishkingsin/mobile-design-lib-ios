@@ -3,6 +3,10 @@ disabled_rules: # rule identifiers to exclude from running
   - nesting
   - function_parameter_count
   - switch_case_alignment
+  - large_tuple
+  - type_name
+  - line_length
+  - empty_count
 opt_in_rules: # some rules are only opt-in
   - control_statement
   - empty_count
