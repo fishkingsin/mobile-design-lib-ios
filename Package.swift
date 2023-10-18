@@ -40,7 +40,14 @@ let package = Package(
                 "MobileDesign",
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
-            exclude: ["__Snapshots__"]
+            exclude: [
+                "ReelTests/__Snapshots__",
+                "ReelTests/__Snapshots__/ReelPagerTest",
+                "FontsSnapshotTests/__Snapshots__",
+                "ColorPaletteTests/__Snapshots__",
+                "ChipGroupTest/__Snapshots__",
+                "CardViewTests/__Snapshots__"
+            ]
         )
     ]
 )
