@@ -18,7 +18,7 @@ public struct PlaylistItem<Data>: View where Data: CardDisplayable & TimecodeDis
                 // MARK: update placeholder
                 Rectangle()
                     .fill(.gray)
-
+                    .frame(height: 200)
             } contentView: {
                 CardContentView(
                     headline: data.headline,
