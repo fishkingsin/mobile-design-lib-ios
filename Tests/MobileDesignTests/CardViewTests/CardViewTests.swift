@@ -65,7 +65,9 @@ class CardViewTests: XCTestCase {
         leadingFootnote: "4小時前",
         secondFootnote: "經人觀點",
         timecode: "22:22"
-      )
+      ), onTabChanged: {
+          print("pressed")
+      }
     ).frame(minWidth: 320, minHeight: 680)
   }
 }
