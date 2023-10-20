@@ -20,7 +20,7 @@ final class PlaylistItemTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_default_reel_pager_snapshot() throws {
+    func test_default_play_list_snapshot() throws {
       let rootView = sut
       let vc = UIHostingController(rootView: rootView)
       vc.overrideUserInterfaceStyle = .light
