@@ -16,11 +16,13 @@ public struct TopImageCardView<
   let placeholderView: () -> PlaceholderView
   let contentView: () -> ContentView
   let overlayView: (() -> OverlayView)?
+    let alignment: Alignment
 
   public init(
     imageUrl: String,
     imageWidth: CGFloat?,
     imageHeight: CGFloat?,
+    alignment: Alignment? = .bottomTrailing,
     placeholderView: @escaping () -> PlaceholderView,
     contentView: @escaping () -> ContentView,
     overlayView: (() -> OverlayView)? = nil
@@ -28,6 +30,7 @@ public struct TopImageCardView<
     self.imageUrl = imageUrl
     self.imageWidth = imageWidth
     self.imageHeight = imageHeight
+      self.alignment = alignment ?? .bottomTrailing
     self.placeholderView = placeholderView
     self.contentView = contentView
     self.overlayView = overlayView
@@ -35,7 +38,7 @@ public struct TopImageCardView<
 
   public var body: some View {
     VStack(spacing: 0) {
-      ZStack(alignment: .bottomTrailing) {
+      ZStack(alignment: alignment) {
         if let url = URL(string: imageUrl) {
           AsyncImageURLCachedView(url: url) {
             getPlaceholder()
@@ -66,7 +69,7 @@ public struct TopImageCardView<
 
 struct TopImageCardView_Previews: PreviewProvider {
   static var previews: some View {
-    TopImageCardView(imageUrl: "", imageWidth: nil, imageHeight: 200) {
+      TopImageCardView(imageUrl: "", imageWidth: nil, imageHeight: 200, alignment: .topLeading) {
       Rectangle()
         .foregroundColor(.red)
         .aspectRatio(contentMode: .fill)
