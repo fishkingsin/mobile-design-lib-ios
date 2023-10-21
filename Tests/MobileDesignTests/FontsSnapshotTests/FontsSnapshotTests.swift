@@ -13,7 +13,6 @@ import XCTest
 final class FontsSnapshotTests: XCTestCase {
 
     override func setUpWithError() throws {
-        isRecording = true
     }
     func test_all_fonts_snapshot() {
         let fonts = NMGDefaultFonts().properties
