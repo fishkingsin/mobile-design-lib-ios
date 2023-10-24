@@ -10,20 +10,24 @@ import SwiftUI
 
 import UIKit
 
-struct CustomVideoPlayer: UIViewControllerRepresentable {
+public struct CustomVideoPlayer: UIViewControllerRepresentable {
 
     var player: AVPlayer
 
-    func makeCoordinator() -> Coordinator {
+    public init(player: AVPlayer) {
+        self.player = player
+    }
+
+    public func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
 
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
+    public func makeUIViewController(context: Context) -> AVPlayerViewController {
 
         let controller = AVPlayerViewController()
 
         controller.player = player
-        controller.showsPlaybackControls = false
+        controller.showsPlaybackControls = true
 
         controller.videoGravity = .resizeAspectFill
 
@@ -31,14 +35,40 @@ struct CustomVideoPlayer: UIViewControllerRepresentable {
 
         NotificationCenter.default.addObserver(context.coordinator, selector: #selector(context.coordinator.restartPlayback), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
 
+        do {
+            try AVAudioSession
+                .sharedInstance()
+                .setCategory(
+                    AVAudioSession.Category.playback,
+                    mode: AVAudioSession.Mode.default,
+                    options: []
+                )
+        } catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+
+
+        context.coordinator.statusObserver = player.observe(\.status) { player, observeSubject in
+            print("stats old \(observeSubject.oldValue) new \(observeSubject.newValue)")
+            if observeSubject.newValue == .readyToPlay {
+                player.play()
+            }
+        }
+
+        context.coordinator.currentItemObserver = player.observe(\.status) { player, observeSubject in
+            print("stats old \(observeSubject.oldValue) new \(observeSubject.newValue)")
+        }
+
         return controller
     }
 
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
 
     }
 
-    class Coordinator: NSObject {
+    public class Coordinator: NSObject {
+        var statusObserver: NSKeyValueObservation?
+        var currentItemObserver: NSKeyValueObservation?
 
         var parent: CustomVideoPlayer
 
@@ -46,8 +76,13 @@ struct CustomVideoPlayer: UIViewControllerRepresentable {
             self.parent = parent
         }
 
+        deinit {
+            self.parent.player.replaceCurrentItem(with: nil)
+        }
+
         @objc func restartPlayback() {
             parent.player.seek(to: .zero)
         }
+
     }
 }

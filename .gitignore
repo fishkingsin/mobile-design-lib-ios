@@ -48,10 +48,14 @@ Thumbs.db
 *.mov
 *.wmv
 
-.swiftpm/xcode/xcuserdata
-
-.swiftpm/xcode/package.xcworkspace/xcuserdata/james.xcuserdatad
+## User settings
+xcuserdata/
+xcshareddata/
 *.xcworkspacedata
 
 *james*
 .build
+*.ipa
+*.dSYM.zip
+**DerivedData**
+GeneratedModuleMaps-iphonesimulator/MobileDesign-Swift.h
