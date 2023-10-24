@@ -8,13 +8,13 @@ import SwiftUI
 
 struct ReelActionButton: View{
     var imageName: String
-    var content: String?
     var additionData: String?
+    var caption: String?
     var onClick :() -> Void
     
     init(imageName: String, content: String?, onClick: @escaping () -> Void) {
         self.imageName = imageName
-        self.content = content
+        self.caption = content
         self.onClick = onClick
     }
     
@@ -25,7 +25,7 @@ struct ReelActionButton: View{
             VStack(spacing: 10) {
                 Image(systemName: imageName)
                     .font(.title)
-                if let aContent = content {
+                if let aContent = caption {
                     Text(aContent).font(.caption.bold())
                 }
             }
