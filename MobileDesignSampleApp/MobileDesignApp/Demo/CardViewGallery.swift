@@ -82,7 +82,7 @@ struct CardViewGallery: View {
                 }
                 .listRowSeparator(.hidden)
                 Section(header: Text("最新的連續短片")
-                    .font(themeManager.currentTheme.fonts.headlineEmphasize.uiFont)
+                    .font(themeManager.currentTheme.fonts.cardTitle.uiFont)
                     .foregroundColor(themeManager.currentTheme.colors.headline.color)
                 ) {
                     ScrollView(.horizontal) {

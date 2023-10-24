@@ -8,55 +8,48 @@ import Foundation
 import UIKit
 
 public protocol NMGThemeableFonts: AnyObject {
-    var largeTitleEmphasize: UIFont { get }
-    var titleEmphasize: UIFont { get }
-    var title1: UIFont { get }
-    var title2: UIFont { get }
-    var title3: UIFont { get }
-    var title4: UIFont { get }
-    var title2Emphasize: UIFont { get }
-    var title3Emphasize: UIFont { get }
-    var title4Emphasize: UIFont { get }
-    var title5: UIFont { get }
-    var headline: UIFont { get }
-    var headlineEmphasize: UIFont { get }
-    var primaryButton: UIFont { get }
-    var captionEmphasize: UIFont { get }
-    var caption: UIFont { get }
-    var caption2: UIFont { get }
-    var caption3Emphasize: UIFont { get }
-    var naviTitle: UIFont { get }
-    var body: UIFont { get }
-    var bodyEmphasize: UIFont { get }
-    var futuraCondenseExtraBold: UIFont { get }
-    var futuraCondenseBold: UIFont { get }
-    var futura18: UIFont { get }
-    var futuraCondenseBold18: UIFont { get }
-    var pingFangHK16: UIFont {get}
+    var eleSemiBold24: UIFont { get }
+    var eleSemiBold22:UIFont { get }
+    var eleMedium18: UIFont { get }
+    var eleMedium14: UIFont { get }
+    var eleRegular24: UIFont { get }
+    var eleRegular18:UIFont { get }
+    var eleRegular16: UIFont { get }
+    var eleRegular14: UIFont { get }
+    var eleRegular12:UIFont { get }
+    var eleRegular10: UIFont { get }
+    var carouselTitle:UIFont { get }
+    var cardTitle: UIFont { get }
+    var cardContent: UIFont { get }
+    var articleH1: UIFont { get }
+    var articleH2: UIFont { get }
+    var articleH3: UIFont { get }
+    var articleContent: UIFont { get }
+    var articleDescription: UIFont { get }
+    
 }
 
 extension NMGThemeableFonts {
     var properties: [String: UIFont] {
         [
-            "largeTitleEmphasize": largeTitleEmphasize,
-            "titleEmphasize": titleEmphasize,
-            "title1": title1,
-            "title2": title2,
-            "title3": title3,
-            "title3Emphasize": title3Emphasize,
-            "title4Emphasize": title4Emphasize,
-            "title5": title5,
-            "headline": headline,
-            "headlineEmphasize": headlineEmphasize,
-            "primaryButton": primaryButton,
-            "captionEmphasize": captionEmphasize,
-            "caption": caption,
-            "caption2": caption2,
-            "caption3Emphasize": caption3Emphasize,
-            "naviTitle": naviTitle,
-            "body": body,
-            "bodyEmphasize": bodyEmphasize,
-            "pingFangHK16": pingFangHK16
+            "eleSemiBold24" : eleSemiBold24,
+            "eleSemiBold22" : eleSemiBold22,
+            "eleMedium18" : eleMedium18,
+            "eleMedium14" : eleMedium14,
+            "eleRegular24" : eleRegular24,
+            "eleRegular18" : eleRegular18,
+            "eleRegular16" : eleRegular16,
+            "eleRegular14" : eleRegular14,
+            "eleRegular12" : eleRegular12,
+            "eleRegular10" : eleRegular10,
+            "carouselTitle" : carouselTitle,
+            "cardTitle" : cardTitle,
+            "cardContent" : cardContent,
+            "articleH1" : articleH1,
+            "articleH2" : articleH2,
+            "articleH3" : articleH3,
+            "articleContent" : articleContent,
+            "articleDescription" : articleDescription
         ]
     }
 }
