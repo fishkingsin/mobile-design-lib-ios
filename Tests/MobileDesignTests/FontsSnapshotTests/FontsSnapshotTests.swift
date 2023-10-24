@@ -4,18 +4,42 @@
 // Copyright © 2023 New Media Group. All rights reserved.
 //
 
-import XCTest
-@testable import MobileDesign
-import SwiftUI
 import SnapshotTesting
+import SwiftUI
+import XCTest
+
+@testable import MobileDesign
 
 final class FontsSnapshotTests: XCTestCase {
 
     override func setUpWithError() throws {
-//        isRecording = true
-
     }
+    func test_all_fonts_snapshot() {
+        let fonts = NMGDefaultFonts().properties
+        let vc = UIHostingController(
+            rootView: AnyView(
+                VStack {
+                    ForEach(
+                        Array(fonts).sorted { a, b in
+                            a.value.pointSize > b.value.pointSize
+                        }.map { $0.key }, id: \.self) { key in
 
+                            FontItem(
+                                key: key,
+                                font: fonts[key]!.uiFont,
+                                size: fonts[key]!.pointSize
+                            )
+
+                        }
+                }
+            )
+        )
+        guard let view = vc.view else { fatalError() }
+        vc.overrideUserInterfaceStyle = .dark
+        assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro), named: " dark")
+        vc.overrideUserInterfaceStyle = .light
+        assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro), named: " light")
+    }
     func test_font_snapshot() {
         let fonts = NMGDefaultFonts().properties
 
@@ -31,9 +55,9 @@ final class FontsSnapshotTests: XCTestCase {
             )
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark" )
+            assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light" )
+            assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro), named: "\(key) light")
         }
     }
 

@@ -7,17 +7,22 @@
 import SwiftUI
 import AVKit
 
-struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
+public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
     @Binding var reel: Reel
 
     @Binding var currentReel: String
+
+    public init(reel: Binding<Reel>, currentReel: Binding<String>) {
+        self._reel = reel
+        self._currentReel = currentReel
+    }
 
     @State var showMore = false
 
     @State var isMuted = false
     @State var volumeAnimation = false
 
-    var body: some View {
+    public var body: some View {
 
         ZStack {
 
@@ -211,7 +216,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 // }
 
 public var MediaFileJSON = [
-    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
-    MediaFile(url: "Reel-2", title: "Work Work Work!"),
-    MediaFile(url: "Reel-3", title: "Gorgeous City")
+    MediaFile(url: "Sample-Reel-1", title: "Fantastic mountains"),
+    MediaFile(url: "Sample-Reel-2", title: "Work Work Work!"),
+    MediaFile(url: "Sample-Reel-3", title: "Gorgeous City")
 ]

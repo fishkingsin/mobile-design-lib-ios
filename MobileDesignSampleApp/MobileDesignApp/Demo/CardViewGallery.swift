@@ -78,6 +78,7 @@ struct CardViewGallery: View {
                         ChipDataDemo("Title \($0)")
                     }, index: 0) { index, _ in
                         self.index = index
+                        debugPrint("index \(index)")
                     }
                 }
                 .listRowSeparator(.hidden)
@@ -87,8 +88,11 @@ struct CardViewGallery: View {
                 ) {
                     ScrollView(.horizontal) {
                         LazyHStack {
-                            ForEach(reelDatas) { data in
-                                ReelCard(data: data)
+                            ForEach(Array(reelDatas.enumerated()), id: \.element.id) { index, data in
+                                ReelCard(data: data,
+                                         viewDidClick: {
+                                    debugPrint("click reel \(index)")
+                                })
                             }
                         }
                     }
@@ -96,23 +100,19 @@ struct CardViewGallery: View {
                 .listRowSeparator(.hidden)
             }
 
-            VideoCardView(data: data)
-                .onAppear {
+            VideoCardView(data: data, onTabChanged: {
+                // click action
+                debugPrint("index \(index)")
+            }).onAppear {
                     // When ScrollView arrives at the position `numbers.count - 2`
                     // increment currentPage, and load more data
                     if viewModel.shouldLoadData(id: index) {
                         currentPage += 1
                         viewModel.populateData(page: currentPage)
                     }
-                }
-
-                .listRowSeparator(.hidden)
-
-        }
-        .listStyle(.plain)
-
+                }.listRowSeparator(.hidden)
+        }.listStyle(.plain)
     }
-
 }
 
 struct CardViewGallery_Previews: PreviewProvider {
