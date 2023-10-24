@@ -131,6 +131,7 @@ struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                         Spacer(minLength: 20)
 
                         ReelActionButtonGroup()
+                            .padding([.bottom], 40)
 
                     }
 
