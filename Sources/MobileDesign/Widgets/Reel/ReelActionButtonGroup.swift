@@ -8,7 +8,6 @@ import SwiftUI
 
 struct ReelActionButton: View{
     var imageName: String
-    var additionData: String?
     var caption: String?
     var onClick :() -> Void
     
@@ -34,9 +33,6 @@ struct ReelActionButton: View{
 }
 
 struct ReelActionButtonGroup: View {
-//    var reelActionBtnList:[ReelActionButton]
-    
-    
     var body: some View {
         VStack(spacing: 25) {
             ReelActionButton(imageName: "link", content: "120", onClick: {
@@ -48,19 +44,6 @@ struct ReelActionButtonGroup: View {
             ReelActionButton(imageName: "square.and.arrow.up", content: nil, onClick: {
                 debugPrint("click paperplane")
             })
-/*
-            Button {
-            } label: {
-                VStack(spacing: 10) {
-                    Image("menu")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .rotationEffect(Angle(degrees: 90))
-                }
-            }
- */
         }
     }
 }
