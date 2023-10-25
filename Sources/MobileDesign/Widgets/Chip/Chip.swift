@@ -16,7 +16,7 @@ public struct Chip<Element>: View where Element: ChipData {
 
   public init(
     element: Element, index: Binding<Int>, selfIndex: Int,
-    font: Font = Font(ThemeManager.shared.currentTheme.fonts.headline)
+    font: Font = Font(ThemeManager.shared.currentTheme.fonts.eleRegular16)
   ) {
     self.element = element
     self._index = index

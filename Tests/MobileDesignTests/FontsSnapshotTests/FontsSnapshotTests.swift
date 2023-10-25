@@ -21,7 +21,7 @@ final class FontsSnapshotTests: XCTestCase {
                 VStack {
                     ForEach(
                         Array(fonts).sorted { a, b in
-                            a.value.pointSize > b.value.pointSize
+                            (a.value.pointSize, b.key) > (b.value.pointSize, a.key)
                         }.map { $0.key }, id: \.self) { key in
 
                             FontItem(

@@ -38,7 +38,7 @@ public struct LabelWithIconView: View {
         self.title = title
         self.modifier = modifier ?? LabelWithIconViewModifier(
             tintColor: theme.colors.neutralGray10.color,
-            font: theme.fonts.caption.uiFont
+            font: theme.fonts.eleRegular12.uiFont
         )
         self.icon = icon
         self.aciont = aciont
