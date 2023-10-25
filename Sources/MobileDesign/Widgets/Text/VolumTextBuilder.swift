@@ -39,18 +39,18 @@ public struct VolumTextBuilder: View {
                 if let titleSuffix = titleSuffix {
                     {
                         Text(titlePrefix)
-                            .font(Font(theme.fonts.futuraCondenseExtraBold))
+                            .font(Font(theme.fonts.eleSemiBold24))
                             .foregroundColor(modifier.color)
                         +
                         Text(titleSuffix)
-                            .font(Font(theme.fonts.futuraCondenseBold))
+                            .font(Font(theme.fonts.eleMedium18))
                             .foregroundColor(modifier.color)
                     }()
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
                 } else {
                     Text(titlePrefix)
-                        .font(Font(theme.fonts.futuraCondenseExtraBold))
+                        .font(Font(theme.fonts.eleSemiBold24))
                         .foregroundColor(modifier.color)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
@@ -58,7 +58,7 @@ public struct VolumTextBuilder: View {
             }
             if let subtitle = subtitle {
                 Text(subtitle)
-                    .font(Font(theme.fonts.title5))
+                    .font(Font(theme.fonts.eleRegular18))
                     .foregroundColor(theme.colors.primaryMain.color)
             }
         }
