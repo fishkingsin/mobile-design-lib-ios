@@ -17,7 +17,7 @@ struct CardTimecodeOverlayView: View {
                 .foregroundColor(foregroundColor)
                 .background(backgroundColor)
             Text(timecode)
-                .font(ThemeManager.shared.currentTheme.fonts.caption.uiFont)
+                .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
                 .kerning(0.3)
                 .multilineTextAlignment(.center)
                 .foregroundColor(foregroundColor)
