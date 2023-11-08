@@ -15,9 +15,9 @@ struct ReelActionButtonGroup: View {
 
             } label: {
                 VStack(spacing: 6) {
-                    Image("deeplink", bundle: Bundle.module)
-                        .font(.title)
-                }.frame(width: 36, height: 36)
+                    Image(systemName: "link")
+                        .frame(width: 36, height: 36)
+                }
             }
             Button {
 
@@ -30,8 +30,8 @@ struct ReelActionButtonGroup: View {
 
             } label: {
                 VStack(spacing: 6) {
-                    Image("Share", bundle: Bundle.module)
-                        .font(.title).frame(width: 36, height: 36)
+                    Image(systemName: "square.and.arrow.up")
+                        .frame(width: 36, height: 36)
                 }
             }
         }

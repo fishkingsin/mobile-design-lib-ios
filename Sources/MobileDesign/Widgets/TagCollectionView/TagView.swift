@@ -48,7 +48,7 @@ public struct TagView: View {
 
     public var body: some View {
         Text(value)
-            .font(Font(theme.fonts.caption as CTFont))
+            .font(Font(theme.fonts.eleRegular12 as CTFont))
             .lineLimit(1)
             .padding([.leading, .trailing], 8)
             .padding([.top, .bottom], 4)

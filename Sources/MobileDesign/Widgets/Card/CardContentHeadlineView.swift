@@ -12,7 +12,7 @@ struct CardContentHeadlineView: View {
     var body: some View {
         Text(headline)
             .lineLimit(lineLimit ?? 2)
-            .font(ThemeManager.shared.currentTheme.fonts.headline.uiFont)
+            .font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
             .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
             .frame(height: 44, alignment: .topLeading)
     }

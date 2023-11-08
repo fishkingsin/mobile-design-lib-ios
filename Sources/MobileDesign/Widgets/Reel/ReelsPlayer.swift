@@ -136,6 +136,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                         Spacer(minLength: 20)
 
                         ReelActionButtonGroup()
+                            .padding([.bottom], 40)
 
                     }
 
@@ -216,7 +217,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 // }
 
 public var MediaFileJSON = [
-    MediaFile(url: "Sample-Reel-1", title: "Fantastic mountains"),
-    MediaFile(url: "Sample-Reel-2", title: "Work Work Work!"),
-    MediaFile(url: "Sample-Reel-3", title: "Gorgeous City")
+    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
+    MediaFile(url: "Reel-2", title: "Work Work Work!"),
+    MediaFile(url: "Reel-3", title: "Gorgeous City")
 ]

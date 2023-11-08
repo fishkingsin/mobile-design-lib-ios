@@ -109,13 +109,13 @@ public struct ChartLegendGroupView: View {
                 BarIndicator()
                 Text(element.key)
                     .fixedSize()
-                    .font(fonts.caption.uiFont)
+                    .font(fonts.eleRegular12.uiFont)
             }
             HStack {
                 LineIndicator()
                 Text(element.value)
                     .fixedSize()
-                    .font(fonts.caption.uiFont)
+                    .font(fonts.eleRegular12.uiFont)
             }
         }
     }
