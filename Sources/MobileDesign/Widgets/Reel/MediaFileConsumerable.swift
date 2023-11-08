@@ -9,5 +9,6 @@ import Foundation
 public protocol MediaFileConsumerable: Identifiable {
     var url: String { get }
     var title: String { get }
+    var content: String { get }
     var isExpanded: Bool { get }
 }

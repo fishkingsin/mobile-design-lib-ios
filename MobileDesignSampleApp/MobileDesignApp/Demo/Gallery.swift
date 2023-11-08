@@ -92,13 +92,6 @@ struct Gallery: View {
             content: {
                 AnyView(ChipGroupDemo(index: 0))
             }
-        ),
-        MenuItem(
-            name: "ReelPager",
-            content: {
-                AnyView(ReelsPager(currentReel: reels.first!.id, reels: reels))
-
-            }
         )
     ]
 
