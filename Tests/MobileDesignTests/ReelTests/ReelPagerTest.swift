@@ -41,7 +41,7 @@ final class ReelPagerTest: XCTestCase {
   }
 
   var sut: some View {
-    ReelsPager(currentReel: reels.first!.id, reels: reels)
+    ReelsPager(currentReelID: reels.first!.id, reels: reels)
   }
 
 }

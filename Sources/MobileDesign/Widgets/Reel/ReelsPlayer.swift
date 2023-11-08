@@ -11,12 +11,12 @@ import ExpandableText
 public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
     @Binding var reel: Reel
 
-    @Binding var currentReel: String
+    @Binding var currentReelID: String
     let theme: NMGThemeable = ThemeManager.shared.currentTheme
 
-    public init(reel: Binding<Reel>, currentReel: Binding<String>) {
+    public init(reel: Binding<Reel>, currentReelID: Binding<String>) {
         self._reel = reel
-        self._currentReel = currentReel
+        self._currentReelID = currentReelID
     }
 
     public var body: some View {
@@ -81,7 +81,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
         DispatchQueue.main.async {
 
-            if -minY < (size.height / 2) && minY < (size.height / 2) && currentReel == reel.id {
+            if -minY < (size.height / 2) && minY < (size.height / 2) && currentReelID == reel.id {
 
                 player.play()
             } else {
