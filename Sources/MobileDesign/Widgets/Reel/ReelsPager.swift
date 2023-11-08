@@ -49,3 +49,9 @@ public struct ReelsPager: View {
         }
     }
 }
+
+struct ReelPager_Previews: PreviewProvider {
+    static var previews: some View {
+        ReelsPager(currentReelID: "1", reels: [Reel<MediaFile>(player: AVPlayer(), mediaFile: MediaFile(url: "", title: "@經一速遞", content: "飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間.飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間.飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間."))])
+    }
+}

@@ -46,11 +46,11 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
                             Text(reel.mediaFile.title)
                                 .font(.callout.bold())
-                                .foregroundColor(Color.white)
+                                .foregroundColor(theme.colors.neutralGray2.color)
 
                             ExpandableText(text: reel.mediaFile.content)
                                 .font(.body)
-                                .foregroundColor(.primary)
+                                .foregroundColor(theme.colors.neutralGray2.color)
                                 .lineLimit(2)
                                 .expandButton(TextSet(text: "展開", font: .body, color: theme.colors.neutralGray60.color))
                                 .expandAnimation(.easeOut)
@@ -94,5 +94,3 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
         }
     }
 }
-
-

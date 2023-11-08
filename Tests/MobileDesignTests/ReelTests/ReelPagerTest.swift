@@ -42,6 +42,6 @@ final class ReelPagerTest: XCTestCase {
   }
 
   var sut: some View {
-    ReelsPager(currentReelID: "1", reels: [Reel<MediaFile>(player: AVPlayer(), mediaFile: MediaFile(url: "Reel-1", title: "@經一速遞", content: "飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間."))])
+    ReelsPager(currentReelID: "1", reels: [Reel<MediaFile>(player: AVPlayer(), mediaFile: MediaFile(url: "Reel-1", title: "@經一速遞", content: "若從每人身上賺1元大餅，已是14個億的大茶飯，難度在於中間化零為整的手段。滴灌通主席李小加就想到了破解方案，兼開發出複利生財的投資模式，有如太極生兩儀、兩儀生四象。薑是老的辣，61歲的他下海創業，把生意經的算盤敲得響噹噹。"))])
   }
 }
