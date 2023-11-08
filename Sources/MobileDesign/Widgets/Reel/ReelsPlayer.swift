@@ -6,21 +6,18 @@
 
 import SwiftUI
 import AVKit
+import ExpandableText
 
 public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
     @Binding var reel: Reel
 
     @Binding var currentReel: String
+    let theme: NMGThemeable = ThemeManager.shared.currentTheme
 
     public init(reel: Binding<Reel>, currentReel: Binding<String>) {
         self._reel = reel
         self._currentReel = currentReel
     }
-
-    @State var showMore = false
-
-    @State var isMuted = false
-    @State var volumeAnimation = false
 
     public var body: some View {
 
@@ -38,27 +35,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                     .opacity(0.01)
                     .frame(width: 150, height: 150)
                     .onTapGesture {
-                        if volumeAnimation {
-                            return
-                        }
-                        isMuted.toggle()
-                        player.isMuted = isMuted
-                        withAnimation {
-                            volumeAnimation.toggle()
-                        }
-
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-
-                            withAnimation {
-                                volumeAnimation.toggle()
-                            }
-                        }
-                    }
-
-                Color.black.opacity(showMore ? 0.35 : 0)
-                    .onTapGesture {
-
-                        withAnimation {showMore.toggle()}
+                        // todo: video player paused
                     }
 
                 VStack {
@@ -67,70 +44,16 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
                         VStack(alignment: .leading, spacing: 10) {
 
-                            HStack(spacing: 15) {
+                            Text("@經一速遞")
+                                .font(.callout.bold())
+                                .foregroundColor(Color.white)
 
-                                Image("Profil-1")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 35, height: 35)
-                                    .clipShape(Circle())
-
-                                Text("Max Mustermann")
-                                    .font(.callout.bold())
-                                    .foregroundColor(Color.white)
-
-                                Button {
-
-                                } label: {
-                                    Text("Folgen")
-                                        .font(.callout.bold())
-                                        .foregroundColor(Color.white)
-
-                                }
-
-                            }
-
-                            ZStack {
-
-                                if showMore {
-
-                                    ScrollView(.vertical, showsIndicators: false) {
-
-                                        Text(reel.mediaFile.title + "")
-                                            .font(.callout)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color.white)
-                                    }
-                                    .frame(height: 120)
-                                    .onTapGesture {
-                                        withAnimation {showMore.toggle()}
-                                    }
-                                } else {
-
-                                    Button {
-
-                                        withAnimation {showMore.toggle()}
-
-                                    } label: {
-                                        HStack {
-
-                                            Text(reel.mediaFile.title)
-                                                .font(.callout)
-                                                .fontWeight(.semibold)
-                                                .lineLimit(1)
-                                                .foregroundColor(Color.white)
-
-                                            Text("mehr")
-                                                .font(.callout.bold())
-                                                .foregroundColor(Color.gray)
-                                        }
-                                        .padding(.top, 6)
-                                        .frame(alignment: .leading)
-                                    }
-
-                                }
-                            }
-
+                            ExpandableText(text: "若從每人身上賺1元大餅，已是14個億的大茶飯")
+                                .font(.body)
+                                .foregroundColor(.primary)
+                                .lineLimit(2)
+                                .expandButton(TextSet(text: "展開", font: .body, color: theme.colors.neutralGray60.color))
+                                .expandAnimation(.easeOut)
                         }
 
                         Spacer(minLength: 20)
@@ -139,41 +62,12 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                             .padding([.bottom], 40)
 
                     }
-
-                    HStack {
-
-                        Text("A Sky full of Stars")
-                            .font(.caption)
-                            .fontWeight(.semibold)
-
-                        Spacer(minLength: 20)
-
-                        Image("album")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                            .cornerRadius(6)
-                            .background(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .stroke(Color.white, lineWidth: 3)
-                            )
-                            .offset(x: -5)
-                    }
-                    .padding(.top, 10)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 20)
                 .foregroundColor(Color.white)
                 .frame(maxHeight: .infinity, alignment: .bottom)
 
-                Image(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                    .font(.title)
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(.secondary)
-                    .clipShape(Circle())
-                    .foregroundColor(Color.black)
-                    .opacity(volumeAnimation ? 1 : 0)
             }
 
         }
@@ -200,21 +94,6 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
         }
     }
 }
-
-// struct ReelPlayer_Previews: PreviewProvider {
-//    typealias ReelType = Reel<MediaFile>
-//    static var previews: some View {
-//        
-//        ReelPlayer<ReelType>(
-//            reel: .constant(
-//                MediaFileJSON.map { item -> ReelType in
-//                    return Reel(player: nil, mediaFile: item)
-//                }.first!
-//            ),
-//            currentReel: .constant("Fantastic mountains")
-//        )
-//    }
-// }
 
 public var MediaFileJSON = [
     MediaFile(url: "Reel-1", title: "Fantastic mountains"),
