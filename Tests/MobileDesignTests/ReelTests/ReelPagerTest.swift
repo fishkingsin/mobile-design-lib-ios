@@ -42,6 +42,6 @@ final class ReelPagerTest: XCTestCase {
   }
 
   var sut: some View {
-    ReelsPager(currentReelID: "", reels: [Reel<MediaFile>(player: AVPlayer(), mediaFile: MediaFile(url: "Reel-1", title: "@經一速遞", content: "飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間。"))])
+    ReelsPager(currentReelID: "1", reels: [Reel<MediaFile>(player: AVPlayer(), mediaFile: MediaFile(url: "Reel-1", title: "@經一速遞", content: "飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間."))])
   }
 }
