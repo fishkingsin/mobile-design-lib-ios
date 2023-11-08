@@ -18,6 +18,7 @@ let package = Package(
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0"),
         .package(url: "https://github.com/fredyshox/PageView.git", .upToNextMajor(from: "1.5.0")),
         .package(url: "https://github.com/siteline/swiftui-introspect", from: "0.12.0"),
+        .package(url: "https://github.com/NuPlay/ExpandableText", from: "1.2.0"),
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0")
     ],
     targets: [
@@ -28,6 +29,7 @@ let package = Package(
             dependencies: [
                 "PageView",
                 "Kingfisher",
+                "ExpandableText",
                 .product(name: "SwiftUIIntrospect", package: "swiftui-introspect")
             ],
             resources: [

@@ -9,37 +9,30 @@ import PageView
 import AVKit
 
 public struct ReelsPager: View {
-    @State var currentReel = ""
+    @State var currentReelID = ""
 
-    // demo
     @State var reels: [Reel<MediaFile>]
 
-    public init(currentReel: String = "", reels: [Reel<MediaFile>] = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
-        let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
-        let player = AVPlayer()
-        return Reel<MediaFile>(player: player, mediaFile: medialFile)
-    }) {
-        self.currentReel = currentReel
+    public init(currentReelID: String = "", reels: [Reel<MediaFile>]) {
+        self.currentReelID = currentReelID
         self.reels = reels
     }
 
     public var body: some View {
         GeometryReader { proxy in
 
-            TabView(selection: $currentReel) {
+            TabView(selection: $currentReelID) {
                 ForEach($reels) { $reel in
-                    ReelPlayer(reel: $reel, currentReel: $currentReel)
+                    ReelPlayer(reel: $reel, currentReelID: $currentReelID)
                         .frame(width: proxy.size.width)
-                        .padding()
                         .rotationEffect(Angle(degrees: -90))
-                        .ignoresSafeArea(.all, edges: .top)
+                        .ignoresSafeArea(.all, edges: .all)
                         .tag(reel.id)
                         .onAppear {
-                            let path = Bundle.main.path(forResource: reel.mediaFile.url, ofType: "mp4") ?? ""
-                            reel.player?.replaceCurrentItem(with: AVPlayerItem(url: URL(fileURLWithPath: path)))
+                            reel.player?.play()
                         }
                         .onDisappear {
-                            reel.player?.replaceCurrentItem(with: nil)
+                            reel.player?.pause()
                         }
 
                 }
@@ -49,20 +42,16 @@ public struct ReelsPager: View {
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: proxy.size.width)
         }
-        .ignoresSafeArea(.all, edges: .top)
+        .ignoresSafeArea(.all, edges: .all)
         .background(.black)
         .onAppear {
-            currentReel = reels.first?.id ?? ""
+            currentReelID = reels.first?.id ?? ""
         }
     }
 }
-public let reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
-    let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
-    let player = AVPlayer(url: URL(fileURLWithPath: path))
-    return Reel<MediaFile>(player: player, mediaFile: medialFile)
-}
+
 struct ReelPager_Previews: PreviewProvider {
     static var previews: some View {
-        ReelsPager(currentReel: reels.first!.id, reels: reels)
+        ReelsPager(currentReelID: "1", reels: [Reel<MediaFile>(player: AVPlayer(), mediaFile: MediaFile(url: "", title: "@經一速遞", content: "飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間.飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間.飲飲食食的小生意，對於疊水的投資者，缺乏性感的想像空間."))])
     }
 }
