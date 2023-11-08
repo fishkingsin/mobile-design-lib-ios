@@ -11,14 +11,9 @@ import AVKit
 public struct ReelsPager: View {
     @State var currentReel = ""
 
-    // demo
     @State var reels: [Reel<MediaFile>]
 
-    public init(currentReel: String = "", reels: [Reel<MediaFile>] = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
-        let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
-        let player = AVPlayer()
-        return Reel<MediaFile>(player: player, mediaFile: medialFile)
-    }) {
+    public init(currentReel: String = "", reels: [Reel<MediaFile>]) {
         self.currentReel = currentReel
         self.reels = reels
     }
@@ -53,15 +48,5 @@ public struct ReelsPager: View {
         .onAppear {
             currentReel = reels.first?.id ?? ""
         }
-    }
-}
-public let reels = MediaFileJSON.map { medialFile -> Reel<MediaFile> in
-    let path = Bundle.main.path(forResource: medialFile.url, ofType: "mp4") ?? ""
-    let player = AVPlayer(url: URL(fileURLWithPath: path))
-    return Reel<MediaFile>(player: player, mediaFile: medialFile)
-}
-struct ReelPager_Previews: PreviewProvider {
-    static var previews: some View {
-        ReelsPager(currentReel: reels.first!.id, reels: reels)
     }
 }

@@ -44,11 +44,11 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
                         VStack(alignment: .leading, spacing: 10) {
 
-                            Text("@經一速遞")
+                            Text(reel.mediaFile.title)
                                 .font(.callout.bold())
                                 .foregroundColor(Color.white)
 
-                            ExpandableText(text: "若從每人身上賺1元大餅，已是14個億的大茶飯")
+                            ExpandableText(text: reel.mediaFile.content)
                                 .font(.body)
                                 .foregroundColor(.primary)
                                 .lineLimit(2)
@@ -95,8 +95,4 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
     }
 }
 
-public var MediaFileJSON = [
-    MediaFile(url: "Reel-1", title: "Fantastic mountains"),
-    MediaFile(url: "Reel-2", title: "Work Work Work!"),
-    MediaFile(url: "Reel-3", title: "Gorgeous City")
-]
+
