@@ -38,7 +38,7 @@ struct ChipGroupInternal<Data: Collection, Content: View>: View where Data.Eleme
 
           }
         }
-      }.padding([.leading, .trailing], 16).padding(.top, 10)
+      }.padding(.top, 10)
     }
 
   }

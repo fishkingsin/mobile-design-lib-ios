@@ -17,8 +17,8 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
     public var body: some View {
         VStack {
         TopImageCardView(imageUrl: data.imageURL,
-                         imageWidth: nil,
-                         imageHeight: 200) {
+                         imageWidth: UIScreen.main.bounds.width - 32,
+                         imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32)) {
             // MARK: update placeholder
             Rectangle()
                 .fill(.gray)
@@ -32,7 +32,6 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
         } overlayView: {
             CardTimecodeOverlayView(timecode: data.timecode).padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 4))
         }
-        .padding(12)
         Rectangle()
             .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
             .frame(height: 2)
