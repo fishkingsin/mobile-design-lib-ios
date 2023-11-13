@@ -48,6 +48,7 @@ struct ChipGroupInternal<Data: Collection, Content: View>: View where Data.Eleme
 public protocol ChipData: Identifiable, Hashable {
   var id: String { get }
   var title: String { get }
+  var iconUrl: String { get }
 }
 
 public struct ChipGroup<Data>: View where Data: ChipData {
