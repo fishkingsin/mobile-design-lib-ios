@@ -12,10 +12,8 @@ struct ChipGroupDemo: View {
     let theme: NMGThemeable = ThemeManager.shared.currentTheme
     @State var index: Int = 0
 
-    var data: [ChipDataDemo] {
-        stride(from: 1, to: 10, by: 1).map {
-            ChipDataDemo("Title \($0)")
-        }
+    var data: [ChipDataDemo] { [
+        ChipDataDemo("Title 10", ""), ChipDataDemo("Title 100", "https://placehold.co/24x24/png"), ChipDataDemo("Title 1000", "https://placehold.co/24x24/png")]
     }
 
     init(index: Int) {

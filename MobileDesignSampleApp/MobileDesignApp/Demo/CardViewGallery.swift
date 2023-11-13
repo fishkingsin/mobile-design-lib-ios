@@ -11,9 +11,11 @@ struct ChipDataDemo: ChipData {
     var id: String = UUID().uuidString
 
     var title: String
+    var iconUrl: String
 
-    init(_ title: String) {
+    init(_ title: String, _ iconUrl: String) {
         self.title = title
+        self.iconUrl = iconUrl
     }
 
 }
@@ -74,9 +76,8 @@ struct CardViewGallery: View {
         List(viewModel.datas.enumerated().map { $0 }, id: \.element.id) { index, data in
             if index == 0 {
                 Section {
-                    ChipGroup(datas: stride(from: 1, to: 10, by: 1).map {
-                        ChipDataDemo("Title \($0)")
-                    }, index: 0) { index, _ in
+                    ChipGroup(datas: [
+                        ChipDataDemo("Title 10", ""), ChipDataDemo("Title 100", "https://placehold.co/24x24/png"), ChipDataDemo("Title 1000", "https://placehold.co/24x24/png")], index: 0) { index, _ in
                         self.index = index
                         debugPrint("index \(index)")
                     }
