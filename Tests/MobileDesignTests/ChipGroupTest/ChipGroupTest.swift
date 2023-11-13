@@ -41,7 +41,7 @@ final class ChipGroupTest: XCTestCase {
 
     let expectation = expectation(description: "loading image")
     vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 
       if let view = vc.view {
         assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
@@ -61,7 +61,7 @@ final class ChipGroupTest: XCTestCase {
     vc.overrideUserInterfaceStyle = .dark
     let expectation = expectation(description: "loading image")
     vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
       if let view = vc.view {
         assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
       } else {
@@ -74,7 +74,7 @@ final class ChipGroupTest: XCTestCase {
   }
 
   fileprivate var data: [ChipDataDemo] { [
-        ChipDataDemo("Title 10", ""), 
+        ChipDataDemo("Title 10", ""),
         ChipDataDemo("Title 100", "https://placehold.co/24x24/png"),
         ChipDataDemo("Title 1000", "https://placehold.co/24x24/png")]
   }
