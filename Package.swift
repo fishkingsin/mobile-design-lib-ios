@@ -17,9 +17,10 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0"),
         .package(url: "https://github.com/fredyshox/PageView.git", .upToNextMajor(from: "1.5.0")),
-        .package(url: "https://github.com/siteline/swiftui-introspect", from: "0.12.0"),
-        .package(url: "https://github.com/NuPlay/ExpandableText", from: "1.2.0"),
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0")
+        .package(url: "https://github.com/siteline/swiftui-introspect", from: "1.0.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
+        .package(url: "https://github.com/yeatse/KingfisherWebP.git", from: "1.0.0"),
+        .package(url: "https://github.com/NuPlay/ExpandableText", from: "1.2.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -29,6 +30,7 @@ let package = Package(
             dependencies: [
                 "PageView",
                 "Kingfisher",
+                "KingfisherWebP",
                 "ExpandableText",
                 .product(name: "SwiftUIIntrospect", package: "swiftui-introspect")
             ],

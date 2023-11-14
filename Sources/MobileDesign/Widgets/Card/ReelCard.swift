@@ -17,19 +17,18 @@ public struct ReelCard<Data>: View where Data: CardDisplayable & TimecodeDisplay
     }
 
     public var body: some View {
-        Button(action: {
+        TopImageCardView(imageUrl: data.imageURL, imageWidth: 124, imageHeight: 224) {
+            Rectangle()
+                .frame(maxWidth: 124, maxHeight: 224)
+                .cornerRadius(4)
+        } contentView: {
+            Text("")
+        } overlayView: {
+            CardTimecodeOverlayView(timecode: data.timecode)
+                .padding(4)
+        }.frame(minWidth: 124, minHeight: 224)
+            .onTapGesture {
             viewDidClick()
-        }) {
-            TopImageCardView(imageUrl: data.imageURL, imageWidth: 124, imageHeight: 224) {
-                Rectangle()
-                    .frame(maxWidth: 124, maxHeight: 224)
-                    .cornerRadius(4)
-            } contentView: {
-                Text("")
-            } overlayView: {
-                CardTimecodeOverlayView(timecode: data.timecode)
-                    .padding(4)
-            }.frame(minWidth: 124, minHeight: 224)
         }
     }
 }
