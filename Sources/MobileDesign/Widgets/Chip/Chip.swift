@@ -27,13 +27,13 @@ public struct Chip<Element>: View where Element: ChipData {
     
     public var body: some View {
         HStack(alignment: .center, spacing: 8) {
-            if let iconUrl = URL(string: element.iconUrl) {
+            if let iconString = element.icon, let iconUrl = URL(string: iconString) {
                 KFImage(iconUrl)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 24, height: 24)
             }
-            Text(element.title)
+            Text(element.name ?? "")
                 .foregroundColor(
                     isSelected
                     ? Color(theme.colors.chipSelectedForeground) : Color(theme.colors.chipForeground)
@@ -53,23 +53,23 @@ public struct Chip<Element>: View where Element: ChipData {
     }
 }
 
-private struct ChipElement: ChipData {
-    var id: String = UUID().uuidString
+public struct ChipElement: ChipData {
+    public var id: Int?
+    public var name: String?
+    public var icon: String?
     
-    var title: String
-    var iconUrl: String = ""
-    
-    init(title: String, _ iconUrl: String = "") {
-        self.title = title
-        self.iconUrl = iconUrl
+    public init(id: Int? = nil, name: String? = nil, icon: String? = nil) {
+        self.id = id
+        self.name = name
+        self.icon = icon
     }
 }
 
 struct Chip_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-            Chip(element: ChipElement(title: "Title"), index: .constant(1), selfIndex: 0)
-            Chip(element: ChipElement(title: "Title"), index: .constant(1), selfIndex: 1)
+            Chip(element: ChipElement(name: "Title"), index: .constant(1), selfIndex: 0)
+            Chip(element: ChipElement(name: "Title"), index: .constant(1), selfIndex: 1)
         }
     }
 }
