@@ -5,6 +5,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 public struct TopImageCardView<
   PlaceholderView: View, ContentView: View, OverlayView: View
@@ -40,16 +41,15 @@ public struct TopImageCardView<
     VStack(spacing: 0) {
       ZStack(alignment: alignment) {
         if let url = URL(string: imageUrl) {
-          AsyncImageURLCachedView(url: url) {
-            getPlaceholder()
-          } image: {
-            Image(uiImage: $0)
-              .resizable()
-              .aspectRatio(contentMode: .fill)
-              .frame(maxWidth: imageWidth, maxHeight: imageHeight)
-              .clipped()
-              .cornerRadius(4)
-          }
+            KFImage(url)
+                .placeholder({ _ in
+                    getPlaceholder()
+                })
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(maxWidth: imageWidth, maxHeight: imageHeight)
+                .clipped()
+                .cornerRadius(4)
         } else {
           getPlaceholder()
         }
