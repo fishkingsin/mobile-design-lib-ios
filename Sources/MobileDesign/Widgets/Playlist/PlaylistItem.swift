@@ -19,7 +19,7 @@ public struct PlaylistItem<Data>: View where Data: CardDisplayable & TimecodeDis
                 // MARK: update placeholder
                 Rectangle()
                     .fill(.gray)
-                    .frame(height: 200)
+                    .frame(height: 9.0/16.0 * (UIScreen.main.bounds.width - 32))
             } contentView: {
                 CardContentView(
                     headline: data.headline,
@@ -33,9 +33,6 @@ public struct PlaylistItem<Data>: View where Data: CardDisplayable & TimecodeDis
                     .foregroundColor(.white)
             }
             .padding(12)
-            Rectangle()
-                .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
-                .frame(height: 2)
         }
     }
 }
