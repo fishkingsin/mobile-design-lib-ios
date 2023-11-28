@@ -13,26 +13,23 @@ public struct PlaylistItem<Data>: View where Data: CardDisplayable & TimecodeDis
         self.data = data
     }
     public var body: some View {
-        VStack {
-            TopImageCardView(imageUrl: data.imageURL, imageWidth: UIScreen.main.bounds.width - 32,
-                             imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32), alignment: .center) {
-                // MARK: update placeholder
-                Rectangle()
-                    .fill(.gray)
-                    .frame(height: 9.0/16.0 * (UIScreen.main.bounds.width - 32))
-            } contentView: {
-                CardContentView(
-                    headline: data.headline,
-                    leadingFootnote: data.leadingFootnote,
-                    secondFootnote: data.secondFootnote
-                ).padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
-            } overlayView: {
-                Image(systemName: "play.circle")
-                    .resizable()
-                    .frame(maxWidth: 50, maxHeight: 50)
-                    .foregroundColor(.white)
-            }
-            .padding(12)
+        TopImageCardView(imageUrl: data.imageURL, imageWidth: UIScreen.main.bounds.width,
+                         imageHeight: 9.0/16.0 * UIScreen.main.bounds.width, alignment: .center) {
+            // MARK: update placeholder
+            Rectangle()
+                .fill(.gray)
+                .frame(height: 9.0/16.0 * UIScreen.main.bounds.width)
+        } contentView: {
+            CardContentView(
+                headline: data.headline,
+                leadingFootnote: data.leadingFootnote,
+                secondFootnote: data.secondFootnote
+            ).padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16))
+        } overlayView: {
+            Image(systemName: "play.circle")
+                .resizable()
+                .frame(maxWidth: 50, maxHeight: 50)
+                .foregroundColor(.white)
         }
     }
 }
