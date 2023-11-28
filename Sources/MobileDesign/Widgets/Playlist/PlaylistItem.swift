@@ -14,7 +14,8 @@ public struct PlaylistItem<Data>: View where Data: CardDisplayable & TimecodeDis
     }
     public var body: some View {
         VStack {
-            TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200, alignment: .center) {
+            TopImageCardView(imageUrl: data.imageURL, imageWidth: UIScreen.main.bounds.width - 32,
+                             imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32), alignment: .center) {
                 // MARK: update placeholder
                 Rectangle()
                     .fill(.gray)
