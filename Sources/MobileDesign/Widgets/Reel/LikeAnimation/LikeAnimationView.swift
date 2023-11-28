@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct LikeAnimationView: View {
+public struct LikeAnimationView: View {
     static let darkPink = Color( UIColor.color(from: "Default", named: "darkPink")!)
     static let lightGreen = Color( UIColor.color(from: "Default", named: "lightGreen")!)
     static let lightBlue = Color( UIColor.color(from: "Default", named: "lightBlue")!)
     static let lightRed = Color( UIColor.color(from: "Default", named: "lightRed")!)
-
+    static let defaultColor = Color(UIColor.color(from: "Common", named: "NeutralGray90")!)
+    
     @State private var buttonTapped: Bool = false
     @State private var showRedHeart: Bool = false
     @State private var redHeartScale: CGFloat = 0.2
@@ -28,8 +29,10 @@ struct LikeAnimationView: View {
     @State private var showBinaryCircleRing: Bool = false
 
     @State private var isLike: Bool = false
+    
+    public init() {}
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             Circle()
                 .foregroundColor(colorCircleColor)
@@ -52,7 +55,7 @@ struct LikeAnimationView: View {
                 Image(systemName: self.isLike ? "heart.fill": "heart")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .foregroundColor(self.showRedHeart ? LikeAnimationView.darkPink: .white)
+                    .foregroundColor(self.showRedHeart ? LikeAnimationView.darkPink: LikeAnimationView.defaultColor)
                     .frame(width: 20, height: 20)
                     .scaleEffect(self.buttonTapped ? self.redHeartScale: 1)
             }
