@@ -24,8 +24,14 @@ public struct ReelCard<Data>: View where Data: CardDisplayable & TimecodeDisplay
         } contentView: {
             Text("")
         } overlayView: {
-            CardTimecodeOverlayView(timecode: data.timecode)
-                .padding(4)
+            Group {
+                if !data.timecode.isEmpty {
+                    CardTimecodeOverlayView(timecode: data.timecode)
+                        .padding(4)
+                } else {
+                    EmptyView()
+                }
+            }
         }.frame(minWidth: 124, minHeight: 224)
             .onTapGesture {
             viewDidClick()

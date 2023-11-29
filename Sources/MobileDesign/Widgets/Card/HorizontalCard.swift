@@ -25,7 +25,14 @@ public struct HorizontalCard<Data>: View where Data: CardDisplayable & TimecodeD
                 } contentView: {
                     CardContentHeadlineView(headline:  data.headline, lineLimit: 3)
                 } overlayView: {
-                    CardTimecodeOverlayView(timecode: data.timecode).padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 4))
+                    Group {
+                        if !data.timecode.isEmpty {
+                            CardTimecodeOverlayView(timecode: data.timecode)
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 4))
+                        } else {
+                            EmptyView()
+                        }
+                    }
                 }
             }
             .padding(12)

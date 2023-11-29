@@ -30,7 +30,14 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
             )
             .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
         } overlayView: {
-            CardTimecodeOverlayView(timecode: data.timecode).padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 4))
+            Group {
+                if !data.timecode.isEmpty {
+                    CardTimecodeOverlayView(timecode: data.timecode)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 4))
+                } else {
+                    EmptyView()
+                }
+            }
         }
         Rectangle()
             .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)

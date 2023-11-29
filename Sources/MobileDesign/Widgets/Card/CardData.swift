@@ -8,7 +8,7 @@ import SwiftUI
 
 public struct CardData: CardDisplayable, TimecodeDisplayable, Identifiable, Hashable {
     public var id: UUID = UUID()
-    public var timecode: String { _timecode ?? "--:--" }
+    public var timecode: String { _timecode ?? "" }
 
     public var imageURL: String
     public var headline: String
