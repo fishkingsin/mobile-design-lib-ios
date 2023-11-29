@@ -78,6 +78,29 @@ extension Theme {
       return NMGDefaultColors(customTheme)
     }
   }
+    
+    var themeableIcons: any NMGThemeableIcons {
+      switch self {
+      case .ED:
+        return EDIcons()
+      case .WW:
+        return WWIcons()
+      case .KISS:
+        return KISSIcons()
+      case .MORE:
+        return MOREIcons()
+      case .GOTRIP:
+        return GOTRIPIcons()
+      case .OS:
+        return OSIcons()
+      case .NM:
+        return NMIcons()
+      case .OH:
+        return NMGDefaultIcons()
+      case .Default(let _):
+        return NMGDefaultIcons()
+      }
+    }
 }
 
 public final class ThemeManager: ThemeManageable, ObservableObject {
@@ -111,7 +134,7 @@ public final class ThemeManager: ThemeManageable, ObservableObject {
       }, {
         NMGDefaultFonts()
       }, {
-        NMGDefaultIcons()
+          theme.themeableIcons
       })
   }
 

@@ -14,4 +14,12 @@ open class NMGDefaultIcons: NMGThemeableIcons {
     public var warnning: UIImage { UIImage(systemName: "chevron.right.circle.fill")! }
 
     public var exclamationmarkCircle: UIImage { UIImage(systemName: "exclamationmark.circle")! }
+    
+    public var naviTVIcon: UIImage  { UIImage() }
+    
+    public var tabIconTVSelected: UIImage  { UIImage() }
+    
+    public var tabIconTV: UIImage  { UIImage() }
+     
+    public var tvDetailLanding: UIImage  { UIImage() }
 }
