@@ -53,7 +53,7 @@ public struct Chip<Element>: View where Element: ChipData {
     }
 }
 
-public struct ChipElement: ChipData {
+public struct ChipElement: ChipData, Codable {
     public var id: Int?
     public var name: String?
     public var icon: String?
