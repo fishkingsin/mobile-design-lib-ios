@@ -23,7 +23,7 @@ struct ReelActionButtonGroup: View {
 
             } label: {
                 VStack(spacing: 6) {
-                    LikeAnimationView().frame(width: 36, height: 36)
+                    LikeAnimationView(buttonTappedCompletion: nil).frame(width: 36, height: 36)
                 }
             }
             Button {

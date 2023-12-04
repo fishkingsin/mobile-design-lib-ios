@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Joey Sun on 2023/9/13.
 //
@@ -14,7 +14,8 @@ public struct LikeAnimationView: View {
     static let lightRed = Color( UIColor.color(from: "Default", named: "lightRed")!)
     static let defaultColor = Color(UIColor.color(from: "Common", named: "NeutralGray90")!)
     
-    @State private var buttonTapped: Bool = false
+    public var buttonTappedCompletion: ((Bool) -> (Void))?
+    @State public var buttonTapped: Bool = false
     @State private var showRedHeart: Bool = false
     @State private var redHeartScale: CGFloat = 0.2
     @State private var hideTwoCircles: Bool = true
@@ -30,7 +31,9 @@ public struct LikeAnimationView: View {
 
     @State private var isLike: Bool = false
     
-    public init() {}
+    public init(buttonTappedCompletion: ((Bool) -> (Void))?) {
+        self.buttonTappedCompletion = buttonTappedCompletion
+    }
 
     public var body: some View {
         ZStack {
@@ -51,6 +54,9 @@ public struct LikeAnimationView: View {
 
             Button {
                 self.isLike ? restoreButton(): like()
+                if let completion = self.buttonTappedCompletion {
+                    completion(self.isLike)
+                }
             } label: {
                 Image(systemName: self.isLike ? "heart.fill": "heart")
                     .resizable()
@@ -67,7 +73,7 @@ public struct LikeAnimationView: View {
 
 struct LikeAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        LikeAnimationView()
+        LikeAnimationView(buttonTappedCompletion: nil)
     }
 }
 
