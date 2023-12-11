@@ -85,7 +85,7 @@ struct CustomAVPlayer<
                         }
                         .overlay(alignment: .bottom) {
                             VideoSeekerView(videoPlayerSize)
-                                .offset(y: isRotated ? -7 : 0)
+                                .offset(y: isRotated ? -5 : 0)
                         }
                 }
                 if !isPlayerReady {
@@ -100,7 +100,7 @@ struct CustomAVPlayer<
                     .fill(.black)
                 /// Since View is Rotated the Trailing side is Bottom
                 /// Since View is Rotated the Leading side is Top
-                    .padding(deviceRotation == .landscapeRight ? .leading : .trailing, isRotated ? -safeArea.bottom : 0)
+                    .padding(deviceRotation == .landscapeRight ? .leading : .trailing, isRotated ? -safeArea.top : 0)
                     .padding(deviceRotation == .landscapeRight ? .trailing : .leading, isRotated ? -safeArea.top : 0)
             })
             .gesture(
@@ -127,7 +127,7 @@ struct CustomAVPlayer<
             /// Making it Top View
             .zIndex(10000)
         }
-        .padding(.top, safeArea.top)
+        .padding(.top, isRotated ? -safeArea.top : 0)
         .onAppear {
             guard !isObserverAdded else { return }
             /// Adding Observer to update seeker when the video is Playing
@@ -181,7 +181,6 @@ struct CustomAVPlayer<
         .onRotate { rotation in
             if rotation.isValidInterfaceOrientation {
                 deviceRotation = rotation
-                
                 withAnimation(.easeInOut(duration: 0.2)) {
                     isRotated = (deviceRotation == .landscapeLeft || deviceRotation == .landscapeRight)
                 }

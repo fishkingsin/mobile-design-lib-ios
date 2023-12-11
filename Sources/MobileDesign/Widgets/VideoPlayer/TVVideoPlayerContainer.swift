@@ -11,7 +11,18 @@ import Kingfisher
 
 public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
     var data: Data
-    public init(data: Data, isYoutuber: Bool = false) {
+    var size: CGSize
+    var safeArea: EdgeInsets
+    
+    
+    public init(
+        size: CGSize,
+        safeArea: EdgeInsets,
+        data: Data,
+        isYoutuber: Bool = false
+    ) {
+        self.size = size
+        self.safeArea = safeArea
         self.data = data
         self.isYoutuber = isYoutuber
     }
@@ -28,39 +39,13 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
 
 
     public var body: some View {
-        GeometryReader {
-            let size = $0.size
-            let safeArea = $0.safeAreaInsets
-            VStack {
-                if isYoutuber {
-                    YouTubePlayerView(self.youTubePlayer) { state in
-                        // Overlay ViewBuilder closure to place an overlay View
-                        // for the current `YouTubePlayer.State`
-                        switch state {
-                        case .idle:
-                            ZStack{
-                                KFImage(URL(string: self.data.imageURL))
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
-                                ThemeManager.shared.currentTheme.icons.tvDetailLoading.uiImage
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .rotationEffect(.degrees(rotationAngle))
-                                    .onAppear() {
-                                        withAnimation(Animation.linear(duration: 2.0).repeatForever(autoreverses: false)) {
-                                            rotationAngle = 360.0
-                                        }
-                                    }
-                            }
-                        case .ready:
-                            EmptyView()
-                        case .error(let error):
-                            Text(verbatim: "YouTube player couldn't be loaded")
-                        }
-                    }
-                } else {
-                    CustomAVPlayer(size: size, safeArea: safeArea) {
+        VStack {
+            if isYoutuber {
+                YouTubePlayerView(self.youTubePlayer) { state in
+                    // Overlay ViewBuilder closure to place an overlay View
+                    // for the current `YouTubePlayer.State`
+                    switch state {
+                    case .idle:
                         ZStack{
                             KFImage(URL(string: self.data.imageURL))
                                     .resizable()
@@ -76,17 +61,40 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                                     }
                                 }
                         }
-                    } finishView: {
-                        UpcomingVideoView(item: MockUpcomingItem())
+                    case .ready:
+                        EmptyView()
+                    case .error(let error):
+                        Text(verbatim: "YouTube player couldn't be loaded")
                     }
-
                 }
-                CardContentView(
-                    headline: data.headline,
-                    leadingFootnote: data.leadingFootnote,
-                    secondFootnote: data.secondFootnote
-                )
+
+            } else {
+                CustomAVPlayer(size: size, safeArea: safeArea) {
+                    ZStack{
+                        KFImage(URL(string: self.data.imageURL))
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
+                        ThemeManager.shared.currentTheme.icons.tvDetailLoading.uiImage
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .rotationEffect(.degrees(rotationAngle))
+                            .onAppear() {
+                                withAnimation(Animation.linear(duration: 2.0).repeatForever(autoreverses: false)) {
+                                    rotationAngle = 360.0
+                                }
+                            }
+                    }
+                } finishView: {
+                    UpcomingVideoView(item: MockUpcomingItem())
+                }.frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
             }
+            CardContentView(
+                headline: data.headline,
+                leadingFootnote: data.leadingFootnote,
+                secondFootnote: data.secondFootnote
+            )
         }
+
     }
 }
