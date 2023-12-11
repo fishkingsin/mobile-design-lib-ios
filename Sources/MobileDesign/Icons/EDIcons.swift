@@ -17,4 +17,7 @@ open class EDIcons: NMGDefaultIcons {
     public override var tabIconTV: UIImage  { UIImage.image(from: baseFolder, named: "tab_icon_tv")! }
      
     public override var tvDetailLanding: UIImage  { UIImage.image(from: baseFolder, named: "tv_detail_landing")! }
+    
+    public override var tvDetailLoading: UIImage  { UIImage.image(from: baseFolder, named: "tv_detail_loading")! }
+    
 }

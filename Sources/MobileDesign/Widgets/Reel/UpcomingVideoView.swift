@@ -11,7 +11,6 @@ import Kingfisher
 
 protocol UpcomingItem {
     var imageURL: String { get }
-    var timeCode: String { get }
     var headline: String { get }
     var secCountDown: Int { get }
 }
@@ -51,11 +50,6 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
                         .resizable()
                         .frame(width: 144, height: 75)
                         .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
-                    Text(item.timeCode)
-                        .font(.system(size: 12))
-                        .padding(4)
-                        .background(Color(white: 0.5, opacity: 0.8))
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                 }
                 Text(item.headline)
@@ -110,5 +104,4 @@ struct MockUpcomingItem: UpcomingItem {
     var secCountDown: Int = 10
     var imageURL: String = ""
     var headline: String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
-    var timeCode: String = "22:22"
 }

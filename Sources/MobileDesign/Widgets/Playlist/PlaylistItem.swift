@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct PlaylistItem<Data>: View where Data: CardDisplayable & TimecodeDisplayable {
+public struct PlaylistItem<Data>: View where Data: CardDisplayable {
     var data: Data
     public init(data: Data) {
         self.data = data

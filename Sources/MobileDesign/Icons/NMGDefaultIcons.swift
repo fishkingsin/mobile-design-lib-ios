@@ -22,4 +22,6 @@ open class NMGDefaultIcons: NMGThemeableIcons {
     public var tabIconTV: UIImage  { UIImage() }
      
     public var tvDetailLanding: UIImage  { UIImage() }
+    
+    public var tvDetailLoading: UIImage  { UIImage() }
 }
