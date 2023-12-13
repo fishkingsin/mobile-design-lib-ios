@@ -51,6 +51,7 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
               }
             }
             contentView()
+            Spacer()
           }
     }
     
