@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Kingfisher
+import Combine
 
 protocol UpcomingItem {
     var imageURL: String { get }
@@ -15,16 +16,15 @@ protocol UpcomingItem {
     var secCountDown: Int { get }
 }
 
-protocol UpcomingVideoViewEvent {
-    func onClickCancel()
-    func onClickPlay()
-}
-
 struct UpcomingVideoView<Item: UpcomingItem>: View {
     var item: Item
-    var event: UpcomingVideoViewEvent?
     
     @State private var secCountDown = 10
+    @State private var timer: AnyCancellable?
+    @Binding var isFinish: Bool
+    var onCancelTap: () -> Void
+    var nextVideoAction: () -> Void
+
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
     
     var body: some View {
@@ -63,7 +63,8 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
             HStack() {
                 Spacer().frame(width: 16)
                 Button(action: {
-                    event?.onClickCancel()
+                    self.timer?.cancel()
+                    onCancelTap()
                 }){
                     Text("取消")
                         .font(.system(size: 16))
@@ -74,7 +75,8 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
                 }
                 Spacer().frame(width: 16)
                 Button(action: {
-                    event?.onClickPlay()
+                    nextVideoAction()
+                    self.timer?.cancel()
                 }){
                     Text("立即播放")
                         .font(.system(size: 16))
@@ -88,12 +90,34 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
             }
             Spacer().frame(height: 11)
         }.background(Color.black)
+            .onAppear {
+            startCountdown()
+            }
+    }
+    
+    private func startCountdown() {
+        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+            .sink { _ in
+                if self.secCountDown > 0 {
+                    self.secCountDown -= 1
+                } else {
+                    self.timer?.cancel()
+                    isFinish = false
+                    nextVideoAction()
+                }
+            }
     }
 }
 
 struct UpcomingVideoView_Previews: PreviewProvider {
+    @State static var isFinish: Bool = false
+
     static var previews: some View {
-        UpcomingVideoView(item: MockUpcomingItem(), event: nil)
+        UpcomingVideoView(item: MockUpcomingItem(), isFinish: $isFinish, onCancelTap: {
+            print("cancel")
+        }, nextVideoAction: {
+            print("play")
+        })
     }
 }
 

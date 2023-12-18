@@ -35,13 +35,14 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
             fullscreenMode: .web,
             autoPlay: true,
             loopEnabled: false,
-            useModestBranding: true
+            useModestBranding: true,
+            showRelatedVideos: false
         )
     )
     var isYoutuber = false
     @State private var rotationAngle: CGFloat = 0
     @State private var isFinish: Bool = false
-
+    @State private var showNextVideo: Bool = false
 
     public var body: some View {
         VStack {
@@ -63,8 +64,6 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                     ) { state in
                         if state == .ended {
                             isFinish = true
-                        }else {
-                            isFinish = false
                         }
                     }.frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
                 } else {
@@ -110,6 +109,18 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
     
     @ViewBuilder
     func unComingView() -> some View {
-        UpcomingVideoView(item: MockUpcomingItem()).frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width).padding(.top, 0).background(Color.white)
+        UpcomingVideoView(item: MockUpcomingItem(), isFinish: $isFinish, onCancelTap: {
+            self.youTubePlayer.seek(to: 0, allowSeekAhead: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.youTubePlayer.stop()
+                isFinish = false
+            }
+        }, nextVideoAction: {
+            self.youTubePlayer.seek(to: 0, allowSeekAhead: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.youTubePlayer.load(source: .url("https://www.youtube.com/watch?v=uFh53Cg_vdQ"))
+                isFinish = false
+            }
+        }).frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width).padding(.top, 0).background(Color.white).padding(.top, 1)
     }
 }
