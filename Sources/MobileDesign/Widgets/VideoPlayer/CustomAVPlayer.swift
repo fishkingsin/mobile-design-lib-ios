@@ -100,8 +100,8 @@ struct CustomAVPlayer<
                     .fill(.black)
                 /// Since View is Rotated the Trailing side is Bottom
                 /// Since View is Rotated the Leading side is Top
-                    .padding(deviceRotation == .landscapeRight ? .leading : .trailing, isRotated ? -safeArea.top : 0)
-                    .padding(deviceRotation == .landscapeRight ? .trailing : .leading, isRotated ? -safeArea.top : 0)
+                    .padding(deviceRotation == .landscapeRight ? .leading : .trailing, isRotated ? (-safeArea.top - 44) : 0)
+                    .padding(deviceRotation == .landscapeLeft ? .trailing : .leading, isRotated ? (-safeArea.top - 44) : 0)
             })
             .gesture(
                 DragGesture()
@@ -127,7 +127,7 @@ struct CustomAVPlayer<
             /// Making it Top View
             .zIndex(10000)
         }
-        .padding(.top, isRotated ? -safeArea.top : 0)
+        .padding(.top, isRotated ? (-safeArea.top + 44) : 0)
         .onAppear {
             guard !isObserverAdded else { return }
             /// Adding Observer to update seeker when the video is Playing
@@ -206,6 +206,7 @@ struct CustomAVPlayer<
                     if !isRotated {
                         Image(systemName: "arrow.up.left.and.arrow.down.right")
                             .foregroundColor(.white)
+                            .contentShape(Rectangle()) 
                             .padding(15).onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     isRotated = true
@@ -218,10 +219,12 @@ struct CustomAVPlayer<
             ZStack(alignment: .leading) {
                 Rectangle()
                     .fill(.white)
-                
+                    .padding(.leading, isRotated ? 12: 0)
+
                 Rectangle()
                     .fill(ThemeManager.shared.currentTheme.colors.primaryMain.color)
                     .frame(width: max(videoSize.width * progress, 0))
+                    .padding(.leading, isRotated ? 12: 0)
             }
             .frame(height: 3)
             .overlay(alignment: .leading) {

@@ -88,9 +88,9 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
             }
             Spacer().frame(height: 11)
         }
-        .aspectRatio(390.0/219.0, contentMode: .fit)
-        .background(Color.black)
-        .padding()
+//        .aspectRatio(390.0/219.0, contentMode: .fit)
+        .background(Color.red)
+//        .padding()
     }
 }
 

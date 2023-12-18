@@ -75,6 +75,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
+                                .padding(.top, 0)
                         ThemeManager.shared.currentTheme.icons.tvDetailLoading.uiImage
                             .resizable()
                             .frame(width: 60, height: 60)
@@ -86,8 +87,10 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                             }
                     }
                 } finishView: {
-                    UpcomingVideoView(item: MockUpcomingItem())
+                    UpcomingVideoView(item: MockUpcomingItem()).frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width).padding(.top, 6)
+
                 }.frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
+                    .zIndex(10001)
             }
             CardContentView(
                 headline: data.headline,
