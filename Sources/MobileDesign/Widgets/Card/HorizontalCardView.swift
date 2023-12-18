@@ -33,7 +33,7 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
     
     public var body: some View {
         HStack {
-            ZStack(alignment: .bottomTrailing) {
+            ZStack {
               if let url = URL(string: imageUrl) {
                   KFImage(url)
                       .placeholder({ _ in
@@ -49,8 +49,8 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
               } else {
                 getPlaceholder()
               }
-            }
-            contentView()
+            }.padding(.top, 12)
+            contentView().padding(.top, 12)
             Spacer()
           }
     }
