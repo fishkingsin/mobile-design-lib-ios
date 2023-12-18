@@ -23,10 +23,10 @@ protocol UpcomingVideoViewEvent {
 struct UpcomingVideoView<Item: UpcomingItem>: View {
     var item: Item
     var event: UpcomingVideoViewEvent?
-
+    
     @State private var secCountDown = 10
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
-
+    
     var body: some View {
         VStack() {
             Spacer().frame(height: 11)
@@ -87,10 +87,7 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
                 Spacer().frame(width: 16)
             }
             Spacer().frame(height: 11)
-        }
-//        .aspectRatio(390.0/219.0, contentMode: .fit)
-        .background(Color.red)
-//        .padding()
+        }.background(Color.black)
     }
 }
 
