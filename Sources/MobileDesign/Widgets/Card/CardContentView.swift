@@ -11,11 +11,10 @@ struct CardContentView: View {
     var leadingFootnote: String
     var secondFootnote: String
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(spacing: 4) {
             CardContentHeadlineView(headline: headline)
             CardContentFootnoteView(leadingFootnote: leadingFootnote, secondFootnote: secondFootnote)
         }
-        .frame(alignment: .topLeading)
     }
 }
 

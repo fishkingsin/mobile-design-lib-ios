@@ -33,7 +33,8 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
         configuration: YouTubePlayer.Configuration(
             allowsPictureInPictureMediaPlayback: false,
             fullscreenMode: .web,
-            autoPlay: true,
+            autoPlay: true, 
+            showCaptions: false,
             loopEnabled: false,
             useModestBranding: true,
             showRelatedVideos: false
@@ -84,6 +85,26 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                 leadingFootnote: data.leadingFootnote,
                 secondFootnote: data.secondFootnote
             )
+            
+//            VStack(spacing: 8) {
+//                Text(data.headline)
+//                    .lineLimit(2)
+//                    .font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
+//                    .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                    .padding(.leading, 12)
+//                HStack(spacing: 8) {
+//                    Text(data.leadingFootnote)
+//                        .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
+//                        .foregroundColor(ThemeManager.shared.currentTheme.colors.footnote.color)
+//                    Text(data.secondFootnote)
+//                        .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
+//                        .foregroundColor(ThemeManager.shared.currentTheme.colors.footnote.color)
+//                }
+//                .frame(maxWidth: .infinity, alignment: .leading)
+//                .padding(.leading, 12)
+//            }
+
         }
     }
     

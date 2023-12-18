@@ -28,7 +28,6 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable & TimecodeDi
                 leadingFootnote: data.leadingFootnote,
                 secondFootnote: data.secondFootnote
             )
-            .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
         } overlayView: {
             Group {
                 if !data.timecode.isEmpty {
