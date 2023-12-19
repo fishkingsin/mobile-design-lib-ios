@@ -38,7 +38,7 @@ public struct TopImageCardView<
   }
 
   public var body: some View {
-    VStack(spacing: 0) {
+    VStack(spacing: 12) {
       ZStack(alignment: alignment) {
         if let url = URL(string: imageUrl) {
             KFImage(url)
