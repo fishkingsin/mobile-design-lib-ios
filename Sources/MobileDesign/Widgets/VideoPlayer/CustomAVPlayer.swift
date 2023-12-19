@@ -19,10 +19,7 @@ struct CustomAVPlayer<
     
     
     /// View Properties
-    @State private var player: AVPlayer? = {
-        
-        return AVPlayer(url: URL(string: "https://player.vimeo.com/external/873243977.m3u8?s=d35bb833f41cb5fdaf5bb77237cb417ea7842002&logging=false")!)
-    }()
+    @Binding private var player: AVPlayer?
     @State private var showPlayerControls: Bool = false
     @State private var isPlaying: Bool = false
     @State private var isPlayerReady: Bool = false
@@ -44,6 +41,7 @@ struct CustomAVPlayer<
     public init(
         size: CGSize,
         safeArea: EdgeInsets,
+        player: Binding<AVPlayer?>,
         placeholderView: @escaping () -> PlaceholderView,
         finishView: (() -> PlayFinishView)? = nil
     ) {
@@ -51,6 +49,7 @@ struct CustomAVPlayer<
         self.safeArea = safeArea
         self.placeholderView = placeholderView
         self.finishView = finishView
+        self._player = player
     }
     
     var body: some View {
@@ -206,7 +205,7 @@ struct CustomAVPlayer<
                     if !isRotated {
                         Image(systemName: "arrow.up.left.and.arrow.down.right")
                             .foregroundColor(.white)
-                            .contentShape(Rectangle()) 
+                            .contentShape(Rectangle())
                             .padding(15).onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     isRotated = true

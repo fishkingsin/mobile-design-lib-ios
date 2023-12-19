@@ -9,7 +9,7 @@ import YouTubePlayerKit
 import AVFoundation
 import Kingfisher
 
-public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
+public struct TVVideoPlayerContainer<Data>: View where Data: VideoPlayListDisplayable {
     var data: Data
     var size: CGSize
     var safeArea: EdgeInsets
@@ -40,6 +40,12 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
             showRelatedVideos: false
         )
     )
+    
+    @State private var player: AVPlayer? = {
+        
+        return AVPlayer(url: URL(string: "https://player.vimeo.com/external/873243977.m3u8?s=d35bb833f41cb5fdaf5bb77237cb417ea7842002&logging=false")!)
+    }()
+    
     var isYoutuber = false
     @State private var rotationAngle: CGFloat = 0
     @State private var isFinish: Bool = false
@@ -68,11 +74,10 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                         }
                     }.frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
                 } else {
-                    CustomAVPlayer(size: size, safeArea: safeArea) {
+                    CustomAVPlayer(size: size, safeArea: safeArea, player: $player) {
                         loadingView()
                     } finishView: {
                         unComingView()
-
                     }.frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)
                 }
                 if isFinish {
@@ -85,26 +90,6 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
                 leadingFootnote: data.leadingFootnote,
                 secondFootnote: data.secondFootnote
             )
-            
-//            VStack(spacing: 8) {
-//                Text(data.headline)
-//                    .lineLimit(2)
-//                    .font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
-//                    .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .padding(.leading, 12)
-//                HStack(spacing: 8) {
-//                    Text(data.leadingFootnote)
-//                        .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
-//                        .foregroundColor(ThemeManager.shared.currentTheme.colors.footnote.color)
-//                    Text(data.secondFootnote)
-//                        .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
-//                        .foregroundColor(ThemeManager.shared.currentTheme.colors.footnote.color)
-//                }
-//                .frame(maxWidth: .infinity, alignment: .leading)
-//                .padding(.leading, 12)
-//            }
-
         }
     }
     
@@ -134,6 +119,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: CardDisplayable {
             self.youTubePlayer.seek(to: 0, allowSeekAhead: false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.youTubePlayer.stop()
+                self.player?.pause()
                 isFinish = false
             }
         }, nextVideoAction: {
