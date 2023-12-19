@@ -14,6 +14,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoDisplayable {
     var size: CGSize
     var safeArea: EdgeInsets
     @State var currentPlayingData: Data
+    @State var nextPlayData: Data
 
     public init(
         size: CGSize,
@@ -24,6 +25,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoDisplayable {
         self.safeArea = safeArea
         self.data = data
         _currentPlayingData = State(initialValue: data.first!)
+        _nextPlayData = State(initialValue: data.count > 1 ? data[1] : data[0])
         if let initData = data.first {
             if initData.videoType == "youtube", let youtubeURL = initData.url {
                 self.youTubePlayer.load(source: .url(youtubeURL))
@@ -52,7 +54,6 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoDisplayable {
     
     @State private var rotationAngle: CGFloat = 0
     @State private var isFinish: Bool = false
-    @State private var showNextVideo: Bool = false
 
     public var body: some View {
         VStack {
@@ -118,7 +119,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoDisplayable {
     
     @ViewBuilder
     func unComingView() -> some View {
-        UpcomingVideoView(item: MockUpcomingItem(), isFinish: $isFinish, onCancelTap: {
+        UpcomingVideoView(item: nextPlayData, isFinish: $isFinish, onCancelTap: {
             self.youTubePlayer.seek(to: 0, allowSeekAhead: false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.youTubePlayer.stop()
@@ -128,9 +129,21 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoDisplayable {
         }, nextVideoAction: {
             self.youTubePlayer.seek(to: 0, allowSeekAhead: false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.youTubePlayer.load(source: .url("https://www.youtube.com/watch?v=uFh53Cg_vdQ"))
+                if nextPlayData.videoType == "youtube", let youtubeURL = nextPlayData.url {
+                    self.youTubePlayer.load(source: .url(youtubeURL))
+                }else if nextPlayData.videoType == "vimeo", let vimeoURLString = nextPlayData.url, let vimeoURL =  URL(string: vimeoURLString)  {
+                    let newPlayerItem = AVPlayerItem(url: vimeoURL)
+                    player?.replaceCurrentItem(with: newPlayerItem)
+                }
+                currentPlayingData = nextPlayData
+                let index = data.firstIndex(where: { $0.id == nextPlayData.id }) ?? 0
+                if let indexData = data.count > index + 1 ? data[index + 1] : data.first {
+                    nextPlayData = indexData
+                }
                 isFinish = false
             }
         }).frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width).padding(.top, 0).background(Color.white).padding(.top, 1)
     }
+    
+    
 }

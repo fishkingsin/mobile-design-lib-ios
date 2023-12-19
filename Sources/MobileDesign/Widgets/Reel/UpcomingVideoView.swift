@@ -10,13 +10,7 @@ import SwiftUI
 import Kingfisher
 import Combine
 
-protocol UpcomingItem {
-    var imageURL: String { get }
-    var headline: String { get }
-    var secCountDown: Int { get }
-}
-
-struct UpcomingVideoView<Item: UpcomingItem>: View {
+struct UpcomingVideoView<Item: VideoDisplayable>: View {
     var item: Item
     
     @State private var secCountDown = 10
@@ -45,18 +39,22 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
             }
             HStack() {
                 Spacer().frame(width: 14)
-                ZStack(alignment: .bottomTrailing) {
-                    KFImage.url(URL(string: item.imageURL))
-                        .resizable()
-                        .frame(width: 144, height: 75)
-                        .background(Color.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                if let url = item.imageURL {
+                    ZStack(alignment: .bottomTrailing) {
+                        KFImage.url(URL(string: url))
+                            .resizable()
+                            .frame(width: 144, height: 75)
+                            .background(Color.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                    }
                 }
-                Text(item.headline)
-                    .font(.system(size: 16))
-                    .foregroundColor(theme.colors.neutralGray2.color)
-                    .lineLimit(3)
-                    .truncationMode(.tail)
+                if let headline = item.headline {
+                    Text(headline)
+                        .font(.system(size: 16))
+                        .foregroundColor(theme.colors.neutralGray2.color)
+                        .lineLimit(3)
+                        .truncationMode(.tail)
+                }
                 Spacer().frame(width: 14)
             }
             Spacer()
@@ -109,20 +107,20 @@ struct UpcomingVideoView<Item: UpcomingItem>: View {
     }
 }
 
-struct UpcomingVideoView_Previews: PreviewProvider {
-    @State static var isFinish: Bool = false
+//struct UpcomingVideoView_Previews: PreviewProvider {
+//    @State static var isFinish: Bool = false
+//
+//    static var previews: some View {
+//        UpcomingVideoView(item: MockUpcomingItem(), isFinish: $isFinish, onCancelTap: {
+//            print("cancel")
+//        }, nextVideoAction: {
+//            print("play")
+//        })
+//    }
+//}
 
-    static var previews: some View {
-        UpcomingVideoView(item: MockUpcomingItem(), isFinish: $isFinish, onCancelTap: {
-            print("cancel")
-        }, nextVideoAction: {
-            print("play")
-        })
-    }
-}
-
-struct MockUpcomingItem: UpcomingItem {
-    var secCountDown: Int = 10
-    var imageURL: String = ""
-    var headline: String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
-}
+//struct MockUpcomingItem: UpcomingItem {
+//    var secCountDown: Int = 10
+//    var imageURL: String = ""
+//    var headline: String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
+//}
