@@ -10,18 +10,25 @@ import SwiftUI
 import Kingfisher
 import Combine
 
-struct UpcomingVideoView<Item: VideoDisplayable>: View {
-    var item: Item
+public struct UpcomingVideoView: View {
+    var item: VideoDisplayable
     
     @State private var secCountDown = 10
     @State private var timer: AnyCancellable?
     @Binding var isFinish: Bool
+    
     var onCancelTap: () -> Void
     var nextVideoAction: () -> Void
-
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
+   
+    public init(item: VideoDisplayable, isFinish: Binding<Bool>, onCancelTap: @escaping () -> Void, nextVideoAction: @escaping () -> Void) {
+        self.item = item
+        self._isFinish = isFinish
+        self.onCancelTap = onCancelTap
+        self.nextVideoAction = nextVideoAction
+    }
     
-    var body: some View {
+    public var body: some View {
         VStack() {
             Spacer().frame(height: 11)
             HStack {

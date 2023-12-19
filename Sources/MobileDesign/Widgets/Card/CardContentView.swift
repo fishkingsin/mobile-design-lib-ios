@@ -6,11 +6,16 @@
 
 import SwiftUI
 
-struct CardContentView: View {
-    var headline: String
-    var leadingFootnote: String
-    var secondFootnote: String
-    var body: some View {
+public struct CardContentView: View {
+    public var headline: String
+    public var leadingFootnote: String
+    public var secondFootnote: String
+    public init(headline: String, leadingFootnote: String, secondFootnote: String) {
+        self.headline = headline
+        self.leadingFootnote = leadingFootnote
+        self.secondFootnote = secondFootnote
+    }
+    public var body: some View {
         VStack(spacing: 4) {
             CardContentHeadlineView(headline: headline)
             CardContentFootnoteView(leadingFootnote: leadingFootnote, secondFootnote: secondFootnote)

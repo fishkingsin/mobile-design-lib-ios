@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import AVKit
 
-struct CustomAVPlayer<
+public struct CustomAVPlayer<
     PlaceholderView: View, PlayFinishView: View
 >: View {
     var size: CGSize
@@ -52,7 +52,7 @@ struct CustomAVPlayer<
         self._player = player
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
             /// Swapping Size When Rotated
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (9.0/16.0 * size.width))

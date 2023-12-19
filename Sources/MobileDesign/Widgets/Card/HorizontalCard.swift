@@ -10,11 +10,11 @@ import SwiftUI
 public struct HorizontalCard<Data>: View where Data: CardDisplayable {
     
     var data: Data
-    @Binding var isPlaying: Bool
+    var isPlaying: Bool
     
-    public init(data: Data, isPlaying: Binding<Bool>) {
+    public init(data: Data, isPlaying: Bool) {
         self.data = data
-        self._isPlaying = isPlaying
+        self.isPlaying = isPlaying
     }
     
     public var body: some View {
