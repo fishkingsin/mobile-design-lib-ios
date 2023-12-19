@@ -31,8 +31,10 @@ public struct LikeAnimationView: View {
 
     @State private var isLike: Bool = false
     
-    public init(buttonTappedCompletion: ((Bool) -> (Void))?) {
+    public init(buttonTappedCompletion: ((Bool) -> (Void))?, externalButtonTapped: Bool) {
         self.buttonTappedCompletion = buttonTappedCompletion
+        self._isLike = State(initialValue: externalButtonTapped)
+        self._showRedHeart = State(initialValue: externalButtonTapped)
     }
 
     public var body: some View {
@@ -73,7 +75,7 @@ public struct LikeAnimationView: View {
 
 struct LikeAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        LikeAnimationView(buttonTappedCompletion: nil)
+        LikeAnimationView(buttonTappedCompletion: nil, externalButtonTapped: false)
     }
 }
 
