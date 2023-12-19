@@ -9,31 +9,36 @@ import YouTubePlayerKit
 import AVFoundation
 import Kingfisher
 
-public struct TVVideoPlayerContainer<Data>: View where Data: VideoPlayListDisplayable {
-    var data: Data
+public struct TVVideoPlayerContainer<Data>: View where Data: VideoDisplayable {
+    var data: [Data]
     var size: CGSize
     var safeArea: EdgeInsets
-    
-    
+    @State var currentPlayingData: Data
+
     public init(
         size: CGSize,
         safeArea: EdgeInsets,
-        data: Data,
-        isYoutuber: Bool = false
+        data: [Data]
     ) {
         self.size = size
         self.safeArea = safeArea
         self.data = data
-        self.isYoutuber = isYoutuber
+        _currentPlayingData = State(initialValue: data.first!)
+        if let initData = data.first {
+            if initData.videoType == "youtube", let youtubeURL = initData.url {
+                self.youTubePlayer.load(source: .url(youtubeURL))
+            }else if initData.videoType == "vimeo", let vimeoURLString = initData.url, let vimeoURL =  URL(string: vimeoURLString)  {
+                let newPlayerItem = AVPlayerItem(url: vimeoURL)
+                player?.replaceCurrentItem(with: newPlayerItem)
+            }
+        }
     }
     
-    @StateObject
     var youTubePlayer = YouTubePlayer(
-        source: .url("https://www.youtube.com/watch?v=hJVwKTBEbWE"),
         configuration: YouTubePlayer.Configuration(
             allowsPictureInPictureMediaPlayback: false,
             fullscreenMode: .web,
-            autoPlay: true, 
+            autoPlay: true,
             showCaptions: false,
             loopEnabled: false,
             useModestBranding: true,
@@ -42,11 +47,9 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoPlayListDispla
     )
     
     @State private var player: AVPlayer? = {
-        
-        return AVPlayer(url: URL(string: "https://player.vimeo.com/external/873243977.m3u8?s=d35bb833f41cb5fdaf5bb77237cb417ea7842002&logging=false")!)
+        return AVPlayer()
     }()
     
-    var isYoutuber = false
     @State private var rotationAngle: CGFloat = 0
     @State private var isFinish: Bool = false
     @State private var showNextVideo: Bool = false
@@ -54,7 +57,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoPlayListDispla
     public var body: some View {
         VStack {
             ZStack {
-                if isYoutuber {
+                if currentPlayingData.videoType == "youtube" {
                     YouTubePlayerView(self.youTubePlayer) { state in
                         switch state {
                         case .idle:
@@ -86,9 +89,9 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoPlayListDispla
             }
            
             CardContentView(
-                headline: data.headline,
-                leadingFootnote: data.leadingFootnote,
-                secondFootnote: data.secondFootnote
+                headline: currentPlayingData.headline ?? "",
+                leadingFootnote: currentPlayingData.leadingFootnote ?? "",
+                secondFootnote: currentPlayingData.secondFootnote ?? ""
             )
         }
     }
@@ -96,7 +99,7 @@ public struct TVVideoPlayerContainer<Data>: View where Data: VideoPlayListDispla
     @ViewBuilder
     func loadingView() -> some View {
         ZStack{
-            KFImage(URL(string: self.data.imageURL))
+            KFImage(URL(string: self.currentPlayingData.imageURL ?? ""))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 9.0/16.0 * UIScreen.main.bounds.width)

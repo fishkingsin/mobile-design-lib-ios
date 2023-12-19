@@ -425,16 +425,16 @@ struct CustomAVPlayer<
     
 }
 
-struct CustomAVPlayer_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader {
-            let size = $0.size
-            let safeArea = $0.safeAreaInsets
-            
-            CustomAVPlayer<Text, Text>(size: size, safeArea: safeArea) {
-                Text("loading")
-            }
-        }
-        .preferredColorScheme(.dark)
-    }
-}
+//struct CustomAVPlayer_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GeometryReader {
+//            let size = $0.size
+//            let safeArea = $0.safeAreaInsets
+//            
+//            CustomAVPlayer<Text, Text>(size: size, safeArea: safeArea) {
+//                Text("loading")
+//            }
+//        }
+//        .preferredColorScheme(.dark)
+//    }
+//}
