@@ -1,10 +1,8 @@
 //
-//  File.swift
+// CustomAVPlayer.swift
 //
+// Copyright © 2023 New Media Group. All rights reserved.
 //
-//  Created by Joey Sun on 2023/12/11.
-//
-
 import Foundation
 import SwiftUI
 import AVKit
@@ -71,7 +69,21 @@ public struct CustomAVPlayer<
                                     PlayBackControls()
                                 }
                         }
-                    
+                        .overlay(content: {
+                            HStack(spacing: 60) {
+                                DoubleTapSeek {
+                                    /// Seeking 15 sec Backward
+                                    let seconds = player.currentTime().seconds - 15
+                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                                }
+                                
+                                DoubleTapSeek(isForward: true) {
+                                    /// Seeking 15 sec Forward
+                                    let seconds = player.currentTime().seconds + 15
+                                    player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
+                                }
+                            }
+                        })
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.35)) {
                                 showPlayerControls.toggle()
