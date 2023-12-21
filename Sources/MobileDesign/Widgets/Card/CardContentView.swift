@@ -30,12 +30,15 @@ public struct CardContentView: View {
 }
 public enum CardContentType {
     case TVVideoPlayer
+    case HorizontalCard
     case other
     
     var font: Font {
         switch self {
         case .TVVideoPlayer:
             return ThemeManager.shared.currentTheme.fonts.articleH1.uiFont
+        case .HorizontalCard:
+            return ThemeManager.shared.currentTheme.fonts.cardTitle.uiFont
         default:
             return ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont
         }

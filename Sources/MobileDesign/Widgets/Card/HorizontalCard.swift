@@ -23,7 +23,7 @@ public struct HorizontalCard<Data>: View where Data: CardDisplayable {
                 HorizontalCardView(imageUrl: data.imageURL, overLayViewAlign: .bottomTrailing) {
                     Rectangle().fill(.gray).frame(width: 133, height: 75)
                 } contentView: {
-                    CardContentHeadlineView(headline:  data.headline, lineLimit: 3, cardContentType: .other)
+                    CardContentHeadlineView(headline:  data.headline, lineLimit: 3, cardContentType: .HorizontalCard)
                 } overlayView: {
                     Group {
                         if isPlaying {
