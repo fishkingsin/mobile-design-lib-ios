@@ -12,7 +12,7 @@ struct HorizontalCardContent: View {
     var leadingFootnote: String?
     var secondFootnote: String?
     var body: some View {
-        CardContentHeadlineView(headline: headline, lineLimit: 3)
+        CardContentHeadlineView(headline: headline, lineLimit: 3, cardContentType: .other)
     }
 }
 

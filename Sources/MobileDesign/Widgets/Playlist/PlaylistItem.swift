@@ -23,7 +23,8 @@ public struct PlaylistItem<Data>: View where Data: CardDisplayable {
             CardContentView(
                 headline: data.headline,
                 leadingFootnote: data.leadingFootnote,
-                secondFootnote: data.secondFootnote
+                secondFootnote: data.secondFootnote,
+                cardContentType: .other
             ).padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16))
         } overlayView: {
             Image(systemName: "play.circle")
