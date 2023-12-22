@@ -6,15 +6,39 @@
 //
 
 import SwiftUI
+public struct CardOverlayView: View {
+    var title: String
+    init(title: String) {
+        self.title = title
+    }
+    public var body: some View {
+        Group {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 133, height: 75)
+                    .background(.black.opacity(0.75))
+                    .cornerRadius(4)
+                Text(title)
+                // - TODO: felix fix it use theme font
+                    .font(Font.custom("PingFang HK", size: 16))
+                    .kerning(0.4)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.white)
+            }
+        }
+        //        .background( isPlaying ? Color(red: 0.95, green: 0.95, blue: 0.95) : Color.clear)
 
-public struct HorizontalCard<Data>: View where Data: CardDisplayable {
-    
+    }
+}
+public struct HorizontalCard<Data, Overlay>: View where Data: CardDisplayable, Overlay: View {
+
     var data: Data
-    var isPlaying: Bool
-    
-    public init(data: Data, isPlaying: Bool) {
+    var overlay: (() -> Overlay)?
+
+    public init(data: Data, overlay: (() -> Overlay)? = nil) {
         self.data = data
-        self.isPlaying = isPlaying
+        self.overlay = overlay
     }
     
     public var body: some View {
@@ -25,29 +49,16 @@ public struct HorizontalCard<Data>: View where Data: CardDisplayable {
                 } contentView: {
                     CardContentHeadlineView(headline:  data.headline, lineLimit: 3)
                 } overlayView: {
-                    Group {
-                        if isPlaying {
-                            ZStack {
-                                Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 133, height: 75)
-                                .background(.black.opacity(0.75))
-                                .cornerRadius(4)
-                                Text("正在播放")
-                                .font(Font.custom("PingFang HK", size: 16))
-                                .kerning(0.4)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
-                            }
-                        }
-                    }
+                    overlay?()
                 }
             }
             .padding(12)
             Rectangle()
                 .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
                 .frame(height: 2)
-        }.background( isPlaying ? Color(red: 0.95, green: 0.95, blue: 0.95) : Color.clear)
+        }
+        // - TODO: felix fix it use theme color
+//        .background( isPlaying ? Color(red: 0.95, green: 0.95, blue: 0.95) : Color.clear)
     }
 }
 
