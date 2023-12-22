@@ -8,7 +8,7 @@
 import SwiftUI
 public struct CardOverlayView: View {
     var title: String
-    init(title: String) {
+    public init(title: String) {
         self.title = title
     }
     public var body: some View {
@@ -31,14 +31,15 @@ public struct CardOverlayView: View {
 
     }
 }
-public struct HorizontalCard<Data, Overlay>: View where Data: CardDisplayable, Overlay: View {
+public struct HorizontalCard<Data, Content>: View where Data: CardDisplayable, Content: View {
 
     var data: Data
-    var overlay: (() -> Overlay)?
+    let content: () -> Content
 
-    public init(data: Data, overlay: (() -> Overlay)? = nil) {
+
+    public init(data: Data, @ViewBuilder content: @escaping () -> Content) {
         self.data = data
-        self.overlay = overlay
+        self.content = content
     }
     
     public var body: some View {
@@ -49,7 +50,7 @@ public struct HorizontalCard<Data, Overlay>: View where Data: CardDisplayable, O
                 } contentView: {
                     CardContentHeadlineView(headline:  data.headline, lineLimit: 3)
                 } overlayView: {
-                    overlay?()
+                    content()
                 }
             }
             .padding(12)
