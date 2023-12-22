@@ -28,29 +28,12 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable {
                     cardContentType: .other
                 )
             } overlayView: {
-//                EmptyView()
-                getTimeLabelView()
-                    .padding(4)
+                EmptyView()
             }
         }
         .onTapGesture {
             onTabChanged()
         }
-    }
-    
-    // currenty no playTime in api
-    func getTimeLabelView() -> some View {
-        HStack {
-            Image(systemName: "play.fill")
-                .foregroundColor(.white)
-                .frame(width: 10, height: 10)
-            Text("22:22")
-                .foregroundColor(.white)
-        }
-        .padding(.vertical, 2)
-        .padding(.horizontal, 4)
-        .background(.gray)
-        .cornerRadius(5)
     }
 }
 
