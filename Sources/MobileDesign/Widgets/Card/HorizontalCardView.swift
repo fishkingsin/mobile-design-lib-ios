@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView: View>: View
 {
@@ -32,25 +33,25 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
     
     public var body: some View {
         HStack {
-            ZStack(alignment: .bottomTrailing) {
+            ZStack {
               if let url = URL(string: imageUrl) {
-                AsyncImageURLCachedView(url: url) {
-                  getPlaceholder()
-                } image: {
-                  Image(uiImage: $0)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: 133, maxHeight: 75)
-                    .clipped()
-                    .cornerRadius(4).overlay(alignment: overLayViewAlign) {
+                  KFImage(url)
+                      .placeholder({ _ in
+                          getPlaceholder()
+                      })
+                      .resizable()
+                      .aspectRatio(contentMode: .fill)
+                      .frame(maxWidth: 133, maxHeight: 75)
+                      .clipped()
+                      .cornerRadius(4).overlay(alignment: overLayViewAlign) {
                         overlayView?() 
                     }
-                }
               } else {
                 getPlaceholder()
               }
-            }
-            contentView()
+            }.padding(.top, 12)
+            contentView().padding(.top, 12)
+            Spacer()
           }
     }
     

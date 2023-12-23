@@ -59,3 +59,5 @@ xcshareddata/
 *.dSYM.zip
 **DerivedData**
 GeneratedModuleMaps-iphonesimulator/MobileDesign-Swift.h
+*.resolved
+

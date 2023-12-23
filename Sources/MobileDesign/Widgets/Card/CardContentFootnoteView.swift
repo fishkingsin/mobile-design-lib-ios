@@ -13,7 +13,7 @@ struct CardContentFootnoteView: View {
     var leadingFootnote: String
     var secondFootnote: String
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
+        HStack(spacing: 8) {
             Text(leadingFootnote)
                 .font(font)
                 .foregroundColor(foregroundColor)
@@ -21,8 +21,8 @@ struct CardContentFootnoteView: View {
                 .font(font)
                 .foregroundColor(foregroundColor)
         }
-        .padding(0)
-        .frame(height: 20, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 12)
     }
 }
 

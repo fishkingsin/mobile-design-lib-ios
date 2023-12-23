@@ -46,9 +46,9 @@ struct ChipGroupInternal<Data: Collection, Content: View>: View where Data.Eleme
 }
 
 public protocol ChipData: Identifiable, Hashable {
-  var id: String { get }
-  var title: String { get }
-  var iconUrl: String { get }
+  var id: Int? { get }
+  var name: String? { get }
+  var icon: String? { get }
 }
 
 public struct ChipGroup<Data>: View where Data: ChipData {
@@ -65,7 +65,6 @@ public struct ChipGroup<Data>: View where Data: ChipData {
 
   public var body: some View {
     ChipGroupInternal(index: $index, datas: datas) { index, data in
-      self.index = index
       onTabChanged(index, data)
     } content: { i, element in
       Chip(element: element, index: self.$index, selfIndex: i)

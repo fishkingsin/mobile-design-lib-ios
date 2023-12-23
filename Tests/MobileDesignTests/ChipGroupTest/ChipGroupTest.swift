@@ -11,12 +11,22 @@ import XCTest
 @testable import MobileDesign
 
 private struct ChipDataDemo: ChipData {
-    var id: String = UUID().uuidString
+    var id: Int?
+    
+    var name: String?
+    
+    var icon: String?
+
+
 
     var title: String
+
     var iconUrl: String
 
-    init(_ title: String, _ iconUrl: String) {
+    init(name: String? = nil, icon: String? = nil, id: Int = Int.random(in: 0...100), title: String, iconUrl: String) {
+        self.name = name
+        self.icon = icon
+        self.id  = id
         self.title = title
         self.iconUrl = iconUrl
     }
@@ -74,9 +84,9 @@ final class ChipGroupTest: XCTestCase {
   }
 
   fileprivate var data: [ChipDataDemo] { [
-        ChipDataDemo("Title 10", ""),
-        ChipDataDemo("Title 100", "https://placehold.co/24x24/png"),
-        ChipDataDemo("Title 1000", "https://placehold.co/24x24/png")]
+    ChipDataDemo(name: "Title 10", icon:  "https://placehold.co/24x24/png", id: 0, title: "Title", iconUrl: "iconUrl"),
+    ChipDataDemo(name: "Title 100", icon: "https://placehold.co/24x24/png", id: 1, title: "Title", iconUrl: "iconUrl"),
+    ChipDataDemo(name: "Title 1000", icon: "https://placehold.co/24x24/png", id: 2, title: "Title", iconUrl: "iconUrl")]
   }
 
   private var sut: some View {

@@ -25,8 +25,42 @@ final class UpcomingVideoViewTest: XCTestCase {
     assertSnapshot(matching: rootView, as: .image(layout: .fixed(width: 390, height: 219)))
   }
 
+    class MockUpcomingItem: VideoDisplayable {
+        var imageURL: String?
+        
+        var headline: String?
+        
+        var leadingFootnote: String?
+        
+        var secondFootnote: String?
+        
+        var id: Int?
+        
+        var url: String?
+        
+        var videoType: String?
+        
+        init(imageURL: String? = nil, headline: String? = nil, leadingFootnote: String? = nil, secondFootnote: String? = nil, id: Int? = nil, url: String? = nil, videoType: String? = nil) {
+            self.imageURL = imageURL
+            self.headline = headline
+            self.leadingFootnote = leadingFootnote
+            self.secondFootnote = secondFootnote
+            self.id = id
+            self.url = url
+            self.videoType = videoType
+        }
+
+    }
   var sut: some View {
-      UpcomingVideoView(item: MockUpcomingItem(), event: nil)
+      UpcomingVideoView(item: MockUpcomingItem(
+        headline: "headline",
+        leadingFootnote: "leadingFootnote",
+        secondFootnote: "secondFootnote"
+      ), isFinish: .constant(true), onCancelTap: {
+
+      }, nextVideoAction: {
+
+      })
   }
 
 }

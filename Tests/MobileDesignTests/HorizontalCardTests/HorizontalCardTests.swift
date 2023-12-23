@@ -45,7 +45,7 @@ final class HorizontalCardTests: XCTestCase {
             leadingFootnote: "4小時前",
             secondFootnote: "經人觀點",
             timecode: "22:22"
-        ))
+        ), isPlaying: true)
     }
 
 }
