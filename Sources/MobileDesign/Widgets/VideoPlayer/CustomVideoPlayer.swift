@@ -10,16 +10,21 @@ import SwiftUI
 
 import UIKit
 
-struct CustomVideoPlayer: UIViewControllerRepresentable {
+public struct CustomVideoPlayer: UIViewControllerRepresentable {
     var player: AVPlayer
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
+    
+    public init(player: AVPlayer) {
+        self.player = player
+    }
+    
+    public func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
         controller.player = player
         controller.showsPlaybackControls = false
         return controller
     }
     
-    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+    public func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
         
     }
 }
