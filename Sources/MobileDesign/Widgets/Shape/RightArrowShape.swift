@@ -43,7 +43,7 @@ public struct RightArrowShapeWithTextViewStyle: ViewModifier {
 }
 
 public struct RightArrowShapeWithTextView: View {
-    
+
     let text: String
     let modifier: RightArrowShapeWithTextViewStyle
     let theme: NMGThemeable
@@ -58,14 +58,14 @@ public struct RightArrowShapeWithTextView: View {
         ZStack {
             RightArrowShape().frame(width: caluateSize(), height: 15).modifier(modifier)
             Text(text)
-                .font(Font(theme.fonts.caption3Emphasize))
+                .font(Font(theme.fonts.eleRegular10))
                 .foregroundColor(.white)
         }
     }
-    
+
     private func caluateSize() -> CGFloat {
         let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 15)
-        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: theme.fonts.caption3Emphasize], context: nil)
+        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: theme.fonts.eleRegular10], context: nil)
         return ceil(boundingBox.width) + 10
     }
 }

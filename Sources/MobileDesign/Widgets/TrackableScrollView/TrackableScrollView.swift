@@ -62,7 +62,7 @@ struct TrackableScrollViewDemo: View {
                 TrackableScrollView(contentOffset: $offset) {
                     VStack {
 
-                        ForEach(0...10, id: \.self) { rowIndex in
+                        ForEach(0...10, id: \.self) { _ in
 
                             TimelineRowView()
                         }
@@ -71,7 +71,7 @@ struct TrackableScrollViewDemo: View {
                 TrackableScrollView(contentOffset: $offset) {
                     VStack {
 
-                        ForEach(0...10, id: \.self) { rowIndex in
+                        ForEach(0...10, id: \.self) { _ in
 
                             TimelineRowView()
                         }
@@ -83,12 +83,11 @@ struct TrackableScrollViewDemo: View {
 }
 struct TimelineRowView: View {
 
-
     var body: some View {
 
         HStack {
 
-            ForEach(0...4, id: \.self) { itemIndex in
+            ForEach(0...4, id: \.self) { _ in
 
                 TimelineCellView()
             }
@@ -97,7 +96,6 @@ struct TimelineRowView: View {
 }
 
 struct TimelineCellView: View {
-
 
     var body: some View {
 

@@ -24,3 +24,5 @@ redundantSelf
 # Excluded folders
 
 --exclude BuildScripts,Carthage,fastlane,README.md,CHANGELOG.md
+
+--disable all

@@ -6,7 +6,6 @@
 
 import SwiftUI
 
-
 @available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
 struct ScaledFont: ViewModifier {
     @Environment(\.sizeCategory) var sizeCategory
@@ -25,7 +24,6 @@ extension View {
         return modifier(ScaledFont(name: name, size: size))
     }
 }
-
 
 extension UIFont {
     public var uiFont: Font {

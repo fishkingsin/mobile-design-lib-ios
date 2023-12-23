@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
         ThemeManager.shared.applyTheme(NMGDefaultTheme())
 //        let hostingView = UIHostingController(rootView: ColorPaletteDemo())
-        let hostingView = UIHostingController(rootView: Gallery())
+        let hostingView = UIHostingController(rootView: Gallery().environmentObject(ThemeManager.shared))
         addChild(hostingView)
         if let subview = hostingView.view {
             subview.translatesAutoresizingMaskIntoConstraints = false

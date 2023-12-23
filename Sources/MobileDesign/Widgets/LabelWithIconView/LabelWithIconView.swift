@@ -7,15 +7,15 @@
 import SwiftUI
 
 public struct LabelWithIconViewModifier: ViewModifier {
-    
+
     var tintColor: Color
     var font: Font
-    
+
     public init(tintColor: Color, font: Font) {
         self.tintColor = tintColor
         self.font = font
     }
-    
+
     public func body(content: Content) -> some View {
         content
             .font(font)
@@ -34,12 +34,11 @@ public struct LabelWithIconView: View {
         title: String,
         modifier: LabelWithIconViewModifier? = nil,
         icon: UIImage,
-        aciont: @escaping () -> Void)
-    {
+        aciont: @escaping () -> Void) {
         self.title = title
         self.modifier = modifier ?? LabelWithIconViewModifier(
             tintColor: theme.colors.neutralGray10.color,
-            font: theme.fonts.caption.uiFont
+            font: theme.fonts.eleRegular12.uiFont
         )
         self.icon = icon
         self.aciont = aciont

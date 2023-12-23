@@ -1,20 +1,21 @@
 //
 // ColorPaletteTests.swift
 //
-// Copyright © 2022 New Media Group. All rights reserved.
+// Copyright © 2023 New Media Group. All rights reserved.
 //
 
-@testable import MobileDesign
 import SnapshotTesting
 import SwiftUI
 import XCTest
+
+@testable import MobileDesign
+
 final class ColorPaletteTests: XCTestCase {
     override func setUpWithError() throws {
-//        isRecording = true
     }
 
     func test_color_Common_snapshot() {
-        let colors = EDColors().common()
+        let colors = WWColors().common()
 
         Array(colors.keys).sorted { a, b in
             a < b
@@ -22,12 +23,12 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
+            //            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
-    
 
     func test_color_ED_snapshot() {
         let colors = EDColors().properties()
@@ -38,9 +39,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 
@@ -53,9 +54,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 
@@ -68,9 +69,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 
@@ -83,9 +84,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 
@@ -98,9 +99,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 
@@ -113,9 +114,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 
@@ -128,9 +129,9 @@ final class ColorPaletteTests: XCTestCase {
             let vc = UIHostingController(rootView: ColorItem(key: key, color: colors[key]))
             guard let view = vc.view else { fatalError() }
             vc.overrideUserInterfaceStyle = .dark
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) dark")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) dark")
             vc.overrideUserInterfaceStyle = .light
-            assertSnapshot(matching: vc, as: .image(size: view.intrinsicContentSize), named: "\(key) light")
+            assertSnapshot(matching: vc, as: .image(size: CGSize(width: 256, height: 256)), named: "\(key) light")
         }
     }
 }

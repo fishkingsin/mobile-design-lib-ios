@@ -8,12 +8,14 @@ import SwiftUI
 
 struct CardContentHeadlineView: View {
     var headline: String
+    var lineLimit: Int?
     var body: some View {
         Text(headline)
-            .lineLimit(2)
-            .font(ThemeManager.shared.currentTheme.fonts.headline.uiFont)
+            .lineLimit(lineLimit ?? 2)
+            .font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
             .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
-            .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .topLeading)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 12)
     }
 }
 

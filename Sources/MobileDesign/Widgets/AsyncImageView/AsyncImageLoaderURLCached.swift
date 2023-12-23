@@ -53,7 +53,6 @@ class AsyncImageLoaderURLCached: ObservableObject {
         isLoading = false
     }
 
-
     func downloadImage(url: URL) -> AnyCancellable {
         let request = URLRequest(url: url)
         return URLSession.shared.dataTaskPublisher(for: url)
@@ -75,8 +74,6 @@ class AsyncImageLoaderURLCached: ObservableObject {
             .replaceError(with: nil)
             .sink { [weak self] in self?.image = $0 }
     }
-
-
 
     func loadImageFromCache(imageURL: URL) -> UIImage? {
         let request = URLRequest(url: imageURL)

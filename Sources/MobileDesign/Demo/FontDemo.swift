@@ -19,14 +19,13 @@ public struct FontItem: View {
     }
 }
 
-
 public struct FontsDemo: View {
     let fonts = NMGDefaultFonts()
 
     var sortedKeys: [String] {
         Array(fonts.properties).sorted { a, b in
             a.value.pointSize > b.value.pointSize
-        }.map{ $0.key }
+        }.map { $0.key }
     }
 
     private var grid = [GridItem(.flexible())]
@@ -39,7 +38,7 @@ public struct FontsDemo: View {
         NavigationView {
 
             // Vertical ScrollView for the Grid layout
-            ScrollView() {
+            ScrollView {
 
                 // Custom Grid View
                 LazyVGrid(columns: grid, spacing: 20) {
@@ -55,7 +54,7 @@ public struct FontsDemo: View {
                     .shadow(radius: 13)
 
                 }
-                .frame(maxWidth: .infinity)
+                .frame(width: .infinity)
                 .padding()
             }
 

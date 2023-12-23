@@ -12,11 +12,11 @@ public struct CardView<Data>: View where Data: CardDisplayable {
         self.data = data
     }
     public var body: some View {
-        TopImageCardView(imageUrl: data.imageURL, imageWidth: nil, imageHeight: 200) {
+        TopImageCardView(imageUrl: data.imageURL,
+                         imageWidth: UIScreen.main.bounds.width - 32,
+                         imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32)) {
             // MARK: update placeholder
-            Rectangle()
-                .frame(maxHeight: 200)
-                .clipped()
+            Rectangle().fill(.gray)
         } contentView: {
             CardContentView(
                 headline: data.headline,

@@ -9,7 +9,7 @@ import SwiftUI
 
 /// replace by URLCache https://levelup.gitconnected.com/image-caching-with-urlcache-4eca5afb543a
 public struct AsyncImageURLCachedView<Placeholder: View, Content: View>: View {
-    
+
     @ObservedObject private var loader: AsyncImageLoaderURLCached
     private let placeholder: Placeholder
     private let image: (UIImage) -> Content
