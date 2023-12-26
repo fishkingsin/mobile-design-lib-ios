@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ReelActionButtonGroup: View {
-
+    @State var isLiked: Bool? = false
     var body: some View {
         VStack(spacing: 15) {
 
@@ -23,7 +23,7 @@ struct ReelActionButtonGroup: View {
 
             } label: {
                 VStack(spacing: 6) {
-                    LikeAnimationView(buttonTappedCompletion: nil, externalButtonTapped: false).frame(width: 36, height: 36)
+                    LikeAnimationView(buttonTappedCompletion: nil, externalButtonTapped: $isLiked).frame(width: 36, height: 36)
                 }
             }
             Button {
