@@ -45,7 +45,7 @@ public struct HorizontalCard<Data, Content>: View where Data: CardDisplayable, C
                 HorizontalCardView(imageUrl: data.imageURL, overLayViewAlign: .bottomTrailing) {
                     Rectangle().fill(.gray).frame(width: 133, height: 75)
                 } contentView: {
-                    CardContentHeadlineView(headline:  data.headline, lineLimit: 3, cardContentType: .HorizontalCard)
+                    CardContentHeadlineView(headline:  data.headline, lineLimit: 3)
                 } overlayView: {
                     content()
                 }

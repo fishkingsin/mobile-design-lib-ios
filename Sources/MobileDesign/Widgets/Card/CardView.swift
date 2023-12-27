@@ -21,8 +21,7 @@ public struct CardView<Data>: View where Data: CardDisplayable {
             CardContentView(
                 headline: data.headline,
                 leadingFootnote: data.leadingFootnote,
-                secondFootnote: data.secondFootnote,
-                cardContentType: .other
+                secondFootnote: data.secondFootnote
             )
         } overlayView: {
             EmptyView()
