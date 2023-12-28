@@ -63,7 +63,7 @@ public struct LikeAnimationView: View {
                     completion(self.isLike)
                 }
             } label: {
-                Image(systemName: self.isLike ? "heart.fill": "heart")
+                Image(uiImage: self.isLike ? ThemeManager.shared.currentTheme.icons.tvLiked: ThemeManager.shared.currentTheme.icons.tvLike)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(self.showRedHeart ? LikeAnimationView.darkPink: LikeAnimationView.defaultColor)
