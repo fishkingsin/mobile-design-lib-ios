@@ -20,6 +20,7 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable {
                              imageWidth: UIScreen.main.bounds.width - 32,
                              imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32)) {
                 Rectangle().fill(.gray)
+                    .padding(.horizontal, 12)
             } contentView: {
                 CardContentView(
                     headline: data.headline,
