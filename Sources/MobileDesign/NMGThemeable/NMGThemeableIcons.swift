@@ -10,9 +10,9 @@ import UIKit
 public protocol NMGThemeableIcons: AnyObject {
     var warnning: UIImage { get }
     var exclamationmarkCircle: UIImage { get }
-    var tvLike: UIImage { get }
-    var tvLiked: UIImage { get }
-    var tvShare: UIImage { get }
+    var heart: UIImage { get }
+    var heartFill: UIImage { get }
+    var share: UIImage { get }
     
     // ED
     var naviTVIcon: UIImage { get }

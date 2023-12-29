@@ -25,9 +25,9 @@ open class NMGDefaultIcons: NMGThemeableIcons {
     
     public var tvDetailLoading: UIImage  { UIImage() }
     
-    public var tvLike: UIImage  { UIImage.image(from: "Default", named: "Like")! }
+    public var heart: UIImage  { UIImage.image(from: "Default", named: "heart")! }
     
-    public var tvLiked: UIImage  { UIImage.image(from: "Default", named: "Liked")! }
+    public var heartFill: UIImage  { UIImage.image(from: "Default", named: "heart.fill")! }
     
-    public var tvShare: UIImage  { UIImage.image(from: "Default", named: "Share")! }
+    public var share: UIImage  { UIImage.image(from: "Default", named: "Share")! }
 }
