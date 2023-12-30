@@ -13,8 +13,8 @@ public struct LikeAnimationView: View {
     static let lightBlue = Color( UIColor.color(from: "Default", named: "lightBlue")!)
     static let lightRed = Color( UIColor.color(from: "Default", named: "lightRed")!)
     static let defaultColor = Color(UIColor.color(from: "Common", named: "NeutralGray90")!)
-    
-    public var buttonTappedCompletion: ((Bool) -> (Void))?
+
+    public var buttonTappedCompletion: ((Bool) -> Void)?
     @State public var buttonTapped: Bool = false
     @State private var showRedHeart: Bool = false
     @State private var redHeartScale: CGFloat = 0.2
@@ -32,7 +32,7 @@ public struct LikeAnimationView: View {
     @State private var isLike: Bool = false
     @Binding var externalButtonTapped: Bool?
 
-    public init(buttonTappedCompletion: ((Bool) -> (Void))?, externalButtonTapped: Binding<Bool?>) {
+    public init(buttonTappedCompletion: ((Bool) -> Void)?, externalButtonTapped: Binding<Bool?>) {
         self.buttonTappedCompletion = buttonTappedCompletion
         self._externalButtonTapped = externalButtonTapped
         let boolValue: Bool = externalButtonTapped.wrappedValue ?? false

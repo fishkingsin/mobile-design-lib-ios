@@ -12,24 +12,24 @@ import Combine
 
 public struct UpcomingVideoView: View {
     var item: VideoDisplayable
-    
+
     @State private var secCountDown = 10
     @State private var timer: AnyCancellable?
     @Binding var isFinish: Bool
-    
+
     var onCancelTap: () -> Void
     var nextVideoAction: () -> Void
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
-   
+
     public init(item: VideoDisplayable, isFinish: Binding<Bool>, onCancelTap: @escaping () -> Void, nextVideoAction: @escaping () -> Void) {
         self.item = item
         self._isFinish = isFinish
         self.onCancelTap = onCancelTap
         self.nextVideoAction = nextVideoAction
     }
-    
+
     public var body: some View {
-        VStack() {
+        VStack {
             Spacer().frame(height: 11)
             HStack {
                 Spacer().frame(width: 18)
@@ -44,13 +44,15 @@ public struct UpcomingVideoView: View {
                     .foregroundColor(theme.colors.neutralGray50.color)
                 Spacer()
             }
-            HStack() {
+            HStack {
                 Spacer().frame(width: 14)
                 if let url = item.imageURL {
                     ZStack(alignment: .bottomTrailing) {
                         KFImage.url(URL(string: url))
                             .resizable()
-                            .frame(width: 144, height: 75)
+                            .scaledToFit()
+                            .aspectRatio( 16 / 9 , contentMode: .fit)
+                            .frame(height: 75)
                             .background(Color.white)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
@@ -65,12 +67,12 @@ public struct UpcomingVideoView: View {
                 Spacer().frame(width: 14)
             }
             Spacer()
-            HStack() {
+            HStack {
                 Spacer().frame(width: 16)
                 Button(action: {
                     self.timer?.cancel()
                     onCancelTap()
-                }){
+                }) {
                     Text("取消")
                         .font(.system(size: 16))
                         .foregroundColor(theme.colors.neutralGray2.color)
@@ -82,7 +84,7 @@ public struct UpcomingVideoView: View {
                 Button(action: {
                     nextVideoAction()
                     self.timer?.cancel()
-                }){
+                }) {
                     Text("立即播放")
                         .font(.system(size: 16))
                         .foregroundColor(theme.colors.neutralGray90.color)
@@ -99,7 +101,7 @@ public struct UpcomingVideoView: View {
             startCountdown()
             }
     }
-    
+
     private func startCountdown() {
         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             .sink { _ in
@@ -114,7 +116,7 @@ public struct UpcomingVideoView: View {
     }
 }
 
-//struct UpcomingVideoView_Previews: PreviewProvider {
+// struct UpcomingVideoView_Previews: PreviewProvider {
 //    @State static var isFinish: Bool = false
 //
 //    static var previews: some View {
@@ -124,10 +126,10 @@ public struct UpcomingVideoView: View {
 //            print("play")
 //        })
 //    }
-//}
+// }
 
-//struct MockUpcomingItem: UpcomingItem {
+// struct MockUpcomingItem: UpcomingItem {
 //    var secCountDown: Int = 10
 //    var imageURL: String = ""
 //    var headline: String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
-//}
+// }

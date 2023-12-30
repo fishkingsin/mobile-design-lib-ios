@@ -45,8 +45,6 @@ final class AsyncImageLoaderURLCachedTests: XCTestCase {
 
         }
 
-
-
         wait(for: [expectation], timeout: 5.0) // Adjust the timeout as per your requirement
     }
 

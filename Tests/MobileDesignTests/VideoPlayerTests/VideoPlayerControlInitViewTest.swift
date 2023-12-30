@@ -1,8 +1,8 @@
 //
-//  HashtagsMentionsTextViewTest.swift
+//  VideoPlayerControlInitViewTest.swift
 //  
 //
-//  Created by James Kong on 27/12/2023.
+//  Created by James Kong on 30/12/2023.
 //
 
 import XCTest
@@ -10,18 +10,20 @@ import XCTest
 import SwiftUI
 import SnapshotTesting
 
-final class HashtagsMentionsTextViewTest: XCTestCase {
+final class VideoPlayerControlInitViewTest: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        let rootView = HashtagsMentionsTextViewPreview()
+    func test_snapshot_default() throws {
+        let theme = ThemeManager.shared.currentTheme
+        let rootView = VStack {
+            VideoPlayerControlInitView(data: MockVideoDisplayable())
+        }.aspectRatio( 16 / 9 , contentMode: .fit)
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .light
         let expectation = expectation(description: "loading image")

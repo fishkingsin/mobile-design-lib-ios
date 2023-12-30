@@ -56,7 +56,7 @@ struct TVPOC<ContentView>: View where ContentView: View {
     }
 
     func header() -> some View {
-        GeometryReader { geometryProxy in
+        GeometryReader { _ in
             ZStack(alignment: .bottom) {
                 ScrollViewHeaderImage(Image("header"))
                 VStack {
@@ -116,7 +116,7 @@ struct TVPOC<ContentView>: View where ContentView: View {
             Section {
                 if currentTab == 0 {
                     ForEach(1...100, id: \.self) { item in
-                        VStack() {
+                        VStack {
                             Text("Item \(item)")
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -125,7 +125,7 @@ struct TVPOC<ContentView>: View where ContentView: View {
                     }
                 } else {
                     ForEach(100...200, id: \.self) { item in
-                        VStack() {
+                        VStack {
                             Text("Item \(item)")
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -146,8 +146,6 @@ struct TVPOC<ContentView>: View where ContentView: View {
         }
 
     }
-
-
 
     var topContent: some View {
         VStack {
@@ -221,8 +219,6 @@ struct TVPOC<ContentView>: View where ContentView: View {
 //                    .background(.white)
 
             }
-
-
 
     }
 

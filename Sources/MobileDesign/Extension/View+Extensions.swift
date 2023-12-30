@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 /// Device Rotation Modifier
 struct DeviceRotationModifier: ViewModifier {
     let onRotate: (UIDeviceOrientation) -> Void
