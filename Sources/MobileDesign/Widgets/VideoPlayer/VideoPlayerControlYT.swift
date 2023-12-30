@@ -8,15 +8,6 @@
 
 import SwiftUI
 import YouTubePlayerKit
-public class PlaybackStateModel: ObservableObject {
-    @Published public private(set) var playbackState: VideoPlayerControlState
-    public init(playbackState: VideoPlayerControlState) {
-        self.playbackState = playbackState
-    }
-    public func updateState(playbackState: VideoPlayerControlState) {
-        self.playbackState = playbackState
-    }
-}
 
 extension YouTubePlayer.PlaybackState {
     var toPlaybackState: VideoPlayerControlState {
@@ -27,7 +18,9 @@ extension YouTubePlayer.PlaybackState {
                 return .PLAYING
             case .paused:
                 return .PAUSED
-            default:
+            case .buffering:
+                return .LOADING
+            default :
                 return .UNKNOWN
         }
     }
@@ -37,7 +30,6 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
     private let tag: String = "[VideoPlayerControlYT]"
     let source: Source
     let theme = ThemeManager.shared.currentTheme
-    let onStateChange: (VideoPlayerControlState) -> Void
     var upcomingVideoView: Content
     let playbackStateModel: PlaybackStateModel
 
@@ -55,12 +47,10 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
     public init(
         _ source: Source,
         playbackStateModel: PlaybackStateModel,
-        onStateChange: @escaping (VideoPlayerControlState) -> Void,
         @ViewBuilder upcomingVideoView: @escaping () -> Content
     ) {
         self.source = source
         self.playbackStateModel = playbackStateModel
-        self.onStateChange = onStateChange
         self.upcomingVideoView = upcomingVideoView()
     }
 
@@ -78,9 +68,11 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
                 playbackStateModel.updateState(playbackState: state.toPlaybackState)
             }).onChange(of: source) { source in
                 debugPrint("\(tag) onChange source \(source)")
+                playbackStateModel.updateState(playbackState: .INIT)
                 self.youTubePlayer.stop()
                 self.youTubePlayer.source = .url(source.videoURL)
             }.onAppear {
+                playbackStateModel.updateState(playbackState: .INIT)
                 self.youTubePlayer.source = .url(source.videoURL)
             }
             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)

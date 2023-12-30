@@ -23,7 +23,7 @@ public struct VideoPlayerOverlayView<Data: VideoDisplayable, Content: View>: Vie
     public var body: some View {
         ZStack {
             switch model.playbackState {
-                case .LOADING:
+                case .INIT:
                     if let data = data {
                         VideoPlayerControlInitView(data: data)
                     }
@@ -51,7 +51,7 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
             VideoPlayerOverlayView(
                 data: data,
                 model: PlaybackStateModel(playbackState: .LOADING)) {
-                    UpcomingVideoView(item: data, isFinish: .constant(false)) {
+                    UpcomingVideoView(item: data) {
 
                     } nextVideoAction: {
 
@@ -63,7 +63,7 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
             VideoPlayerOverlayView(
                 data: data,
                 model: PlaybackStateModel(playbackState: .COMPLETED)) {
-                UpcomingVideoView(item: data, isFinish: .constant(true)) {
+                UpcomingVideoView(item: data) {
 
                 } nextVideoAction: {
 
