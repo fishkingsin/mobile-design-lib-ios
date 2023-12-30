@@ -34,13 +34,14 @@ public struct VideoPlayerControlYT<Source>: View where Source: VideoPlayerSource
         }
     }
 }
-
-#Preview {
-    VideoPlayerControlYT(
-        VideoPlayerSource(
-            videoURL: "https://www.youtube.com/watch?v=q5D55G7Ejs8", title: "屯門33年漫畫小店", imageURL: "https://placehold.co/600x400/png"
-        ), onStateChange: {
-            debugPrint("onStateChange \($0)")
-        }
-    )
-}
+/* unable to preivew from package bundle
+ #Preview {
+ VideoPlayerControlYT(
+ VideoPlayerSource(
+ videoURL: "https://www.youtube.com/watch?v=q5D55G7Ejs8", title: "屯門33年漫畫小店", imageURL: "https://placehold.co/600x400/png"
+ ), onStateChange: {
+ debugPrint("onStateChange \($0)")
+ }
+ )
+ }
+ */
