@@ -71,10 +71,6 @@ public struct YoutubePlayerView: ViewRepresentableHelper {
         return youtubePlayerView
     }
 
-    public func updateView(_ view: ViewType, _ context: Context) {
-        completion(view)
-    }
-
     public func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
