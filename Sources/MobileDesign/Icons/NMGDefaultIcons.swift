@@ -7,6 +7,7 @@
 import Foundation
 import UIKit
 open class NMGDefaultIcons: NMGThemeableIcons {
+
     public init() {}
 
     var baseFolder: String { "Default" }
@@ -14,14 +15,21 @@ open class NMGDefaultIcons: NMGThemeableIcons {
     public var warnning: UIImage { UIImage(systemName: "chevron.right.circle.fill")! }
 
     public var exclamationmarkCircle: UIImage { UIImage(systemName: "exclamationmark.circle")! }
-    
-    public var naviTVIcon: UIImage  { UIImage() }
-    
-    public var tabIconTVSelected: UIImage  { UIImage() }
-    
-    public var tabIconTV: UIImage  { UIImage() }
-     
-    public var tvDetailLanding: UIImage  { UIImage() }
-    
-    public var tvDetailLoading: UIImage  { UIImage() }
+
+    public var heart: UIImage { UIImage(resource: ImageResource.like) }
+
+    public var heartFill: UIImage { UIImage(resource: ImageResource.like) }
+
+    public var arrowUpFromSquare: UIImage { UIImage(resource: ImageResource.share) }
+
+
+    public var naviTVIcon: UIImage { UIImage() }
+
+    public var tabIconTVSelected: UIImage { UIImage() }
+
+    public var tabIconTV: UIImage { UIImage() }
+
+    public var videoDetailLanding: UIImage { UIImage() }
+
+    public var videoPlayerLoading: UIImage {  UIImage(resource: ImageResource.videoDetailLoading) }
 }

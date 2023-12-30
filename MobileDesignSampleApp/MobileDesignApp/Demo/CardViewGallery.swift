@@ -8,11 +8,11 @@ import SwiftUI
 import MobileDesign
 
 struct ChipDataDemo: ChipData {
-    
+
     var id: Int? = UUID().hashValue
-    
+
     var name: String?
-    
+
     var icon: String?
 
     var title: String

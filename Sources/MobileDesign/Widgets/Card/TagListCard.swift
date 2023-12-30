@@ -6,7 +6,7 @@
 
 import SwiftUI
 
-public struct TagListCard<Data>: View where Data: CardDisplayable  {
+public struct TagListCard<Data>: View where Data: CardDisplayable {
     var data: Data
     var viewDidClick: () -> Void
 
@@ -16,7 +16,7 @@ public struct TagListCard<Data>: View where Data: CardDisplayable  {
         self.viewDidClick = viewDidClick
     }
 
-    public var body: some View {        
+    public var body: some View {
         TopImageCardView(imageUrl: data.imageURL, imageWidth: 124, imageHeight: 224, alignment: .bottomLeading) {
             Rectangle()
                 .frame(maxWidth: 124, maxHeight: 224)

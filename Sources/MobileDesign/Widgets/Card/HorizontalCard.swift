@@ -33,19 +33,18 @@ public struct HorizontalCard<Data, Content>: View where Data: CardDisplayable, C
     var data: Data
     let content: () -> Content
 
-
     public init(data: Data, @ViewBuilder content: @escaping () -> Content) {
         self.data = data
         self.content = content
     }
-    
+
     public var body: some View {
-        VStack{
+        VStack {
             HStack {
                 HorizontalCardView(imageUrl: data.imageURL, overLayViewAlign: .bottomTrailing) {
                     Rectangle().fill(.gray).frame(width: 133, height: 75)
                 } contentView: {
-                    CardContentHeadlineView(headline:  data.headline, lineLimit: 3)
+                    CardContentHeadlineView(headline: data.headline, lineLimit: 3)
                 } overlayView: {
                     content()
                 }

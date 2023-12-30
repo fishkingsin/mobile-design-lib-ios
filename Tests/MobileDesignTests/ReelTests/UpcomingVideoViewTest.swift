@@ -27,19 +27,19 @@ final class UpcomingVideoViewTest: XCTestCase {
 
     class MockUpcomingItem: VideoDisplayable {
         var imageURL: String?
-        
+
         var headline: String?
-        
+
         var leadingFootnote: String?
-        
+
         var secondFootnote: String?
-        
+
         var id: Int?
-        
+
         var url: String?
-        
+
         var videoType: String?
-        
+
         init(imageURL: String? = nil, headline: String? = nil, leadingFootnote: String? = nil, secondFootnote: String? = nil, id: Int? = nil, url: String? = nil, videoType: String? = nil) {
             self.imageURL = imageURL
             self.headline = headline
