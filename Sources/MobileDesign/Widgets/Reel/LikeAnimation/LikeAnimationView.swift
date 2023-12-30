@@ -30,11 +30,14 @@ public struct LikeAnimationView: View {
     @State private var showBinaryCircleRing: Bool = false
 
     @State private var isLike: Bool = false
-    
-    public init(buttonTappedCompletion: ((Bool) -> (Void))?, externalButtonTapped: Bool) {
+    @Binding var externalButtonTapped: Bool?
+
+    public init(buttonTappedCompletion: ((Bool) -> (Void))?, externalButtonTapped: Binding<Bool?>) {
         self.buttonTappedCompletion = buttonTappedCompletion
-        self._isLike = State(initialValue: externalButtonTapped)
-        self._showRedHeart = State(initialValue: externalButtonTapped)
+        self._externalButtonTapped = externalButtonTapped
+        let boolValue: Bool = externalButtonTapped.wrappedValue ?? false
+        self._isLike = State(initialValue: boolValue)
+        self._showRedHeart = State(initialValue: boolValue)
     }
 
     public var body: some View {
@@ -69,13 +72,18 @@ public struct LikeAnimationView: View {
             }
             .buttonStyle(.plain)
             .opacity(self.showRedHeart ? 1: self.buttonTapped ? 0: 1)
+        }.onChange(of: externalButtonTapped) { newValue in
+            guard let newValue = newValue else { return }
+            isLike = newValue
+            showRedHeart = newValue
         }
     }
 }
 
 struct LikeAnimationView_Previews: PreviewProvider {
+    @State static var externalButtonTapped: Bool? = false
     static var previews: some View {
-        LikeAnimationView(buttonTappedCompletion: nil, externalButtonTapped: false)
+        LikeAnimationView(buttonTappedCompletion: nil, externalButtonTapped: $externalButtonTapped)
     }
 }
 

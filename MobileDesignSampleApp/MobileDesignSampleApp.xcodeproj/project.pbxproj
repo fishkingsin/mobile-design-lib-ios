@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A048B262ABD592600056031 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 1A048B252ABD592600056031 /* YouTubeiOSPlayerHelper */; };
 		1A048B282ABD597C00056031 /* YTPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A048B272ABD597C00056031 /* YTPlayerView.swift */; };
 		1A22E9392AA2EE7100EC564A /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22E9382AA2EE7100EC564A /* Gallery.swift */; };
 		1A22E93C2AA2EF6400EC564A /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22E93B2AA2EF6400EC564A /* MenuItem.swift */; };
@@ -80,7 +79,6 @@
 			files = (
 				1A8F4F8D2ABEED4E00B2E230 /* M3U8Parser in Frameworks */,
 				1AA3393B293A2CDB00D82AA1 /* MobileDesign in Frameworks */,
-				1A048B262ABD592600056031 /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +220,6 @@
 			name = MobileDesignSampleApp;
 			packageProductDependencies = (
 				1AA3393A293A2CDB00D82AA1 /* MobileDesign */,
-				1A048B252ABD592600056031 /* YouTubeiOSPlayerHelper */,
 				1A8F4F8C2ABEED4E00B2E230 /* M3U8Parser */,
 			);
 			productName = MobileDesignApp;
@@ -300,7 +297,6 @@
 			);
 			mainGroup = 1A39268E289A712E006D6A00;
 			packageReferences = (
-				1A048B242ABD592600056031 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				1A8F4F8B2ABEED4E00B2E230 /* XCRemoteSwiftPackageReference "M3U8Parser" */,
 			);
 			productRefGroup = 1A392698289A712E006D6A00 /* Products */;
@@ -744,14 +740,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1A048B242ABD592600056031 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		1A8F4F8B2ABEED4E00B2E230 /* XCRemoteSwiftPackageReference "M3U8Parser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/M3U8Kit/M3U8Parser";
@@ -763,11 +751,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A048B252ABD592600056031 /* YouTubeiOSPlayerHelper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1A048B242ABD592600056031 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
-			productName = YouTubeiOSPlayerHelper;
-		};
 		1A8F4F8C2ABEED4E00B2E230 /* M3U8Parser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A8F4F8B2ABEED4E00B2E230 /* XCRemoteSwiftPackageReference "M3U8Parser" */;

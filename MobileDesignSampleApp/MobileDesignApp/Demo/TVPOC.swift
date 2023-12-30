@@ -8,7 +8,6 @@
 import SwiftUI
 import MobileDesign
 import WebKit
-import M3U8Parser
 import ScrollKit
 
 class TVPOCViewModel: ObservableObject {
@@ -16,13 +15,6 @@ class TVPOCViewModel: ObservableObject {
     init(url: NSURL) {
         self.url = url
     }
-
-    func load() {
-        url.m3u_loadAsyncCompletion { model, error in
-            print("mode \(model) error \(error)")
-        }
-    }
-
 }
 struct TVPOC<ContentView>: View where ContentView: View {
     @ObservedObject var viewModel: TVPOCViewModel

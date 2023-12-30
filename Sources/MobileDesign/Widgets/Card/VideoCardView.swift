@@ -16,20 +16,19 @@ public struct VideoCardView<Data>: View where Data: CardDisplayable {
     }
     public var body: some View {
         VStack {
-        TopImageCardView(imageUrl: data.imageURL,
-                         imageWidth: UIScreen.main.bounds.width - 32,
-                         imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32)) {
-            Rectangle().fill(.gray)
-        } contentView: {
-            CardContentView(
-                headline: data.headline,
-                leadingFootnote: data.leadingFootnote,
-                secondFootnote: data.secondFootnote
-            )
-        } overlayView: {
-            EmptyView()
-        }
-
+            TopImageCardView(imageUrl: data.imageURL,
+                             imageWidth: UIScreen.main.bounds.width - 32,
+                             imageHeight: 9.0/16.0 * (UIScreen.main.bounds.width - 32)) {
+                Rectangle().fill(.gray)
+            } contentView: {
+                CardContentView(
+                    headline: data.headline,
+                    leadingFootnote: data.leadingFootnote,
+                    secondFootnote: data.secondFootnote
+                )
+            } overlayView: {
+                EmptyView()
+            }
         }
         .onTapGesture {
             onTabChanged()
