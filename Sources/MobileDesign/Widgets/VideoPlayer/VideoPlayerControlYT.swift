@@ -7,31 +7,77 @@
 //
 
 import SwiftUI
+import YouTubePlayerKit
 
-public struct VideoPlayerControlYT<Source>: View where Source: VideoPlayerSourceProtocol {
+extension YouTubePlayer.PlaybackState {
+    var toPlaybackState: VideoPlayerControlState {
+        switch self {
+            case .ended:
+                return .COMPLETED
+            case .playing:
+                return .PLAYING
+            case .paused:
+                return .PAUSED
+            case .buffering:
+                return .LOADING
+            default :
+                return .UNKNOWN
+        }
+    }
+}
+
+public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPlayerSourceProtocol, Content: View  {
     private let tag: String = "[VideoPlayerControlYT]"
     let source: Source
     let theme = ThemeManager.shared.currentTheme
+    var upcomingVideoView: Content
+    let playbackStateModel: PlaybackStateModel
 
-    let onStateChange: (VideoPlayerControlState) -> Void
-    let config = YoutubePlayerView.Configuration(isAutoplay: true)
-    public init(_ source: Source, onStateChange: @escaping (VideoPlayerControlState) -> Void) {
+    @StateObject var youTubePlayer: YouTubePlayer = YouTubePlayer(
+        configuration: .init(
+            allowsPictureInPictureMediaPlayback: false,
+            autoPlay: true,
+            showCaptions: false,
+            loopEnabled: false,
+            useModestBranding: true,
+            showRelatedVideos: false
+        )
+    )
+
+    public init(
+        _ source: Source,
+        playbackStateModel: PlaybackStateModel,
+        @ViewBuilder upcomingVideoView: @escaping () -> Content
+    ) {
         self.source = source
-        self.onStateChange = onStateChange
-
+        self.playbackStateModel = playbackStateModel
+        self.upcomingVideoView = upcomingVideoView()
     }
+
 
     public var body: some View {
         ZStack(alignment: .center) {
-            YoutubePlayerView(
-                configuration: YoutubePlayerView.Configuration(isAutoplay: true)
-            ) {
-                $0.load(withVideoId: URL(string: source.videoURL)?.queryParameters?["v"] ?? "", playerVars: config.toPlayerVars)
-            } onStateChange: {
-                onStateChange($0.toVideoPlayerState)
+            YouTubePlayerView(youTubePlayer) { state in
+                VideoPlayerOverlayView(data: source, model: playbackStateModel) {
+                    upcomingVideoView
+                }
+            }.onReceive(youTubePlayer.statePublisher, perform: { state in
+                debugPrint("\(tag) statePublisher \(state)")
+            }).onReceive(youTubePlayer.playbackStatePublisher, perform: { state in
+                debugPrint("\(tag) playbackStatePublisher \(state)")
+                playbackStateModel.updateState(playbackState: state.toPlaybackState)
+            }).onChange(of: source) { source in
+                debugPrint("\(tag) onChange source \(source)")
+                playbackStateModel.updateState(playbackState: .INIT)
+                self.youTubePlayer.stop()
+                self.youTubePlayer.source = .url(source.videoURL)
+            }.onAppear {
+                playbackStateModel.updateState(playbackState: .INIT)
+                self.youTubePlayer.source = .url(source.videoURL)
             }
             .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
-        }
+
+        }.tag(source.id)
     }
 }
 /* unable to preivew from package bundle

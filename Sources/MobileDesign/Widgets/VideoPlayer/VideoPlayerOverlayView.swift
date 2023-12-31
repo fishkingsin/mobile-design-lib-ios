@@ -9,24 +9,32 @@
 import SwiftUI
 import MobileDesign
 public struct VideoPlayerOverlayView<Data: VideoDisplayable, Content: View>: View {
-    let data: Data
-    let state: VideoPlayerControlState
+    let data: Data?
+    @ObservedObject var model: PlaybackStateModel
     var ShouldShowUpComingView: Content?
 
-    public init(data: Data, state: VideoPlayerControlState, @ViewBuilder ShouldShowUpComingView: () -> Content) {
+    public init(data: Data?, model: PlaybackStateModel, @ViewBuilder ShouldShowUpComingView: () -> Content) {
         self.data = data
-        self.state = state
+        self.model = model
         self.ShouldShowUpComingView = ShouldShowUpComingView()
+        debugPrint("[VideoPlayerControlYT] model.playbackState \(model.playbackState)")
     }
 
     public var body: some View {
-        switch state {
-            case .LOADING:
-                VideoPlayerControlInitView(data: data)
-            case .COMPLETED:
-                ShouldShowUpComingView
-            default:
-                EmptyView()
+        ZStack {
+            switch model.playbackState {
+                case .INIT:
+                    if let data = data {
+                        VideoPlayerControlInitView(data: data)
+                    }
+                case .COMPLETED:
+                    ShouldShowUpComingView
+                default:
+
+                    EmptyView()
+            }
+        }.onReceive(model.$playbackState) { state in
+            debugPrint("[VideoPlayerControlYT] model.playbackState \(model) \(state)")
         }
     }
 }
@@ -42,8 +50,8 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
         VStack {
             VideoPlayerOverlayView(
                 data: data,
-                state: .LOADING) {
-                    UpcomingVideoView(item: data, isFinish: .constant(false)) {
+                model: PlaybackStateModel(playbackState: .LOADING)) {
+                    UpcomingVideoView(item: data) {
 
                     } nextVideoAction: {
 
@@ -54,8 +62,8 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
 
             VideoPlayerOverlayView(
                 data: data,
-                state: .COMPLETED) {
-                UpcomingVideoView(item: data, isFinish: .constant(true)) {
+                model: PlaybackStateModel(playbackState: .COMPLETED)) {
+                UpcomingVideoView(item: data) {
 
                 } nextVideoAction: {
 

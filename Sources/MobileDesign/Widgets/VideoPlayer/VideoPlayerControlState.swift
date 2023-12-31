@@ -9,6 +9,7 @@
 import Foundation
 
 public enum VideoPlayerControlState {
+    case INIT
     case LOADING
     case PLAYING
     case PAUSED

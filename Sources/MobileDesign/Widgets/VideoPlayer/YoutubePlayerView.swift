@@ -28,7 +28,8 @@ extension YTPlayerState {
     }
 }
 
-public struct YoutubePlayerView: ViewRepresentableHelper {
+public struct YoutubePlayerView: UIViewRepresentable {
+    public typealias ViewType = YTPlayerView
     public struct Configuration {
         let isAutoplay: Bool
         let enableRelatedVideo: Bool
@@ -56,19 +57,39 @@ public struct YoutubePlayerView: ViewRepresentableHelper {
         }
     }
     var configuration: Configuration
-    public var completion: (YTPlayerView) -> Void
+    public var completion: (ViewType, String) -> String
     public var onStateChange: (YTPlayerState) -> Void
+    @State var videoId: String
 
-    public init(configuration: YoutubePlayerView.Configuration = .init(), completion: @escaping (YTPlayerView) -> Void, onStateChange: @escaping (YTPlayerState) -> Void) {
-        self.configuration = configuration
-        self.completion = completion
-        self.onStateChange = onStateChange
-    }
+    public init(
+        videoId: String,
+        configuration: YoutubePlayerView.Configuration = .init(),
+        completion: @escaping (ViewType, String) -> String, onStateChange: @escaping (YTPlayerState) -> Void) {
+            self.videoId = videoId
+            self.configuration = configuration
+            self.completion = completion
+            self.onStateChange = onStateChange
+        }
 
-    public func new(_ context: Context) -> YTPlayerView {
+    public func makeUIView(context: UIViewRepresentableContext<YoutubePlayerView>) -> ViewType {
         let youtubePlayerView = YTPlayerView(frame: .zero)
         youtubePlayerView.delegate = context.coordinator
+        youtubePlayerView.load(
+            withVideoId: videoId,
+            playerVars: configuration.toPlayerVars)
         return youtubePlayerView
+    }
+
+    public func updateView(_ view: ViewType, _ context: Context) {
+        let newVideoID = completion(view, videoId)
+        if newVideoID != videoId {
+            self.videoId = newVideoID
+        }
+    }
+
+    public func updateUIView(_ uiView: ViewType, context: UIViewRepresentableContext<YoutubePlayerView>) {
+        updateView(uiView, context)
+        debugPrint("[VideoPlayerControlYT] updateUIView \(uiView)")
     }
 
     public func makeCoordinator() -> Coordinator {
@@ -82,27 +103,31 @@ public struct YoutubePlayerView: ViewRepresentableHelper {
         }
 
         public func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-            debugPrint("playerViewDidBecomeReady")
+            debugPrint("[VideoPlayerControlYT] playerViewDidBecomeReady")
+//            parent.onStateChange(.playing)
         }
 
         public func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
-            debugPrint("playerView error \(error)")
+            debugPrint("[VideoPlayerControlYT] playerView error \(error)")
         }
 
         public func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-            parent.onStateChange(state)
+            debugPrint("[VideoPlayerControlYT] playerView didChangeTo \(state)")
+            if state == .ended {
+                parent.onStateChange(state)
+            }
         }
 
     }
 }
 /* unable to preivew from package bundle
-struct YoutubePlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        YoutubePlayerView {
-            $0.load(withVideoId: "4oAqg0YlIGQ")
-        } onStateChange: {
-            debugPrint("onStateChange \($0)")
-        }
-    }
-}
-*/
+ struct YoutubePlayerView_Previews: PreviewProvider {
+ static var previews: some View {
+ YoutubePlayerView {
+ $0.load(withVideoId: "4oAqg0YlIGQ")
+ } onStateChange: {
+ debugPrint("onStateChange \($0)")
+ }
+ }
+ }
+ */

@@ -12,12 +12,12 @@ open class EDIcons: NMGDefaultIcons {
 
     public override var naviTVIcon: UIImage { UIImage.image(from: baseFolder, named: "navi_tv_icon")! }
 
-    public override var tabIconTVSelected: UIImage { UIImage.image(from: baseFolder, named: "tab_icon_tv_selected")! }
+    public override var tabIconTVSelected: UIImage { UIImage.image(from: baseFolder, named: "tab_icon_tv_selected") ?? UIImage() }
 
     public override var tabIconTV: UIImage { UIImage.image(from: baseFolder, named: "tab_icon_tv")! }
 
-    public override var videoDetailLanding: UIImage { UIImage.image(from: baseFolder, named: "video_detail_landing")! }
+    public override var videoDetailLanding: UIImage { UIImage.image(from: baseFolder, named: "video_detail_landing") ?? UIImage() }
 
-    public override var videoPlayerLoading: UIImage { UIImage.image(from: baseFolder, named: "video_detail_loading")! }
+    public override var videoPlayerLoading: UIImage { UIImage(resource: ImageResource.videoDetailLoading) }
 
 }

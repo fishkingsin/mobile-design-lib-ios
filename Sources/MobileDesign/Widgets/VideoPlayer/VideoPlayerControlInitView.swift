@@ -11,6 +11,9 @@ import SwiftUI
 public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
     var data: Data
     let theme = ThemeManager.shared.currentTheme
+    public init(data: Data) {
+        self.data = data
+    }
     public var body: some View {
         ZStack(alignment: .center) {
             AsyncImage(url: URL(string: data.imageURL ?? "")) {
