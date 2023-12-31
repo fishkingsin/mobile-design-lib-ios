@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum VideoPlayerControlState {
+public enum VideoPlayerControlState: StringLiteralType, CaseIterable {
     case INIT
     case LOADING
     case PLAYING
