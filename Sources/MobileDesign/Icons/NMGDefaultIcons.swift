@@ -22,7 +22,17 @@ open class NMGDefaultIcons: NMGThemeableIcons {
 
     public var arrowUpFromSquare: UIImage { UIImage(resource: ImageResource.share) }
 
-    public var play: UIImage { UIImage(resource: ImageResource.play) }
+    public var circlePlay: UIImage { UIImage(resource: ImageResource.circlePlay) }
+
+    public var circleLoading: UIImage { UIImage(resource: ImageResource.circleLoading) }
+    
+    public var circleArrowLeftToLine: UIImage { UIImage(resource: ImageResource.circleArrowLeftToLine) }
+
+    public var circleArrowRightToLine: UIImage { UIImage(resource: ImageResource.circleArrowRightToLine) }
+
+    public var circlePause: UIImage { UIImage(resource: ImageResource.circlePause) }
+
+    public var circleReplay: UIImage { UIImage(resource: ImageResource.circleReplay) }
 
     public var naviTVIcon: UIImage { UIImage() }
 
@@ -32,5 +42,5 @@ open class NMGDefaultIcons: NMGThemeableIcons {
 
     public var videoDetailLanding: UIImage { UIImage() }
 
-    public var videoPlayerLoading: UIImage {  UIImage(resource: ImageResource.videoDetailLoading) }
+
 }

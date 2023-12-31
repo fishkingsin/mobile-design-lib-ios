@@ -18,6 +18,5 @@ open class EDIcons: NMGDefaultIcons {
 
     public override var videoDetailLanding: UIImage { UIImage.image(from: baseFolder, named: "video_detail_landing") ?? UIImage() }
 
-    public override var videoPlayerLoading: UIImage { UIImage(resource: ImageResource.videoDetailLoading) }
 
 }

@@ -13,7 +13,6 @@ import SnapshotTesting
 final class VideoPlayerOverlayViewTest: XCTestCase {
 
     override func setUpWithError() throws {
-        
     }
 
     override func tearDownWithError() throws {
@@ -29,30 +28,35 @@ final class VideoPlayerOverlayViewTest: XCTestCase {
             secondFootnote: "經人觀點",
             id: 1, url: "", videoType: "")
         let rootView = VStack {
-                VideoPlayerOverlayView(
-                    data: data,
-                    model: PlaybackStateModel(playbackState: .INIT)
-                ) {
-                        UpcomingVideoView(item: data) {
+            VideoPlayerOverlayView(
+                data: data,
+                model: PlaybackStateModel(playbackState: .INIT)
+            ) {
+                EmptyView()
+            } upcomingContent: {
+                UpcomingVideoView(item: data) {
 
-                        } nextVideoAction: {
+                } nextVideoAction: {
 
-                        }
+                }
 
-                    }
-                    .aspectRatio(16 / 9, contentMode: .fit)
-
-                VideoPlayerOverlayView(
-                    data: data,
-                    model: PlaybackStateModel(playbackState:.COMPLETED)) {
-                        UpcomingVideoView(item: data) {
-
-                        } nextVideoAction: {
-
-                        }
-
-                    }.aspectRatio(16 / 9, contentMode: .fit)
             }
+            .aspectRatio(16 / 9, contentMode: .fit)
+
+            VideoPlayerOverlayView(
+                data: data,
+                model: PlaybackStateModel(playbackState:.COMPLETED)
+            ) {
+                EmptyView()
+            } upcomingContent: {
+                UpcomingVideoView(item: data) {
+
+                } nextVideoAction: {
+
+                }
+
+            }.aspectRatio(16 / 9, contentMode: .fit)
+        }
 
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .light

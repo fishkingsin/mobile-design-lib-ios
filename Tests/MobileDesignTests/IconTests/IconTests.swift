@@ -13,7 +13,7 @@ import SnapshotTesting
 final class IconTests: XCTestCase {
 
     override func setUpWithError() throws {
-        
+//        isRecording = true
     }
 
     override func tearDownWithError() throws {
@@ -33,7 +33,12 @@ final class IconTests: XCTestCase {
                 theme.icons.tabIconTVSelected,
                 theme.icons.tabIconTV,
                 theme.icons.videoDetailLanding,
-                theme.icons.videoPlayerLoading,
+                theme.icons.circlePlay,
+                theme.icons.circleLoading,
+                theme.icons.circlePause,
+                theme.icons.circleReplay,
+                theme.icons.circleArrowLeftToLine,
+                theme.icons.circleArrowRightToLine
             ], id: \.self) { image in
                 ZStack {
                     Rectangle()

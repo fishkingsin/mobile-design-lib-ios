@@ -58,9 +58,12 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
     public var body: some View {
         ZStack(alignment: .center) {
             YouTubePlayerView(youTubePlayer) { state in
-                VideoPlayerOverlayView(data: source, model: playbackStateModel) {
-                    upcomingVideoView
-                }
+                VideoPlayerOverlayView(
+                    data: source, model: playbackStateModel) {
+                        EmptyView()
+                    } upcomingContent: {
+                        upcomingVideoView
+                    }
             }.onReceive(youTubePlayer.statePublisher, perform: { state in
                 debugPrint("\(tag) statePublisher \(state)")
                 if state == .ready {

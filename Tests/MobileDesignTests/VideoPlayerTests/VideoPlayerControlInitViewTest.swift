@@ -22,7 +22,9 @@ final class VideoPlayerControlInitViewTest: XCTestCase {
     func test_snapshot_default() throws {
         let theme = ThemeManager.shared.currentTheme
         let rootView = VStack {
-            VideoPlayerControlInitView(data: MockVideoDisplayable(), playbackStateModel: PlaybackStateModel(playbackState: .INIT))
+            VideoPlayerControlInitView(data: MockVideoDisplayable(), playbackStateModel: PlaybackStateModel(playbackState: .INIT)) {
+                
+            }
         }.aspectRatio( 16 / 9 , contentMode: .fit)
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .light

@@ -8,15 +8,23 @@
 
 import SwiftUI
 import MobileDesign
-public struct VideoPlayerOverlayView<Data: VideoDisplayable, Content: View>: View {
+public struct VideoPlayerOverlayView<Data, ReplayContent, UpcomingContent>: View where
+Data: VideoDisplayable,
+ReplayContent: View,
+UpcomingContent: View
+{
     let data: Data?
     @ObservedObject var model: PlaybackStateModel
-    var ShouldShowUpComingView: Content?
+    var replayContent: ReplayContent?
+    var upcomingContent: UpcomingContent?
 
-    public init(data: Data?, model: PlaybackStateModel, @ViewBuilder ShouldShowUpComingView: () -> Content) {
+    public init(data: Data?, model: PlaybackStateModel,
+                @ViewBuilder replayContent: @escaping () -> ReplayContent,
+                @ViewBuilder upcomingContent: @escaping () -> UpcomingContent) {
         self.data = data
         self.model = model
-        self.ShouldShowUpComingView = ShouldShowUpComingView()
+        self.replayContent = replayContent()
+        self.upcomingContent = upcomingContent()
         debugPrint("[VideoPlayerControlYT] model.playbackState \(model.playbackState)")
     }
 
@@ -25,10 +33,14 @@ public struct VideoPlayerOverlayView<Data: VideoDisplayable, Content: View>: Vie
             switch model.playbackState {
                 case .INIT, .READY:
                     if let data = data {
-                        VideoPlayerControlInitView(data: data, playbackStateModel: model)
+                        VideoPlayerControlInitView(data: data, playbackStateModel: model) {
+                            
+                        }
                     }
+                case .REPLAY:
+                    replayContent
                 case .COMPLETED:
-                    ShouldShowUpComingView
+                    upcomingContent
                 default:
 
                     EmptyView()
@@ -51,25 +63,28 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
             VideoPlayerOverlayView(
                 data: data,
                 model: PlaybackStateModel(playbackState: .LOADING)) {
+                    EmptyView()
+                } upcomingContent: {
                     UpcomingVideoView(item: data) {
 
                     } nextVideoAction: {
 
                     }
-
                 }
                 .aspectRatio(16 / 9, contentMode: .fit)
 
             VideoPlayerOverlayView(
                 data: data,
                 model: PlaybackStateModel(playbackState: .COMPLETED)) {
-                UpcomingVideoView(item: data) {
+                    EmptyView()
+                } upcomingContent: {
+                    UpcomingVideoView(item: data) {
 
-                } nextVideoAction: {
+                    } nextVideoAction: {
 
+                    }
                 }
-
-            }.aspectRatio(16 / 9, contentMode: .fit)
+                .aspectRatio(16 / 9, contentMode: .fit)
         }
     }
 }

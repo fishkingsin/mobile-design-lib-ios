@@ -16,5 +16,6 @@ public enum VideoPlayerControlState {
     case COMPLETED
     case ERROR
     case READY
+    case REPLAY
     case UNKNOWN
 }
