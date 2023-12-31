@@ -47,6 +47,8 @@ public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
     var icon: UIImage {
         switch playbackStateModel.playbackState {
             case .REPLAY:
+                theme.icons.circleReplay
+            case .READY:
                 theme.icons.circlePlay
             default:
                 theme.icons.circleLoading

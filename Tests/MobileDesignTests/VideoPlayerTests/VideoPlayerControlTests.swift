@@ -25,7 +25,7 @@ final class VideoPlayerControlTests: XCTestCase {
             let rootView = VStack {
                 VideoPlayerControl(model: PlaybackStateModel(playbackState: state)) {
 
-                } onCenterIconClick: {
+                } onLeadingIconClick: {
 
                 } onTrailingIconClick: {
 

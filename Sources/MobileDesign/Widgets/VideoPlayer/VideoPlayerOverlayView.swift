@@ -31,14 +31,13 @@ UpcomingContent: View
     public var body: some View {
         ZStack {
             switch model.playbackState {
-                case .INIT, .READY:
+                case .INIT, .READY, .REPLAY:
                     if let data = data {
                         VideoPlayerControlInitView(data: data, playbackStateModel: model) {
                             
                         }
                     }
-                case .REPLAY:
-                    replayContent
+
                 case .COMPLETED:
                     upcomingContent
                 default:
@@ -59,32 +58,32 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
             leadingFootnote: "4小時前",
             secondFootnote: "經人觀點",
             id: 1, url: "", videoType: "")
-        VStack {
-            VideoPlayerOverlayView(
-                data: data,
-                model: PlaybackStateModel(playbackState: .LOADING)) {
-                    EmptyView()
-                } upcomingContent: {
-                    UpcomingVideoView(item: data) {
 
-                    } nextVideoAction: {
+        ScrollView {
+            LazyVStack {
+                ForEach(Array([
+                    VideoPlayerControlState.COMPLETED,
+                    VideoPlayerControlState.REPLAY,
+                    VideoPlayerControlState.READY,
+                    VideoPlayerControlState.INIT
+                ].enumerated()), id: \.element) { index, element in
+                    let model = PlaybackStateModel(playbackState: element)
+                    VideoPlayerOverlayView(
+                        data: data,
+                        model: model) {
+                            VideoPlayerControl(model: model) {
 
-                    }
+                            }
+                        } upcomingContent: {
+                            UpcomingVideoView(item: data) {
+                                
+                            } nextVideoAction: {
+                                
+                            }
+                        }
+                        .aspectRatio(16 / 9, contentMode: .fit)
                 }
-                .aspectRatio(16 / 9, contentMode: .fit)
-
-            VideoPlayerOverlayView(
-                data: data,
-                model: PlaybackStateModel(playbackState: .COMPLETED)) {
-                    EmptyView()
-                } upcomingContent: {
-                    UpcomingVideoView(item: data) {
-
-                    } nextVideoAction: {
-
-                    }
-                }
-                .aspectRatio(16 / 9, contentMode: .fit)
+            }
         }
     }
 }

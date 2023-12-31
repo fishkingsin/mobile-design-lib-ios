@@ -26,10 +26,14 @@ extension YouTubePlayer.PlaybackState {
     }
 }
 
-public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPlayerSourceProtocol, Content: View  {
+public struct VideoPlayerControlYT<Source, VideoControlContent, Content>: View where
+Source: VideoPlayerSourceProtocol,
+VideoControlContent: View,
+Content: View  {
     private let tag: String = "[VideoPlayerControlYT]"
     let source: Source
     let theme = ThemeManager.shared.currentTheme
+    let viewControlContent: VideoControlContent
     var upcomingVideoView: Content
     let playbackStateModel: PlaybackStateModel
 
@@ -47,10 +51,12 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
     public init(
         _ source: Source,
         playbackStateModel: PlaybackStateModel,
+        @ViewBuilder viewControlContent: @escaping () -> VideoControlContent,
         @ViewBuilder upcomingVideoView: @escaping () -> Content
     ) {
         self.source = source
         self.playbackStateModel = playbackStateModel
+        self.viewControlContent = viewControlContent()
         self.upcomingVideoView = upcomingVideoView()
     }
 
@@ -60,7 +66,7 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
             YouTubePlayerView(youTubePlayer) { state in
                 VideoPlayerOverlayView(
                     data: source, model: playbackStateModel) {
-                        EmptyView()
+                        viewControlContent
                     } upcomingContent: {
                         upcomingVideoView
                     }

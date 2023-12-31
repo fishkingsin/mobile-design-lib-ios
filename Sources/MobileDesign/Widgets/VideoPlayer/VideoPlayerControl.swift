@@ -13,16 +13,16 @@ public struct VideoPlayerControl: View {
     let theme: any NMGThemeable
     let icons: any NMGThemeableIcons
 
-    let onLeadingIconClick: () -> Void
-    let onCenterIconClick: () -> Void
-    let onTrailingIconClick: () -> Void
+    let onLeadingIconClick: (() -> Void)?
+    let onCenterIconClick: (() -> Void)
+    let onTrailingIconClick: (() -> Void)?
 
     public init(
         model: PlaybackStateModel,
         theme: any NMGThemeable = ThemeManager.shared.currentTheme,
-        onLeadingIconClick: @escaping () -> Void,
-        onCenterIconClick: @escaping () -> Void,
-        onTrailingIconClick: @escaping () -> Void) {
+        onCenterIconClick: @escaping (() -> Void),
+        onLeadingIconClick: (() -> Void)? = nil,
+        onTrailingIconClick: (() -> Void)? = nil) {
         self.model = model
         self.theme = theme
         self.icons = theme.icons
@@ -34,10 +34,12 @@ public struct VideoPlayerControl: View {
         ZStack(alignment: .center) {
             HStack(spacing: 32) {
                 Spacer()
-                Button {
-                    onLeadingIconClick()
-                } label: {
-                    Image(uiImage: leadingIcon)
+                if let onLeadingIconClick = onLeadingIconClick {
+                    Button {
+                        onLeadingIconClick()
+                    } label: {
+                        Image(uiImage: leadingIcon)
+                    }
                 }
 
                 Button {
@@ -45,11 +47,12 @@ public struct VideoPlayerControl: View {
                 } label: {
                     Image(uiImage: centerIcon)
                 }
-
-                Button {
-                    onTrailingIconClick()
-                } label: {
-                    Image(uiImage: trailingIcon)
+                if let onTrailingIconClick = onTrailingIconClick {
+                    Button {
+                        onTrailingIconClick()
+                    } label: {
+                        Image(uiImage: trailingIcon)
+                    }
                 }
                 Spacer()
             }
@@ -91,7 +94,7 @@ public struct VideoPlayerControl: View {
 #Preview {
     VideoPlayerControl(model: PlaybackStateModel(playbackState: .READY)) {
 
-    } onCenterIconClick: {
+    } onLeadingIconClick: {
 
     } onTrailingIconClick: {
 
