@@ -11,8 +11,13 @@ import SwiftUI
 public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
     var data: Data
     let theme = ThemeManager.shared.currentTheme
-    public init(data: Data) {
+    @ObservedObject var playbackStateModel: PlaybackStateModel
+    public init(
+        data: Data,
+        playbackStateModel: PlaybackStateModel
+    ) {
         self.data = data
+        self.playbackStateModel = playbackStateModel
     }
     public var body: some View {
         ZStack(alignment: .center) {
@@ -26,13 +31,20 @@ public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
             Button {
 
             } label: {
-                Image(uiImage: theme.icons.videoPlayerLoading)
+                Image(uiImage: icon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60)
                     .aspectRatio(1, contentMode: .fit)
             }
 
+        }
+    }
+
+    var icon: UIImage {
+        switch playbackStateModel.playbackState {
+            default:
+                theme.icons.videoPlayerLoading
         }
     }
 }
@@ -55,5 +67,5 @@ internal struct MockVideoDisplayable: VideoDisplayable {
 }
 
 #Preview {
-    VideoPlayerControlInitView(data: MockVideoDisplayable())
+    VideoPlayerControlInitView(data: MockVideoDisplayable(), playbackStateModel: PlaybackStateModel(playbackState: .INIT))
 }

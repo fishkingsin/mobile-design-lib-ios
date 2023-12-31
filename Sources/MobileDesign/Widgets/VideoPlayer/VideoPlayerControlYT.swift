@@ -63,6 +63,9 @@ public struct VideoPlayerControlYT<Source, Content>: View where Source: VideoPla
                 }
             }.onReceive(youTubePlayer.statePublisher, perform: { state in
                 debugPrint("\(tag) statePublisher \(state)")
+                if state == .ready {
+                    playbackStateModel.updateState(playbackState: .READY)
+                }
             }).onReceive(youTubePlayer.playbackStatePublisher, perform: { state in
                 debugPrint("\(tag) playbackStatePublisher \(state)")
                 playbackStateModel.updateState(playbackState: state.toPlaybackState)
