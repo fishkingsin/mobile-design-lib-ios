@@ -13,6 +13,7 @@ import SnapshotTesting
 final class VideoPlayerOverlayViewTest: XCTestCase {
 
     override func setUpWithError() throws {
+        
     }
 
     override func tearDownWithError() throws {
