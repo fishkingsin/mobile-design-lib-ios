@@ -12,12 +12,15 @@ public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
     var data: Data
     let theme = ThemeManager.shared.currentTheme
     @ObservedObject var playbackStateModel: PlaybackStateModel
+    let onClick: () -> Void
     public init(
         data: Data,
-        playbackStateModel: PlaybackStateModel
+        playbackStateModel: PlaybackStateModel,
+        onClick: @escaping () -> Void
     ) {
         self.data = data
         self.playbackStateModel = playbackStateModel
+        self.onClick = onClick
     }
     public var body: some View {
         ZStack(alignment: .center) {
@@ -29,7 +32,7 @@ public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
                 theme.colors.neutralGray30.color
             }
             Button {
-
+                onClick()
             } label: {
                 Image(uiImage: icon)
                     .resizable()
@@ -43,8 +46,12 @@ public struct VideoPlayerControlInitView<Data: VideoDisplayable>: View {
 
     var icon: UIImage {
         switch playbackStateModel.playbackState {
+            case .REPLAY:
+                theme.icons.circleReplay
+            case .READY:
+                theme.icons.circlePlay
             default:
-                theme.icons.videoPlayerLoading
+                theme.icons.circleLoading
         }
     }
 }
@@ -67,5 +74,7 @@ internal struct MockVideoDisplayable: VideoDisplayable {
 }
 
 #Preview {
-    VideoPlayerControlInitView(data: MockVideoDisplayable(), playbackStateModel: PlaybackStateModel(playbackState: .INIT))
+    VideoPlayerControlInitView(data: MockVideoDisplayable(), playbackStateModel: PlaybackStateModel(playbackState: .INIT)) {
+
+    }
 }

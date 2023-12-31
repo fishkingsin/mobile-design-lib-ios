@@ -96,6 +96,7 @@ public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
             Spacer().frame(height: 11)
         }
         .background(Color.black)
+        .aspectRatio(16/9, contentMode: .fit)
         .onAppear { startCountdown() }
         .onDisappear { timer?.cancel() }
     }
