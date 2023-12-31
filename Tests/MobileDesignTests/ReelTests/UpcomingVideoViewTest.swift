@@ -56,7 +56,7 @@ final class UpcomingVideoViewTest: XCTestCase {
         headline: "headline",
         leadingFootnote: "leadingFootnote",
         secondFootnote: "secondFootnote"
-      ), isFinish: .constant(true), onCancelTap: {
+      ), onCancelTap: {
 
       }, nextVideoAction: {
 

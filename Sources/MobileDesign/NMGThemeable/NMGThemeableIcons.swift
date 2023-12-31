@@ -14,6 +14,7 @@ public protocol NMGThemeableIcons: AnyObject {
     var heart: UIImage { get }
     var heartFill: UIImage { get }
     var arrowUpFromSquare: UIImage { get }
+    var play: UIImage { get }
     // ED
     var naviTVIcon: UIImage { get }
     var tabIconTVSelected: UIImage { get }

@@ -23,9 +23,9 @@ public struct VideoPlayerOverlayView<Data: VideoDisplayable, Content: View>: Vie
     public var body: some View {
         ZStack {
             switch model.playbackState {
-                case .INIT:
+                case .INIT, .READY:
                     if let data = data {
-                        VideoPlayerControlInitView(data: data)
+                        VideoPlayerControlInitView(data: data, playbackStateModel: model)
                     }
                 case .COMPLETED:
                     ShouldShowUpComingView

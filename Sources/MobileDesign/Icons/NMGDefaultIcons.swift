@@ -22,6 +22,7 @@ open class NMGDefaultIcons: NMGThemeableIcons {
 
     public var arrowUpFromSquare: UIImage { UIImage(resource: ImageResource.share) }
 
+    public var play: UIImage { UIImage(resource: ImageResource.play) }
 
     public var naviTVIcon: UIImage { UIImage() }
 

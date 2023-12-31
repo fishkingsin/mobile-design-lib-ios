@@ -13,7 +13,7 @@ import SnapshotTesting
 final class VideoPlayerOverlayViewTest: XCTestCase {
 
     override func setUpWithError() throws {
-        isRecording = true
+        
     }
 
     override func tearDownWithError() throws {
@@ -31,8 +31,9 @@ final class VideoPlayerOverlayViewTest: XCTestCase {
         let rootView = VStack {
                 VideoPlayerOverlayView(
                     data: data,
-                    state: .LOADING) {
-                        UpcomingVideoView(item: data, isFinish: .constant(false)) {
+                    model: PlaybackStateModel(playbackState: .INIT)
+                ) {
+                        UpcomingVideoView(item: data) {
 
                         } nextVideoAction: {
 
@@ -43,8 +44,8 @@ final class VideoPlayerOverlayViewTest: XCTestCase {
 
                 VideoPlayerOverlayView(
                     data: data,
-                    state: .COMPLETED) {
-                        UpcomingVideoView(item: data, isFinish: .constant(true)) {
+                    model: PlaybackStateModel(playbackState:.COMPLETED)) {
+                        UpcomingVideoView(item: data) {
 
                         } nextVideoAction: {
 
