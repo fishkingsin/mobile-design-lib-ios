@@ -66,7 +66,10 @@ Content: View  {
             YouTubePlayerView(youTubePlayer) { state in
                 VideoPlayerOverlayView(
                     data: source, model: playbackStateModel) {
-                        viewControlContent
+                        VideoPlayerControl(model: playbackStateModel) {
+                            youTubePlayer.play()
+                        }
+
                     } upcomingContent: {
                         upcomingVideoView
                     }

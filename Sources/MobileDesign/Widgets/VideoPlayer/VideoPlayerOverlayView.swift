@@ -31,13 +31,14 @@ UpcomingContent: View
     public var body: some View {
         ZStack {
             switch model.playbackState {
-                case .INIT, .READY, .REPLAY:
+                case .INIT, .READY:
                     if let data = data {
                         VideoPlayerControlInitView(data: data, playbackStateModel: model) {
-                            
+
                         }
                     }
-
+                case .REPLAY:
+                    replayContent
                 case .COMPLETED:
                     upcomingContent
                 default:

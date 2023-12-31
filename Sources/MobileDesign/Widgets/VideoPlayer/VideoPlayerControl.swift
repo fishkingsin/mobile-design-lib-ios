@@ -7,15 +7,21 @@
 
 import SwiftUI
 
-public struct VideoPlayerControl: View {
+public protocol VideoPlayerControlable: View {
+    var onLeadingIconClick: (() -> Void)? { get }
+    var onCenterIconClick: (() -> Void) { get }
+    var onTrailingIconClick: (() -> Void)? { get }
+}
+
+public struct VideoPlayerControl: VideoPlayerControlable {
     @ObservedObject var model: PlaybackStateModel
     
     let theme: any NMGThemeable
     let icons: any NMGThemeableIcons
 
-    let onLeadingIconClick: (() -> Void)?
-    let onCenterIconClick: (() -> Void)
-    let onTrailingIconClick: (() -> Void)?
+    public var onLeadingIconClick: (() -> Void)?
+    public var onCenterIconClick: (() -> Void)
+    public var onTrailingIconClick: (() -> Void)?
 
     public init(
         model: PlaybackStateModel,
