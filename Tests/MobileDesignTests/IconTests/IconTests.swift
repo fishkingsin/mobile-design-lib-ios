@@ -13,7 +13,7 @@ import SnapshotTesting
 final class IconTests: XCTestCase {
 
     override func setUpWithError() throws {
-//        isRecording = true
+//        
     }
 
     override func tearDownWithError() throws {

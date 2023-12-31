@@ -13,7 +13,7 @@ import SnapshotTesting
 final class VideoPlayerOverlayViewTest: XCTestCase {
 
     override func setUpWithError() throws {
-//        isRecording = true
+        
     }
 
     override func tearDownWithError() throws {
