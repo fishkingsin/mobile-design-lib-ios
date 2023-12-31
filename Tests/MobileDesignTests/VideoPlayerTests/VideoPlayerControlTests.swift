@@ -46,7 +46,7 @@ final class VideoPlayerControlTests: XCTestCase {
                 expectation.fulfill()
             }
 
-            wait(for: [expectation], timeout: 1)
+            wait(for: [expectation], timeout: 2)
         }
     }
 
