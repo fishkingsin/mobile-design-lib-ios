@@ -22,7 +22,6 @@ struct CardContentFootnoteView: View {
                 .foregroundColor(foregroundColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.leading, 12)
     }
 }
 
