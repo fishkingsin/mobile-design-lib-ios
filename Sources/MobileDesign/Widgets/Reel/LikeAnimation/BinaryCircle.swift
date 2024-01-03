@@ -11,7 +11,7 @@ struct BinaryCircle: View {
     @Binding var spacing: CGFloat
     @Binding var rotateAngle: CGFloat
     @Binding var scaleRate: CGFloat
-    
+
     var body: some View {
         HStack(spacing: spacing) {
             Circle()

@@ -10,7 +10,7 @@ public struct CardContentView: View {
     public var headline: String
     public var leadingFootnote: String
     public var secondFootnote: String
-    
+
     public init(headline: String,
                 leadingFootnote: String,
                 secondFootnote: String) {

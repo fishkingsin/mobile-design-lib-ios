@@ -9,15 +9,14 @@ import UIKit
 
 open class EDIcons: NMGDefaultIcons {
     override var baseFolder: String { "ED" }
-    
-    public override var naviTVIcon: UIImage  { UIImage.image(from: baseFolder, named: "navi_tv_icon")! }
-    
-    public override var tabIconTVSelected: UIImage  { UIImage.image(from: baseFolder, named: "tab_icon_tv_selected")! }
-    
-    public override var tabIconTV: UIImage  { UIImage.image(from: baseFolder, named: "tab_icon_tv")! }
-     
-    public override var tvDetailLanding: UIImage  { UIImage.image(from: baseFolder, named: "tv_detail_landing")! }
-    
-    public override var tvDetailLoading: UIImage  { UIImage.image(from: baseFolder, named: "tv_detail_loading")! }
-    
+
+    public override var naviTVIcon: UIImage { UIImage.image(from: baseFolder, named: "navi_tv_icon")! }
+
+    public override var tabIconTVSelected: UIImage { UIImage.image(from: baseFolder, named: "tab_icon_tv_selected") ?? UIImage() }
+
+    public override var tabIconTV: UIImage { UIImage.image(from: baseFolder, named: "tab_icon_tv")! }
+
+    public override var videoDetailLanding: UIImage { UIImage.image(from: baseFolder, named: "video_detail_landing") ?? UIImage() }
+
+
 }

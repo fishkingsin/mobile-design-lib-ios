@@ -27,7 +27,6 @@ struct ReelsPOC: View {
     }
 }
 
-
 struct ReelsOC_Previews: PreviewProvider {
     static var previews: some View {
         ReelsPOC()

@@ -14,8 +14,7 @@ public struct CustomAVPlayer<
     var safeArea: EdgeInsets
     let placeholderView: () -> PlaceholderView?
     let finishView: (() -> PlayFinishView)?
-    
-    
+
     /// View Properties
     @Binding private var player: AVPlayer?
     @State private var showPlayerControls: Bool = false
@@ -29,13 +28,13 @@ public struct CustomAVPlayer<
     @State private var progress: CGFloat = 0
     @State private var lastDraggedProgress: CGFloat = 0
     @State private var isObserverAdded: Bool = false
-    
+
     @State private var playerStatusObserver: NSKeyValueObservation?
     /// Rotation Properties
     @State private var isRotated: Bool = false
     @State private var deviceRotation: UIDeviceOrientation = UIDevice.current.orientation
     @Environment(\.scenePhase) private var scenePhase
-    
+
     public init(
         size: CGSize,
         safeArea: EdgeInsets,
@@ -49,12 +48,12 @@ public struct CustomAVPlayer<
         self.finishView = finishView
         self._player = player
     }
-    
+
     public var body: some View {
         VStack(spacing: 0) {
             /// Swapping Size When Rotated
             let videoPlayerSize: CGSize = .init(width: isRotated ? size.height : size.width, height: isRotated ? size.width : (9.0/16.0 * size.width))
-            
+
             /// Custom Vide Player
             ZStack {
                 if let player {
@@ -76,7 +75,7 @@ public struct CustomAVPlayer<
                                     let seconds = player.currentTime().seconds - 15
                                     player.seek(to: .init(seconds: seconds, preferredTimescale: 600))
                                 }
-                                
+
                                 DoubleTapSeek(isForward: true) {
                                     /// Seeking 15 sec Forward
                                     let seconds = player.currentTime().seconds + 15
@@ -88,7 +87,7 @@ public struct CustomAVPlayer<
                             withAnimation(.easeInOut(duration: 0.35)) {
                                 showPlayerControls.toggle()
                             }
-                            
+
                             /// Timing Out Controls, Only If the Video is Playing
                             if isPlaying {
                                 timeoutControls()
@@ -142,14 +141,14 @@ public struct CustomAVPlayer<
         .onAppear {
             guard !isObserverAdded else { return }
             /// Adding Observer to update seeker when the video is Playing
-            player?.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 600), queue: .main, using: { time in
+            player?.addPeriodicTimeObserver(forInterval: .init(seconds: 1, preferredTimescale: 600), queue: .main, using: { _ in
                 /// Calculating Video Progress
                 if let currentPlayerItem = player?.currentItem {
                     let totalDuration = currentPlayerItem.duration.seconds
                     guard let currentDuration = player?.currentTime().seconds else { return }
-                    
+
                     let calculatedProgress = currentDuration / totalDuration
-                    
+
                     if !isSeeking {
                         progress = calculatedProgress
                         lastDraggedProgress = progress
@@ -161,9 +160,9 @@ public struct CustomAVPlayer<
                     }
                 }
             })
-            
+
             isObserverAdded = true
-            
+
             /// Before Generating Thumbnails, Check if the Video is Loaded
             playerStatusObserver = player?.observe(\.status, options: .new, changeHandler: { player, _ in
                 if player.status == .readyToPlay {
@@ -198,14 +197,13 @@ public struct CustomAVPlayer<
             }
         }
     }
-    
-    
+
     /// Video Seeker View
     @ViewBuilder
     func VideoSeekerView(_ videoSize: CGSize) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             if showPlayerControls || isDragging {
-                HStack() {
+                HStack {
                     Text("\(timeString(for: player?.currentTime().seconds ?? 0))")
                         .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
                         .foregroundColor(.white)
@@ -226,7 +224,7 @@ public struct CustomAVPlayer<
                     }
                 }
             }
-            
+
             ZStack(alignment: .leading) {
                 Rectangle()
                     .fill(.white)
@@ -259,29 +257,29 @@ public struct CustomAVPlayer<
                                 if let timeoutTask {
                                     timeoutTask.cancel()
                                 }
-                                
+
                                 /// Calculating Progress
                                 let translationX: CGFloat = value.translation.width
                                 let calculatedProgress = (translationX / videoSize.width) + lastDraggedProgress
-                                
+
                                 progress = max(min(calculatedProgress, 1), 0)
                                 isSeeking = true
-                                
+
                             })
-                            .onEnded({ value in
+                            .onEnded({ _ in
                                 /// Storing Last Known Progress
                                 lastDraggedProgress = progress
                                 /// Seeking Video To Dragged Time
                                 if let currentPlayerItem = player?.currentItem {
                                     let totalDuration = currentPlayerItem.duration.seconds
-                                    
+
                                     player?.seek(to: .init(seconds: totalDuration * progress, preferredTimescale: 600))
-                                    
+
                                     /// Re-Scheduling Timeout Task
                                     if isPlaying {
                                         timeoutControls()
                                     }
-                                    
+
                                     /// Releasing With Slight Delay
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         isSeeking = false
@@ -292,16 +290,16 @@ public struct CustomAVPlayer<
                     .offset(x: progress * videoSize.width > 15 ? (progress * -15) : 0)
                     .frame(width: 15, height: 15)
             }
-            
+
         }
     }
-    
+
     /// Playback Controls View
     @ViewBuilder
     func PlayBackControls() -> some View {
         VStack(spacing: 0) {
             if isRotated {
-                HStack() {
+                HStack {
                     Button {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             isRotated = false
@@ -312,16 +310,16 @@ public struct CustomAVPlayer<
                             .foregroundColor(.white)
                     }
                     .padding(.leading, 16)
-                    
+
                     Spacer() // This will push the button to the left
                 }.padding(.top, 20)
             }
-            
+
             Spacer()
-            
+
             HStack(spacing: 25) {
                 Button {
-                    
+
                 } label: {
                     Image(systemName: "backward.end.fill")
                         .font(.title2)
@@ -336,8 +334,7 @@ public struct CustomAVPlayer<
                 /// Since we have no action's for it
                 .disabled(true)
                 .opacity(0.6)
-                
-                
+
                 Button {
                     if isFinishedPlaying {
                         /// Setting Video to Start and Playing Again
@@ -346,7 +343,7 @@ public struct CustomAVPlayer<
                         progress = .zero
                         lastDraggedProgress = .zero
                     }
-                    
+
                     /// Changing Video Status to Play/Pause based on user input
                     if isPlaying {
                         /// Pause Video
@@ -360,7 +357,7 @@ public struct CustomAVPlayer<
                         player?.play()
                         timeoutControls()
                     }
-                    
+
                     withAnimation(.easeInOut(duration: 0.2)) {
                         isPlaying.toggle()
                     }
@@ -377,9 +374,9 @@ public struct CustomAVPlayer<
                         }
                 }
                 .scaleEffect(1.1)
-                
+
                 Button {
-                    
+
                 } label: {
                     Image(systemName: "forward.end.fill")
                         .font(.title2)
@@ -398,10 +395,9 @@ public struct CustomAVPlayer<
             .animation(.easeInOut(duration: 0.2), value: showPlayerControls && !isDragging)
             Spacer()
         }
-        
-        
+
     }
-    
+
     /// Timing Out Play back controls
     /// After some 2-5 Seconds
     func timeoutControls() {
@@ -409,35 +405,35 @@ public struct CustomAVPlayer<
         if let timeoutTask {
             timeoutTask.cancel()
         }
-        
+
         timeoutTask = .init(block: {
             withAnimation(.easeInOut(duration: 0.35)) {
                 showPlayerControls = false
             }
         })
-        
+
         /// Scheduling Task
         if let timeoutTask {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: timeoutTask)
         }
     }
-    
+
     /// Convert time in seconds to a formatted string (hh:mm:ss)
     func timeString(for timeInSeconds: Double) -> String {
         // Check if timeInSeconds is finite and not NaN
         guard timeInSeconds.isFinite && !timeInSeconds.isNaN else {
             return "00:00" // Return a default value or handle the error as needed
         }
-        
+
         let minutes = Int((timeInSeconds.truncatingRemainder(dividingBy: 3600)) / 60)
         let seconds = Int(timeInSeconds.truncatingRemainder(dividingBy: 60))
-        
+
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
+
 }
 
-//struct CustomAVPlayer_Previews: PreviewProvider {
+// struct CustomAVPlayer_Previews: PreviewProvider {
 //    static var previews: some View {
 //        GeometryReader {
 //            let size = $0.size
@@ -449,4 +445,4 @@ public struct CustomAVPlayer<
 //        }
 //        .preferredColorScheme(.dark)
 //    }
-//}
+// }

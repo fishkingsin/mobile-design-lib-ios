@@ -14,7 +14,7 @@ public struct Chip<Element>: View where Element: ChipData {
     @Binding var index: Int
     let selfIndex: Int
     let font: Font
-    
+
     public init(
         element: Element, index: Binding<Int>, selfIndex: Int,
         font: Font = Font(ThemeManager.shared.currentTheme.fonts.eleRegular16)
@@ -24,7 +24,7 @@ public struct Chip<Element>: View where Element: ChipData {
         self.selfIndex = selfIndex
         self.font = font
     }
-    
+
     public var body: some View {
         HStack(alignment: .center, spacing: 8) {
             if let iconString = element.icon, let iconUrl = URL(string: iconString) {
@@ -47,7 +47,7 @@ public struct Chip<Element>: View where Element: ChipData {
         )
         .cornerRadius(60)
     }
-    
+
     var isSelected: Bool {
         selfIndex == index
     }
@@ -57,7 +57,7 @@ public struct ChipElement: ChipData, Codable {
     public var id: Int?
     public var name: String?
     public var icon: String?
-    
+
     public init(id: Int? = nil, name: String? = nil, icon: String? = nil) {
         self.id = id
         self.name = name

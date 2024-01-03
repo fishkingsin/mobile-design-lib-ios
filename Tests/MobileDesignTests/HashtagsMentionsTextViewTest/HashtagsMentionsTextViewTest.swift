@@ -38,5 +38,4 @@ final class HashtagsMentionsTextViewTest: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 
-
 }

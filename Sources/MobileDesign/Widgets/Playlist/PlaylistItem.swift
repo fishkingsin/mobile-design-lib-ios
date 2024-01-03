@@ -48,4 +48,3 @@ struct PlaylistItem_Previews: PreviewProvider {
         }
     }
 }
-

@@ -10,7 +10,7 @@ import SwiftUI
 /// Seeking Video Forward/Backward with Double Tap Animation
 struct DoubleTapSeek: View {
     var isForward: Bool = false
-    var onTap: () -> ()
+    var onTap: () -> Void
     /// Animation Properties
     @State private var isTapped: Bool = false
     /// Since we have three arrows
@@ -36,7 +36,7 @@ struct DoubleTapSeek: View {
                     }
                     .font(.title)
                     .rotationEffect(.init(degrees: isForward ? 180 : 0))
-                    
+
                     Text("15 Seconds")
                         .font(.caption)
                         .fontWeight(.semibold)
@@ -51,22 +51,22 @@ struct DoubleTapSeek: View {
                     isTapped = true
                     showArrows[0] = true
                 }
-                
+
                 withAnimation(.easeInOut(duration: 0.2).delay(0.2)) {
                     showArrows[0] = false
                     showArrows[1] = true
                 }
-                
+
                 withAnimation(.easeInOut(duration: 0.2).delay(0.35)) {
                     showArrows[1] = false
                     showArrows[2] = true
                 }
-                
+
                 withAnimation(.easeInOut(duration: 0.2).delay(0.5)) {
                     showArrows[2] = false
                     isTapped = false
                 }
-                
+
                 /// Calling OnTap Function After Animation has been intiated
                 onTap()
             }
@@ -75,7 +75,7 @@ struct DoubleTapSeek: View {
 
 struct DoubleTapSeek_Previews: PreviewProvider {
     static var previews: some View {
-        DoubleTapSeek{
+        DoubleTapSeek {
             print("Seeking")
         }
     }

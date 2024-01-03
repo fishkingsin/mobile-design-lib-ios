@@ -9,7 +9,7 @@ import SwiftUI
 public struct VideoCardView<Data>: View where Data: CardDisplayable {
     var data: Data
     var onTabChanged: () -> Void
-    
+
     public init(data: Data, onTabChanged: @escaping () -> Void) {
         self.data = data
         self.onTabChanged = onTabChanged

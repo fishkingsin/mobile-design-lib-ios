@@ -23,7 +23,7 @@ final class HorizontalCardTests: XCTestCase {
         let rootView = sut
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .light
-        
+
         let expectation = expectation(description: "loading horizontal card")
         vc.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -37,7 +37,7 @@ final class HorizontalCardTests: XCTestCase {
 
         wait(for: [expectation], timeout: 2)
     }
-    
+
     var sut: some View {
         HorizontalCard(data: CardData(
             imageURL: "",

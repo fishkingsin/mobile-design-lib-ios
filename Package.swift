@@ -24,6 +24,7 @@ let package = Package(
         .package(url: "https://github.com/SvenTiigi/YouTubePlayerKit.git", from: "1.5.0"),
         .package(url: "https://github.com/danielsaidi/ScrollKit.git", from: "0.4.0"),
         .package(url: "https://github.com/optonaut/ActiveLabel.swift.git", from: "1.1.5"),
+        .package(url: "https://github.com/youtube/youtube-ios-player-helper.git", from: "1.0.4")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -37,6 +38,7 @@ let package = Package(
                 "ExpandableText",
                 "YouTubePlayerKit",
                 "ScrollKit",
+                .product(name: "YouTubeiOSPlayerHelper", package: "youtube-ios-player-helper"),
                 .product(name: "ActiveLabel", package: "ActiveLabel.swift"),
                 .product(name: "SwiftUIIntrospect", package: "swiftui-introspect")
             ],

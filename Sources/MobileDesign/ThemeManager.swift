@@ -78,7 +78,7 @@ extension Theme {
       return NMGDefaultColors(customTheme)
     }
   }
-    
+
     var themeableIcons: any NMGThemeableIcons {
       switch self {
       case .ED:

@@ -17,7 +17,7 @@ public typealias NativeView = UIView
 
 public protocol ViewRepresentableHelper: ViewRepresentable {
     associatedtype ViewType: NativeView
-    var completion: (ViewType) -> () { get set }
+    var completion: (ViewType) -> Void { get set }
     func new(_ context: Context) -> ViewType
 }
 
@@ -38,5 +38,5 @@ public extension ViewRepresentableHelper {
     func makeNSView(context: Context) -> ViewType { makeView(context) }
     func updateUIView(_ uiView: ViewType, context: Context) { updateView(uiView, context) }
     func updateNSView(_ nsView: ViewType, context: Context) { updateView(nsView, context) }
-    
+
 }
