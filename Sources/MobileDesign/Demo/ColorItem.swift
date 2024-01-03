@@ -15,7 +15,7 @@ public struct ColorItem: View {
             HStack(alignment: .center, spacing: 4) {
                 VStack {
                     Text("\(key)")
-                        .font(fonts.eleRegular12)
+                        .font(fonts.eleRegular12.uiFont)
                     Rectangle()
                         .fill(c)
                         .frame(width: 50, height: 50)
@@ -23,9 +23,9 @@ public struct ColorItem: View {
                         .border(Color.secondary, width: 5)
 
                     Text("\(rgb)")
-                        .font(fonts.eleRegular12)
+                        .font(fonts.eleRegular12.uiFont)
                     Text("\(hex)")
-                        .font(fonts.eleRegular12)
+                        .font(fonts.eleRegular12.uiFont)
                 }
             }.aspectRatio(1.0, contentMode: .fill)
         }
