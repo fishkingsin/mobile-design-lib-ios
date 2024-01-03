@@ -15,7 +15,6 @@ struct CardContentHeadlineView: View {
             .font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
             .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 12)
     }
 }
 
