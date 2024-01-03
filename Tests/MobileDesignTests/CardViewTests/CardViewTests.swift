@@ -12,7 +12,7 @@ import XCTest
 class CardViewTests: XCTestCase {
 
   override func setUp() {
-      isRecording = true
+      
     super.setUp()
   }
 
