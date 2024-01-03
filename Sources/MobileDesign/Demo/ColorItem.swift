@@ -9,12 +9,13 @@ import SwiftUI
 public struct ColorItem: View {
     var key: String
     var color: UIColor?
+    let fonts = ThemeManager.shared.currentTheme.fonts
     public var body: some View {
         if let c = color?.color, let rgb = color?.getRGBIntString(), let hex = color?.hexString {
             HStack(alignment: .center, spacing: 4) {
                 VStack {
                     Text("\(key)")
-                        .font(.footnote)
+                        .font(fonts.eleRegular12)
                     Rectangle()
                         .fill(c)
                         .frame(width: 50, height: 50)
@@ -22,9 +23,9 @@ public struct ColorItem: View {
                         .border(Color.secondary, width: 5)
 
                     Text("\(rgb)")
-                        .font(.footnote)
+                        .font(fonts.eleRegular12)
                     Text("\(hex)")
-                        .font(.footnote)
+                        .font(fonts.eleRegular12)
                 }
             }.aspectRatio(1.0, contentMode: .fill)
         }

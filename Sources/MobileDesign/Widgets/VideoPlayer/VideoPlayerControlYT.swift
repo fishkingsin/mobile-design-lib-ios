@@ -20,7 +20,7 @@ extension YouTubePlayer.PlaybackState {
                 return .PAUSED
             case .buffering:
                 return .LOADING
-            default :
+            default:
                 return .UNKNOWN
         }
     }
@@ -29,7 +29,7 @@ extension YouTubePlayer.PlaybackState {
 public struct VideoPlayerControlYT<Source, VideoControlContent, Content>: View where
 Source: VideoPlayerSourceProtocol,
 VideoControlContent: View,
-Content: View  {
+Content: View {
     private let tag: String = "[VideoPlayerControlYT]"
     let source: Source
     let theme = ThemeManager.shared.currentTheme
@@ -60,10 +60,9 @@ Content: View  {
         self.upcomingVideoView = upcomingVideoView()
     }
 
-
     public var body: some View {
         ZStack(alignment: .center) {
-            YouTubePlayerView(youTubePlayer) { state in
+            YouTubePlayerView(youTubePlayer) { _ in
                 VideoPlayerOverlayView(
                     data: source, model: playbackStateModel) {
                         VideoPlayerControl(model: playbackStateModel) {

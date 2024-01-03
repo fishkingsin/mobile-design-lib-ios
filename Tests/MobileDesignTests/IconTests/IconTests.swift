@@ -43,7 +43,7 @@ final class IconTests: XCTestCase {
             theme.icons.circlePause,
             theme.icons.circleReplay,
             theme.icons.circleArrowLeftToLine,
-            theme.icons.circleArrowRightToLine,
+            theme.icons.circleArrowRightToLine
           ], id: \.self
         ) { image in
           ZStack {

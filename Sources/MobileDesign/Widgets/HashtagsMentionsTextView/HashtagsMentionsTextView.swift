@@ -5,8 +5,8 @@
 //  Created by James Kong on 27/12/2023.
 //
 
-import SwiftUI
 import ActiveLabel
+import SwiftUI
 
 public struct HashtagsMentionsTextView: UIViewRepresentable {
     let text: String
@@ -14,8 +14,14 @@ public struct HashtagsMentionsTextView: UIViewRepresentable {
     let onMentionTap: (String) -> Void
     let onURLTap: (URL) -> Void
     let theme: NMGThemeable
+    var font: UIFont = .systemFont(ofSize: 12)
 
-    public init(text: String, preferredMaxLayoutWidth: CGFloat = 50, theme: NMGThemeable = ThemeManager.shared.currentTheme, onHashtagTap: @escaping (String) -> Void, onMentionTap: @escaping (String) -> Void, onURLTap: @escaping (URL) -> Void) {
+    public init(
+        text: String, preferredMaxLayoutWidth: CGFloat = 50,
+        theme: NMGThemeable = ThemeManager.shared.currentTheme,
+        onHashtagTap: @escaping (String) -> Void, onMentionTap: @escaping (String) -> Void,
+        onURLTap: @escaping (URL) -> Void
+    ) {
         self.text = text
         self.onHashtagTap = onHashtagTap
         self.onMentionTap = onMentionTap
@@ -30,11 +36,12 @@ public struct HashtagsMentionsTextView: UIViewRepresentable {
         label.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
         label.numberOfLines = 10
         label.enabledTypes = [.mention, .hashtag, .url]
-        label.hashtagColor = theme.colors.primaryMain // optional, adjust base on biz needs can be theme.colors.hashtag
-        label.mentionColor = theme.colors.primaryMain // optional, adjust base on biz needs can be theme.colors.mention
-        label.URLColor = theme.colors.primaryMain // optional
+        label.hashtagColor = theme.colors.primaryMain  // optional, adjust base on biz needs can be theme.colors.hashtag
+        label.mentionColor = theme.colors.primaryMain  // optional, adjust base on biz needs can be theme.colors.mention
+        label.URLColor = theme.colors.primaryMain  // optional
         label.text = text
-        label.textColor = theme.colors.neutralGray90 // UITraitCollection().userInterfaceStyle == .light ? theme.colors.neutralGray90 : .white
+        label.font = font
+        label.textColor = theme.colors.neutralGray90  // UITraitCollection().userInterfaceStyle == .light ? theme.colors.neutralGray90 : .white
         label.preferredMaxLayoutWidth = preferredMaxLayoutWidth
         label.contentMode = .scaleAspectFill
 
@@ -53,7 +60,11 @@ public struct HashtagsMentionsTextView: UIViewRepresentable {
         return label
     }
 
-    public func updateUIView(_ uiView: UILabel, context: UIViewRepresentableContext<HashtagsMentionsTextView>) { }
+    public func updateUIView(
+        _ uiView: UILabel, context: UIViewRepresentableContext<HashtagsMentionsTextView>
+    ) {
+        uiView.font = font
+    }
 }
 
 struct HashtagsMentionsTextViewPreview: View {
@@ -61,23 +72,36 @@ struct HashtagsMentionsTextViewPreview: View {
         ScrollView {
             LazyVStack(spacing: 10) {
                 ForEach(1...10, id: \.self) { item in
-                    HStack(spacing: CGFloat(item), content: {
+                    HStack(
+                        spacing: CGFloat(item),
+                        content: {
 
-                        HashtagsMentionsTextView(
-                            text: "I am #hashtags or #hashtags# and @mentions in SwiftUI. I am #hashtags or #hashtags# and @mentions in SwiftUI. 這是在 SwiftUI 中的一個 #標簽 和 @提及 的超鏈接。 這是在 SwiftUI 中的一個 #標簽 和 @提及 的超鏈接。",
-                            preferredMaxLayoutWidth: UIScreen.main.bounds.width - CGFloat(item * 10)
-                        ) {
-                            print("onHashtagTap \($0)")
-                        } onMentionTap: {
-                            print("onMentionTap \($0)")
-                        } onURLTap: {
-                            print("onURLTap \($0)")
-                        }.fixedSize(horizontal: true, vertical: true)
-                    })
+                            HashtagsMentionsTextView(
+                                text:
+                                    "I am #hashtags or #hashtags# and @mentions in SwiftUI. I am #hashtags or #hashtags# and @mentions in SwiftUI. 這是在 SwiftUI 中的一個 #標簽 和 @提及 的超鏈接。 這是在 SwiftUI 中的一個 #標簽 和 @提及 的超鏈接。",
+                                preferredMaxLayoutWidth: UIScreen.main.bounds.width - CGFloat(item * 10)
+                            ) {
+                                print("onHashtagTap \($0)")
+                            } onMentionTap: {
+                                print("onMentionTap \($0)")
+                            } onURLTap: {
+                                print("onURLTap \($0)")
+                            }
+                            .font(ThemeManager.shared.currentTheme.fonts.eleRegular16)
+                            .fixedSize(horizontal: true, vertical: true)
+                        })
                     Divider()
                 }
             }
         }
+    }
+}
+
+extension HashtagsMentionsTextView {
+    func font(_ font: UIFont) -> Self {
+        var view = self
+        view.font = font
+        return view
     }
 }
 

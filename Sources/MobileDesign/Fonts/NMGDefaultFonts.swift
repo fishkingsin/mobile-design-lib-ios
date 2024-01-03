@@ -20,36 +20,29 @@ open class NMGDefaultFonts: NMGThemeableFonts {
      PingFang TC    PingFangTC-Ultralight   let font = UIFont(name: "PingFangTC-Ultralight", size: .systemFontSize)!
      */
 
-    private func regular(ofSize size: CGFloat) -> UIFont
-    {
+    private func regular(ofSize size: CGFloat) -> UIFont {
         UIFont(name: "PingFangTC-Regular", size: size) ?? .systemFont(ofSize: size, weight: .regular)
     }
 
-    private func thin(ofSize size: CGFloat) -> UIFont
-    {
+    private func thin(ofSize size: CGFloat) -> UIFont {
         UIFont(name: "PingFangTC-Thin", size: size) ?? .systemFont(ofSize: size, weight: .thin)
     }
 
-    private func medium(ofSize size: CGFloat) -> UIFont
-    {
+    private func medium(ofSize size: CGFloat) -> UIFont {
         UIFont(name: "PingFangTC-Medium", size: size) ?? .systemFont(ofSize: size, weight: .medium)
     }
 
-    private func semibold(ofSize size: CGFloat) -> UIFont
-    {
+    private func semibold(ofSize size: CGFloat) -> UIFont {
         UIFont(name: "PingFangTC-Semibold", size: size) ?? .systemFont(ofSize: size, weight: .semibold)
     }
 
-    private func light(ofSize size: CGFloat) -> UIFont
-    {
+    private func light(ofSize size: CGFloat) -> UIFont {
         UIFont(name: "PingFangTC-Light", size: size) ?? .systemFont(ofSize: size, weight: .light)
     }
 
-    private func ultraLight(ofSize size: CGFloat) -> UIFont
-    {
+    private func ultraLight(ofSize size: CGFloat) -> UIFont {
         UIFont(name: "PingFangTC-Ultralight", size: size) ?? .systemFont(ofSize: size, weight: .ultraLight)
     }
-
 
     open var eleSemiBold24: UIFont { semibold(ofSize: 24) }
     open var eleSemiBold22: UIFont { semibold(ofSize: 22) }

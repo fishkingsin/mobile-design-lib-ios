@@ -25,7 +25,7 @@ open class NMGDefaultIcons: NMGThemeableIcons {
     public var circlePlay: UIImage { UIImage(resource: ImageResource.circlePlay) }
 
     public var circleLoading: UIImage { UIImage(resource: ImageResource.circleLoading) }
-    
+
     public var circleArrowLeftToLine: UIImage { UIImage(resource: ImageResource.circleArrowLeftToLine) }
 
     public var circleArrowRightToLine: UIImage { UIImage(resource: ImageResource.circleArrowRightToLine) }
@@ -41,6 +41,5 @@ open class NMGDefaultIcons: NMGThemeableIcons {
     public var tabIconTV: UIImage { UIImage() }
 
     public var videoDetailLanding: UIImage { UIImage() }
-
 
 }

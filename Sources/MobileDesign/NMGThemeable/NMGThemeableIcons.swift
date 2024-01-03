@@ -26,5 +26,4 @@ public protocol NMGThemeableIcons: AnyObject {
     var tabIconTV: UIImage { get }
     var videoDetailLanding: UIImage { get }
 
-
 }

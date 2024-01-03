@@ -90,7 +90,7 @@ final class ChipGroupTest: XCTestCase {
       ChipDataDemo(
         name: "Title 100", icon: "placholder", id: 1, title: "Title", iconUrl: "iconUrl"),
       ChipDataDemo(
-        name: "Title 1000", icon: "placholder", id: 2, title: "Title", iconUrl: "iconUrl"),
+        name: "Title 1000", icon: "placholder", id: 2, title: "Title", iconUrl: "iconUrl")
     ]
   }
 

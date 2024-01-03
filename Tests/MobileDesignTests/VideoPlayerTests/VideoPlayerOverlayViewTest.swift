@@ -33,7 +33,7 @@ final class VideoPlayerOverlayViewTest: XCTestCase {
       VideoPlayerControlState.COMPLETED,
       VideoPlayerControlState.REPLAY,
       VideoPlayerControlState.READY,
-      VideoPlayerControlState.INIT,
+      VideoPlayerControlState.INIT
     ].forEach { element in
       let model = PlaybackStateModel(playbackState: element)
 
