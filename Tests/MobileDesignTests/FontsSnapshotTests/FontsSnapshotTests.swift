@@ -16,6 +16,10 @@ final class FontsSnapshotTests: XCTestCase {
   }
   func test_all_fonts_snapshot() {
     let fonts = NMGDefaultFonts().properties
+      fonts.forEach {
+          $0.value.fontName.contains("PingFang")
+      }
+
     let vc = UIHostingController(
       rootView: AnyView(
         VStack {
