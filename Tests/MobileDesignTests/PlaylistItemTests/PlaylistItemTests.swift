@@ -27,7 +27,7 @@ final class PlaylistItemTests: XCTestCase {
 
     let expectation = expectation(description: "loading play list item")
     vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() ) {
 
       if let view = vc.view {
         assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
@@ -37,7 +37,7 @@ final class PlaylistItemTests: XCTestCase {
       expectation.fulfill()
     }
 
-    wait(for: [expectation], timeout: 2)
+    wait(for: [expectation], timeout: 1)
   }
 
   var sut: some View {
