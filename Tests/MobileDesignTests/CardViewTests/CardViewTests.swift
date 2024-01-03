@@ -10,25 +10,25 @@ import SwiftUI
 import XCTest
 
 class CardViewTests: XCTestCase {
-    
+
     override func setUp() {
-        isRecording = true
+        
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
-    
+
     func test_top_image_card_view_light_mode() {
         let rootView = sut
         let vc = UIHostingController(rootView: rootView)
         vc.overrideUserInterfaceStyle = .light
-        
+
         let expectation = expectation(description: "loading image")
         vc.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            
+
             if let view = vc.view {
                 assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
             } else {
@@ -36,10 +36,10 @@ class CardViewTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 2)
     }
-    
+
     func test_top_image_card_view_dark_mode() {
         let rootView = sut
         let vc = UIHostingController(rootView: rootView)
@@ -54,10 +54,10 @@ class CardViewTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 2)
     }
-    
+
     private var sut: some View {
         VideoCardView<CardData>(
             data: CardData(
