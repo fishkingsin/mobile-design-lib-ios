@@ -7,7 +7,7 @@ run `sh ./bootstrap.sh`
 ## Testing iOS Simualtor
 
 - https://discuss.bitrise.io/t/xcode-test-for-ios-v5-0-0/23168
-    - iPhone 11 with iOS Simulator runtime 17.0 and later (shipped in Xcode 15 beta)
+    - iPhone 15 PRo (17.0.1)
 
 # Snapshot testing
 

@@ -23,7 +23,7 @@ final class VideoPlayerOverlayViewTest: XCTestCase {
     func test_snapshot_default() throws {
         let theme = ThemeManager.shared.currentTheme
         let data = MockVideoDisplayable(
-            imageURL: "https://placehold.co/1920x1080/png",
+            imageURL: "placeholder",
             headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
             leadingFootnote: "4小時前",
             secondFootnote: "經人觀點",

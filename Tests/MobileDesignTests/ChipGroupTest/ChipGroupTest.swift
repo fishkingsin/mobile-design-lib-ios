@@ -82,9 +82,9 @@ final class ChipGroupTest: XCTestCase {
   }
 
   fileprivate var data: [ChipDataDemo] { [
-    ChipDataDemo(name: "Title 10", icon: "https://placehold.co/24x24/png", id: 0, title: "Title", iconUrl: "iconUrl"),
-    ChipDataDemo(name: "Title 100", icon: "https://placehold.co/24x24/png", id: 1, title: "Title", iconUrl: "iconUrl"),
-    ChipDataDemo(name: "Title 1000", icon: "https://placehold.co/24x24/png", id: 2, title: "Title", iconUrl: "iconUrl")]
+    ChipDataDemo(name: "Title 10", icon: "placholder", id: 0, title: "Title", iconUrl: "iconUrl"),
+    ChipDataDemo(name: "Title 100", icon: "placholder", id: 1, title: "Title", iconUrl: "iconUrl"),
+    ChipDataDemo(name: "Title 1000", icon: "placholder", id: 2, title: "Title", iconUrl: "iconUrl")]
   }
 
   private var sut: some View {
