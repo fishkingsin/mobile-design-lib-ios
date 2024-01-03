@@ -11,23 +11,26 @@ import XCTest
 @testable import MobileDesign
 
 private struct ChipDataDemo: ChipData {
-    var id: Int?
+  var id: Int?
 
-    var name: String?
+  var name: String?
 
-    var icon: String?
+  var icon: String?
 
-    var title: String
+  var title: String
 
-    var iconUrl: String
+  var iconUrl: String
 
-    init(name: String? = nil, icon: String? = nil, id: Int = Int.random(in: 0...100), title: String, iconUrl: String) {
-        self.name = name
-        self.icon = icon
-        self.id  = id
-        self.title = title
-        self.iconUrl = iconUrl
-    }
+  init(
+    name: String? = nil, icon: String? = nil, id: Int = Int.random(in: 0...100), title: String,
+    iconUrl: String
+  ) {
+    self.name = name
+    self.icon = icon
+    self.id = id
+    self.title = title
+    self.iconUrl = iconUrl
+  }
 
 }
 
@@ -81,10 +84,14 @@ final class ChipGroupTest: XCTestCase {
     wait(for: [expectation], timeout: 2)
   }
 
-  fileprivate var data: [ChipDataDemo] { [
-    ChipDataDemo(name: "Title 10", icon: "placholder", id: 0, title: "Title", iconUrl: "iconUrl"),
-    ChipDataDemo(name: "Title 100", icon: "placholder", id: 1, title: "Title", iconUrl: "iconUrl"),
-    ChipDataDemo(name: "Title 1000", icon: "placholder", id: 2, title: "Title", iconUrl: "iconUrl")]
+  fileprivate var data: [ChipDataDemo] {
+    [
+      ChipDataDemo(name: "Title 10", icon: "placholder", id: 0, title: "Title", iconUrl: "iconUrl"),
+      ChipDataDemo(
+        name: "Title 100", icon: "placholder", id: 1, title: "Title", iconUrl: "iconUrl"),
+      ChipDataDemo(
+        name: "Title 1000", icon: "placholder", id: 2, title: "Title", iconUrl: "iconUrl"),
+    ]
   }
 
   private var sut: some View {
