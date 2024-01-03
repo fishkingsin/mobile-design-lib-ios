@@ -39,7 +39,7 @@ workflows:
       - restore-spm-cache@1: {}
       - xcode-test@5:
           inputs:
-            - destination: platform=iOS Simulator,name=iPhone 14 Pro,OS=latest
+            - destination: platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0.1
       - save-spm-cache@1: {}
       - deploy-to-bitrise-io@2: {}
 meta:
