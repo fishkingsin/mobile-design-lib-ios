@@ -10,26 +10,24 @@ import SwiftUI
 import Kingfisher
 import Combine
 
-public struct UpcomingVideoView: View {
-    var item: VideoDisplayable
-    
+public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
+    var item: Data
+
     @State private var secCountDown = 10
     @State private var timer: AnyCancellable?
-    @Binding var isFinish: Bool
-    
+
     var onCancelTap: () -> Void
     var nextVideoAction: () -> Void
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
-   
-    public init(item: VideoDisplayable, isFinish: Binding<Bool>, onCancelTap: @escaping () -> Void, nextVideoAction: @escaping () -> Void) {
+
+    public init(item: Data, onCancelTap: @escaping () -> Void, nextVideoAction: @escaping () -> Void) {
         self.item = item
-        self._isFinish = isFinish
         self.onCancelTap = onCancelTap
         self.nextVideoAction = nextVideoAction
     }
-    
+
     public var body: some View {
-        VStack() {
+        VStack {
             Spacer().frame(height: 11)
             HStack {
                 Spacer().frame(width: 18)
@@ -44,14 +42,16 @@ public struct UpcomingVideoView: View {
                     .foregroundColor(theme.colors.neutralGray50.color)
                 Spacer()
             }
-            HStack() {
+            HStack {
                 Spacer().frame(width: 14)
                 if let url = item.imageURL {
                     ZStack(alignment: .bottomTrailing) {
                         KFImage.url(URL(string: url))
                             .resizable()
-                            .frame(width: 144, height: 75)
+                            .scaledToFit()
+                            .frame(height: 75)
                             .background(Color.white)
+                            .aspectRatio( 16 / 9 , contentMode: .fit)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
                 }
@@ -65,12 +65,12 @@ public struct UpcomingVideoView: View {
                 Spacer().frame(width: 14)
             }
             Spacer()
-            HStack() {
+            HStack {
                 Spacer().frame(width: 16)
                 Button(action: {
                     self.timer?.cancel()
                     onCancelTap()
-                }){
+                }) {
                     Text("取消")
                         .font(.system(size: 16))
                         .foregroundColor(theme.colors.neutralGray2.color)
@@ -82,7 +82,7 @@ public struct UpcomingVideoView: View {
                 Button(action: {
                     nextVideoAction()
                     self.timer?.cancel()
-                }){
+                }) {
                     Text("立即播放")
                         .font(.system(size: 16))
                         .foregroundColor(theme.colors.neutralGray90.color)
@@ -94,12 +94,13 @@ public struct UpcomingVideoView: View {
                 Spacer().frame(width: 16)
             }
             Spacer().frame(height: 11)
-        }.background(Color.black)
-            .onAppear {
-            startCountdown()
-            }
+        }
+        .background(Color.black)
+        .aspectRatio(16/9, contentMode: .fit)
+        .onAppear { startCountdown() }
+        .onDisappear { timer?.cancel() }
     }
-    
+
     private func startCountdown() {
         timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             .sink { _ in
@@ -107,27 +108,38 @@ public struct UpcomingVideoView: View {
                     self.secCountDown -= 1
                 } else {
                     self.timer?.cancel()
-                    isFinish = false
                     nextVideoAction()
                 }
             }
     }
 }
 
-//struct UpcomingVideoView_Previews: PreviewProvider {
-//    @State static var isFinish: Bool = false
-//
-//    static var previews: some View {
-//        UpcomingVideoView(item: MockUpcomingItem(), isFinish: $isFinish, onCancelTap: {
-//            print("cancel")
-//        }, nextVideoAction: {
-//            print("play")
-//        })
-//    }
-//}
+ struct UpcomingVideoView_Previews: PreviewProvider {
+    @State static var isFinish: Bool = false
 
-//struct MockUpcomingItem: UpcomingItem {
-//    var secCountDown: Int = 10
-//    var imageURL: String = ""
-//    var headline: String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
-//}
+    static var previews: some View {
+        UpcomingVideoView(item: MockUpcomingItem(), onCancelTap: {
+            print("cancel")
+        }, nextVideoAction: {
+            print("play")
+        })
+    }
+ }
+
+struct MockUpcomingItem: VideoDisplayable {
+    var imageURL: String? = "https://placehold.co/600x400/png?text=hello%5cnworld"
+
+    var headline: String? = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式"
+
+    var leadingFootnote: String? = "footnote"
+
+    var secondFootnote: String? = "footnote"
+
+    var id: Int?
+    
+    var url: String?
+    
+    var videoType: String?
+
+
+ }

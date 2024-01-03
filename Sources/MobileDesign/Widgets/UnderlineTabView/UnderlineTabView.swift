@@ -18,7 +18,7 @@ public struct UnderlineTabView: View {
     }
 
     public var body: some View {
-        VStack(){
+        VStack {
             HStack(alignment: .center) {
                 tabBarView
             }
@@ -28,8 +28,6 @@ public struct UnderlineTabView: View {
                 view3.tag(2)
             })
             .tabViewStyle(.page(indexDisplayMode: .never))
-
-
 
         }.edgesIgnoringSafeArea(.all)
     }
@@ -45,7 +43,6 @@ public struct UnderlineTabView: View {
                 })
             }
             .background(Color.green)
-
 
         }
         .background(Color.white)

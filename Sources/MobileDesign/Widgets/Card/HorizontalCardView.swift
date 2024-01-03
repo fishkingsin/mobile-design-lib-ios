@@ -8,10 +8,9 @@
 import SwiftUI
 import Kingfisher
 
-struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView: View>: View
-{
+struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView: View>: View {
     let imageUrl: String
-    
+
     let overLayViewAlign: Alignment
     let placeholderView: () -> PlaceholderView
     let contentView: () -> ContentView
@@ -30,7 +29,7 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
       self.overlayView = overlayView
         self.overLayViewAlign = overLayViewAlign
     }
-    
+
     public var body: some View {
         HStack {
             ZStack {
@@ -44,7 +43,7 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
                       .frame(maxWidth: 133, maxHeight: 75)
                       .clipped()
                       .cornerRadius(4).overlay(alignment: overLayViewAlign) {
-                        overlayView?() 
+                        overlayView?()
                     }
               } else {
                 getPlaceholder()
@@ -54,14 +53,13 @@ struct HorizontalCardView<PlaceholderView: View, ContentView: View, OverlayView:
             Spacer()
           }
     }
-    
+
     private func getPlaceholder() -> AnyView {
       AnyView(
         placeholderView()
       )
     }
 }
-
 
 struct HorizontalCardView_Previews: PreviewProvider {
     static var previews: some View {

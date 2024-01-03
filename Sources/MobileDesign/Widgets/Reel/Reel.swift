@@ -17,7 +17,7 @@ public struct Reel<MediaFile>: ReelDataProtocol where MediaFile: MediaFileConsum
         hasher.combine(mediaFile.title)
         hasher.combine(mediaFile.id)
         hasher.combine(mediaFile.isExpanded)
-        hasher.combine(mediaFile.content)        
+        hasher.combine(mediaFile.content)
     }
 
     public typealias MediaFile = MediaFile

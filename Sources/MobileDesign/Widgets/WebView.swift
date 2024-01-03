@@ -85,7 +85,7 @@ public struct WebViewContent: View {
     }
     public var body: some View {
         LoadingView(isShowing: self.$model.isLoading) {
-            WebView() {
+            WebView {
                 $0.load(URLRequest(url: .init(string: "https://google.com")!))
             }
         }
@@ -94,7 +94,7 @@ public struct WebViewContent: View {
 // swiftlint:disable:next type_name
 struct WebView_URL_Previews: PreviewProvider {
     static var previews: some View {
-        WebView() {
+        WebView {
             $0.load(URLRequest(url: .init(string: "https://google.com")!))
         }
     }
@@ -107,9 +107,8 @@ struct WebView_iFrame_Previews: PreviewProvider {
         let content = """
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/UfhiodCyfUo?si=O8mGRXESndrjd5b6&amp&rel=0;controls=0" title="EDTV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe>
 """
-        WebView() {
+        WebView {
             $0.loadHTMLString(content, baseURL: nil)
         }
     }
 }
-
