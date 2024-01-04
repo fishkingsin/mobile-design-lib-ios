@@ -45,7 +45,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                         VStack(alignment: .leading, spacing: 10) {
 
                             Text(reel.mediaFile.title)
-                                .font(.callout.bold())
+                                .font(theme.fonts.eleRegular16.uiFont)
                                 .foregroundColor(theme.colors.neutralGray2.color)
 
                             ExpandableText(text: reel.mediaFile.content)

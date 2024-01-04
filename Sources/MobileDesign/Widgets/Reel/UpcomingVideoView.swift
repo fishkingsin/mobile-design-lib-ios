@@ -19,11 +19,15 @@ public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
     var onCancelTap: () -> Void
     var nextVideoAction: () -> Void
     private let theme: NMGThemeable = ThemeManager.shared.currentTheme
+    let fonts: any NMGThemeableFonts
+    let colors: any NMGThemeableColors
 
     public init(item: Data, onCancelTap: @escaping () -> Void, nextVideoAction: @escaping () -> Void) {
         self.item = item
         self.onCancelTap = onCancelTap
         self.nextVideoAction = nextVideoAction
+        self.fonts = theme.fonts
+        self.colors = theme.colors
     }
 
     public var body: some View {
@@ -32,14 +36,14 @@ public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
             HStack {
                 Spacer().frame(width: 18)
                 Text("將於")
-                    .font(.system(size: 14))
-                    .foregroundColor(theme.colors.neutralGray50.color)
+                    .font(fonts.eleRegular14.uiFont)
+                    .foregroundColor(colors.neutralGray50.color)
                 Text("\(secCountDown)")
-                    .font(.system(size: 14))
-                    .foregroundColor(theme.colors.neutralGray2.color)
+                    .font(fonts.eleRegular14.uiFont)
+                    .foregroundColor(colors.neutralGray2.color)
                 Text("秒後播放")
-                    .font(.system(size: 14))
-                    .foregroundColor(theme.colors.neutralGray50.color)
+                    .font(fonts.eleRegular14.uiFont)
+                    .foregroundColor(colors.neutralGray50.color)
                 Spacer()
             }
             HStack {
@@ -51,14 +55,14 @@ public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
                             .scaledToFit()
                             .frame(height: 75)
                             .background(Color.white)
-                            .aspectRatio( 16 / 9 , contentMode: .fit)
+                            .aspectRatio( 16 / 9, contentMode: .fit)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
                 }
                 if let headline = item.headline {
                     Text(headline)
-                        .font(.system(size: 16))
-                        .foregroundColor(theme.colors.neutralGray2.color)
+                        .font(fonts.eleRegular16.uiFont)
+                        .foregroundColor(colors.neutralGray2.color)
                         .lineLimit(3)
                         .truncationMode(.tail)
                 }
@@ -72,11 +76,11 @@ public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
                     onCancelTap()
                 }) {
                     Text("取消")
-                        .font(.system(size: 16))
-                        .foregroundColor(theme.colors.neutralGray2.color)
+                        .font(fonts.eleRegular16.uiFont)
+                        .foregroundColor(colors.neutralGray2.color)
                         .frame(maxWidth: .infinity)
                         .padding(9)
-                        .background(RoundedRectangle(cornerRadius: 2).stroke(theme.colors.neutralGray2.color))
+                        .background(RoundedRectangle(cornerRadius: 2).stroke(colors.neutralGray2.color))
                 }
                 Spacer().frame(width: 16)
                 Button(action: {
@@ -84,11 +88,11 @@ public struct UpcomingVideoView<Data>: View where Data: VideoDisplayable {
                     self.timer?.cancel()
                 }) {
                     Text("立即播放")
-                        .font(.system(size: 16))
-                        .foregroundColor(theme.colors.neutralGray90.color)
+                        .font(fonts.eleRegular16.uiFont)
+                        .foregroundColor(colors.neutralGray90.color)
                         .frame(maxWidth: .infinity)
                         .padding(9)
-                        .background(theme.colors.neutralGray2.color)
+                        .background(colors.neutralGray2.color)
                         .clipShape(RoundedRectangle(cornerRadius: 2))
                 }
                 Spacer().frame(width: 16)
@@ -136,10 +140,9 @@ struct MockUpcomingItem: VideoDisplayable {
     var secondFootnote: String? = "footnote"
 
     var id: Int?
-    
-    var url: String?
-    
-    var videoType: String?
 
+    var url: String?
+
+    var videoType: String?
 
  }

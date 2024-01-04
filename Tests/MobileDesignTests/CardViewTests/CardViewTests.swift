@@ -46,7 +46,7 @@ class CardViewTests: XCTestCase {
     vc.overrideUserInterfaceStyle = .dark
     let expectation = expectation(description: "loading image")
     vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    DispatchQueue.main.asyncAfter(deadline: .now() ) {
       if let view = vc.view {
         assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
       } else {
@@ -55,7 +55,7 @@ class CardViewTests: XCTestCase {
       expectation.fulfill()
     }
 
-    wait(for: [expectation], timeout: 2)
+    wait(for: [expectation], timeout: 1)
   }
 
   private var sut: some View {
@@ -66,8 +66,9 @@ class CardViewTests: XCTestCase {
         leadingFootnote: "4小時前",
         secondFootnote: "經人觀點",
         timecode: "22:22"
-      ), onTabChanged: {
-          print("pressed")
+      ),
+      onTabChanged: {
+        print("pressed")
       }
     ).frame(minWidth: 320, minHeight: 680)
   }
