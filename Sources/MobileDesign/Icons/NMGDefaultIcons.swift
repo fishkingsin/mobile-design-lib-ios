@@ -40,6 +40,6 @@ open class NMGDefaultIcons: NMGThemeableIcons {
 
     public var tabIconTV: UIImage { UIImage() }
 
-    public var videoDetailLanding: UIImage { UIImage() }
+    public var videoDetailLanding: UIImage { UIImage(systemName: "arrow.right.circle.fill") ?? UIImage() }
 
 }
