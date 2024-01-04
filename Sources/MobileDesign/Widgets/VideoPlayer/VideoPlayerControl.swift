@@ -15,7 +15,7 @@ public protocol VideoPlayerControlable: View {
 
 public struct VideoPlayerControl: VideoPlayerControlable {
     @ObservedObject var model: PlaybackStateModel
-    
+
     let theme: any NMGThemeable
     let icons: any NMGThemeableIcons
 

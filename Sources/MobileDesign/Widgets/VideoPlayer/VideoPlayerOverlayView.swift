@@ -11,8 +11,7 @@ import MobileDesign
 public struct VideoPlayerOverlayView<Data, ReplayContent, UpcomingContent>: View where
 Data: VideoDisplayable,
 ReplayContent: View,
-UpcomingContent: View
-{
+UpcomingContent: View {
     let data: Data?
     @ObservedObject var model: PlaybackStateModel
     var replayContent: ReplayContent?
@@ -67,7 +66,7 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
                     VideoPlayerControlState.REPLAY,
                     VideoPlayerControlState.READY,
                     VideoPlayerControlState.INIT
-                ].enumerated()), id: \.element) { index, element in
+                ].enumerated()), id: \.element) { _, element in
                     let model = PlaybackStateModel(playbackState: element)
                     VideoPlayerOverlayView(
                         data: data,
@@ -77,9 +76,9 @@ struct VideoPlayerOverlayView_Preview: PreviewProvider {
                             }
                         } upcomingContent: {
                             UpcomingVideoView(item: data) {
-                                
+
                             } nextVideoAction: {
-                                
+
                             }
                         }
                         .aspectRatio(16 / 9, contentMode: .fit)

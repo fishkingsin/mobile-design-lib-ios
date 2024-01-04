@@ -26,7 +26,7 @@ public struct VideoPlayerSource: VideoPlayerSourceProtocol {
     public var videoURL: String
 
     public var title: String
-    
+
     public init(videoURL: String, title: String, imageURL: String? = nil, headline: String? = nil, leadingFootnote: String? = nil, secondFootnote: String? = nil, id: Int? = nil, videoType: String? = nil) {
         self.imageURL = imageURL
         self.headline = headline

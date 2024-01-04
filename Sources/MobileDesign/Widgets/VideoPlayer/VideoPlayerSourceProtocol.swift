@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol VideoPlayerSourceProtocol: Equatable, VideoDisplayable  {
+public protocol VideoPlayerSourceProtocol: Equatable, VideoDisplayable {
     var videoURL: String { get set }
     var title: String { get set }
     var imageURL: String? { get set }

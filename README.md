@@ -6,7 +6,8 @@ run `sh ./bootstrap.sh`
 
 ## Testing iOS Simualtor
 
-- iPhone 14 Pro 16.6
+- https://discuss.bitrise.io/t/xcode-test-for-ios-v5-0-0/23168
+    - iPhone 15 PRo (17.0.1)
 
 # Snapshot testing
 
