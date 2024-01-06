@@ -83,7 +83,8 @@ public struct VideoPlayerControl: VideoPlayerControlable {
                             onRightBottomIconClick()
                         } label: {
                             Image(uiImage: icons.expand)
-                                .shadow(radius: 10)
+                                .padding()
+                                .shadow(color: .black, radius: 5)
                         }
 
                     }
