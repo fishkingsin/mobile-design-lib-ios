@@ -16,23 +16,25 @@ open class NMGDefaultIcons: NMGThemeableIcons {
 
     public var exclamationmarkCircle: UIImage { UIImage(systemName: "exclamationmark.circle")! }
 
-    public var heart: UIImage { UIImage(resource: ImageResource.heart) }
+    public var heart: UIImage { UIImage(resource: .heart) }
 
-    public var heartFill: UIImage { UIImage(resource: ImageResource.heartFill) }
+    public var heartFill: UIImage { UIImage(resource: .heartFill) }
 
-    public var arrowUpFromSquare: UIImage { UIImage(resource: ImageResource.share) }
+    public var arrowUpFromSquare: UIImage { UIImage(resource: .share) }
 
-    public var circlePlay: UIImage { UIImage(resource: ImageResource.circlePlay) }
+    public var circlePlay: UIImage { UIImage(resource: .circlePlay) }
 
-    public var circleLoading: UIImage { UIImage(resource: ImageResource.circleLoading) }
+    public var circleLoading: UIImage { UIImage(resource: .circleLoading) }
 
-    public var circleArrowLeftToLine: UIImage { UIImage(resource: ImageResource.circleArrowLeftToLine) }
+    public var circleArrowLeftToLine: UIImage { UIImage(resource: .circleArrowLeftToLine) }
 
-    public var circleArrowRightToLine: UIImage { UIImage(resource: ImageResource.circleArrowRightToLine) }
+    public var circleArrowRightToLine: UIImage { UIImage(resource: .circleArrowRightToLine) }
 
-    public var circlePause: UIImage { UIImage(resource: ImageResource.circlePause) }
+    public var circlePause: UIImage { UIImage(resource: .circlePause) }
 
-    public var circleReplay: UIImage { UIImage(resource: ImageResource.circleReplay) }
+    public var circleReplay: UIImage { UIImage(resource: .circleReplay) }
+
+    public var expand: UIImage { UIImage(resource: .expand) }
 
     public var naviTVIcon: UIImage { UIImage() }
 
