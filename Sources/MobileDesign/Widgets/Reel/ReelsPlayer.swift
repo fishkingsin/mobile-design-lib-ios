@@ -49,7 +49,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
                                 .foregroundColor(theme.colors.neutralGray2.color)
 
                             ExpandableText(text: reel.mediaFile.content)
-                                .font(.body)
+                                .font(theme.fonts.eleRegular16.uiFont)
                                 .foregroundColor(theme.colors.neutralGray2.color)
                                 .lineLimit(2)
                                 .expandButton(TextSet(text: "展開", font: .body, color: theme.colors.neutralGray60.color))

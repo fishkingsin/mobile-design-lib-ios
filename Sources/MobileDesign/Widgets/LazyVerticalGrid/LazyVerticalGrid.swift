@@ -54,7 +54,7 @@ struct LazyVerticalGrid_Previews: PreviewProvider {
                         GridItem(.flexible(minimum: 30))
                     ],
                 data: data) { _, element in
-                Text(element).font(.caption2)
+                    Text(element).font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
             }
         } else {
             // Fallback on earlier versions
@@ -86,7 +86,7 @@ struct LazyVerticalGrid_OneRow_Previews: PreviewProvider {
                 ) { _, element in
                     ZStack {
                         Color.red
-                        Text(element).font(.caption2)
+                        Text(element).font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
                     }
                 }
             }

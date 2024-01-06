@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 import AVKit
-
+@available(*, deprecated, message: "deprecated")
 public struct CustomAVPlayer<
     PlaceholderView: View, PlayFinishView: View
 >: View {
