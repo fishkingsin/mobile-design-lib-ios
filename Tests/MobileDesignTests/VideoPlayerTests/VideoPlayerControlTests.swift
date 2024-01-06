@@ -14,7 +14,6 @@ import XCTest
 final class VideoPlayerControlTests: XCTestCase {
 
     override func setUpWithError() throws {
-        isRecording = true
         ThemeManager.shared.applyTheme(.ED)
     }
 
