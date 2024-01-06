@@ -25,7 +25,7 @@ public struct ReelPlayer<Reel>: View where Reel: ReelDataProtocol {
 
             if let player = reel.player {
 
-                CustomVideoPlayer(player: player)
+                CustomVideoPlayer(player: player) { _ in }
 
                 GeometryReader { proxy in
                     self.useProxy(reel, player, proxy)

@@ -9,6 +9,31 @@ import MobileDesign
 import AVKit
 import SwiftUI
 
+struct VimeoPreview: View {
+    @State var playbackStateModel = PlaybackStateModel(playbackState: .INIT)
+    var body: some View {
+        TVPOC(url: "https://player.vimeo.com/external/831404478.m3u8?s=cc3eadec75b090dcf038f24184dfe6d52e936a3f&logging=false") { _ in
+            VideoPlayerControlAVPlayer(
+                VideoPlayerSource(
+                    videoURL: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+                    title: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
+                    imageURL: "https://placehold.co/1920x1080/png",
+                    headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
+                    leadingFootnote: "滴灌通主席李小加就想到了破解方案，兼開發出複利生財的投資模式，有如太極生兩儀、兩儀生四象。薑是老的辣，61歲的他下海創業，把生意經的算盤敲得更為響噹噹。滴灌通主席李小加就想到了破解方案，兼開發出複利生財的投資模式，有如太極生兩儀、兩儀生四象。薑是老的辣，61歲的他下海創業，把生意經的算盤敲得更為響噹噹。",
+                    secondFootnote: "",
+                    id: 1,
+                    videoType: ""
+                ),
+                playbackStateModel: playbackStateModel
+            ) {
+                EmptyView()
+            }
+            //                        CustomVideoPlayer(player: AVPlayer(url: URL(string: $0)!))
+            //                        VideoPlayerControlAVPlayer(source)
+        }
+    }
+}
+
 struct VideoPlayerView: UIViewControllerRepresentable {
     var videoURL: URL
     func makeUIViewController(context: Context) -> AVPlayerViewController {
@@ -58,9 +83,7 @@ struct Gallery: View {
             name: "Vimeo",
             content: {
                 AnyView(
-                    TVPOC(url: "https://player.vimeo.com/external/831404478.m3u8?s=cc3eadec75b090dcf038f24184dfe6d52e936a3f&logging=false") {
-                        CustomVideoPlayer(player: AVPlayer(url: URL(string: $0)!))
-                    }
+                    VimeoPreview()
                 )
             }),
         MenuItem(

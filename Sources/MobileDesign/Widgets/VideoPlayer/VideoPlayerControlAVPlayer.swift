@@ -24,6 +24,7 @@ Content: View {
 
     @State var videoControlAlpha: CGFloat = 1.0
     @State private var timer: AnyCancellable?
+    @State var controller: AVPlayerViewController?
 
     public init(
         _ source: Source,
@@ -42,7 +43,9 @@ Content: View {
     public var body: some View {
         VStack {
             ZStack(alignment: .bottom) {
-                CustomVideoPlayer(player: model.player)
+                CustomVideoPlayer(player: model.player, completion: { controller in
+                    self.controller = controller
+                })
                     .frame(width: .infinity, height: .infinity)
                     .onTapGesture {
                         toggleVideoControl()
@@ -53,13 +56,13 @@ Content: View {
                     //                , total: model.duration
                 ) {
                     if playbackStateModel.playbackState == .PLAYING {
-                        model.player.pause()
+                        model.pause()
                         playbackStateModel.updateState(playbackState: .PAUSED)
                         return
                     }
 
                     if playbackStateModel.playbackState == .PAUSED {
-                        model.player.play()
+                        model.play()
                         playbackStateModel.updateState(playbackState: .PLAYING)
                         return
                     }
@@ -69,7 +72,7 @@ Content: View {
                 } onTrailingIconClick: {
 
                 } onRightBottomIconClick: {
-
+                    controller?.enterFullScreen(animated: true)
                 }
                 .frame(width: .infinity, height: .infinity)
                 .opacity(videoControlAlpha)
@@ -89,7 +92,8 @@ Content: View {
 
                         model.play()
                     }
-                }
+                }.opacity(videoControlAlpha)
+
 
             }.layoutPriority(1)
 
