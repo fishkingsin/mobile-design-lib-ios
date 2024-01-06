@@ -24,23 +24,15 @@ public struct VideoPlayerControl: VideoPlayerControlable {
     public var onCenterIconClick: (() -> Void)
     public var onTrailingIconClick: (() -> Void)?
     public var onRightBottomIconClick: (() -> Void)?
-    
-//    @Binding private var sliderValue: TimeInterval
-//    let total: CGFloat
 
     public init(
         model: PlaybackStateModel,
-//        currentTime: Binding<TimeInterval>,
-//        total: CGFloat,
         theme: any NMGThemeable = ThemeManager.shared.currentTheme,
         onCenterIconClick: @escaping (() -> Void),
         onLeadingIconClick: (() -> Void)? = nil,
         onTrailingIconClick: (() -> Void)? = nil,
         onRightBottomIconClick: (() -> Void)? = nil) {
             self.model = model
-//            self._sliderValue = currentTime
-//            self.total = total
-
             self.icons = theme.icons
             self.colors = theme.colors
             self.onLeadingIconClick = onLeadingIconClick
@@ -136,9 +128,6 @@ public struct VideoPlayerControl: VideoPlayerControlable {
 #Preview {
     VideoPlayerControl(
         model: PlaybackStateModel(playbackState: .READY)
-//        ,
-//        currentTime: .constant(50),
-//        total: 100
     ) {
 
     } onLeadingIconClick: {
