@@ -57,7 +57,7 @@ public struct UnderlineTabView: View {
             VStack {
                 Spacer()
                 Text(string)
-                    .font(.system(size: 13, weight: .light, design: .default))
+                    .font(ThemeManager.shared.currentTheme.fonts.eleRegular14.uiFont)
                 if self.currentTab == tab {
                     Color
                         .black

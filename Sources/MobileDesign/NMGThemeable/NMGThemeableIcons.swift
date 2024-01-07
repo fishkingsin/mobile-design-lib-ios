@@ -20,6 +20,7 @@ public protocol NMGThemeableIcons: AnyObject {
     var circleArrowLeftToLine: UIImage { get }
     var circlePause: UIImage { get }
     var circleReplay: UIImage { get }
+    var expand: UIImage { get }
     // ED
     var naviTVIcon: UIImage { get }
     var tabIconTVSelected: UIImage { get }

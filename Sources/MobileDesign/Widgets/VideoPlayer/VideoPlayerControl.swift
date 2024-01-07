@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by James Kong on 31/12/2023.
 //
@@ -13,31 +13,35 @@ public protocol VideoPlayerControlable: View {
     var onTrailingIconClick: (() -> Void)? { get }
 }
 
+
 public struct VideoPlayerControl: VideoPlayerControlable {
     @ObservedObject var model: PlaybackStateModel
 
-    let theme: any NMGThemeable
     let icons: any NMGThemeableIcons
+    let colors: any NMGThemeableColors
 
     public var onLeadingIconClick: (() -> Void)?
     public var onCenterIconClick: (() -> Void)
     public var onTrailingIconClick: (() -> Void)?
+    public var onRightBottomIconClick: (() -> Void)?
 
     public init(
         model: PlaybackStateModel,
         theme: any NMGThemeable = ThemeManager.shared.currentTheme,
         onCenterIconClick: @escaping (() -> Void),
         onLeadingIconClick: (() -> Void)? = nil,
-        onTrailingIconClick: (() -> Void)? = nil) {
-        self.model = model
-        self.theme = theme
-        self.icons = theme.icons
-        self.onLeadingIconClick = onLeadingIconClick
-        self.onCenterIconClick = onCenterIconClick
-        self.onTrailingIconClick = onTrailingIconClick
-    }
+        onTrailingIconClick: (() -> Void)? = nil,
+        onRightBottomIconClick: (() -> Void)? = nil) {
+            self.model = model
+            self.icons = theme.icons
+            self.colors = theme.colors
+            self.onLeadingIconClick = onLeadingIconClick
+            self.onCenterIconClick = onCenterIconClick
+            self.onTrailingIconClick = onTrailingIconClick
+            self.onRightBottomIconClick = onRightBottomIconClick
+        }
     public var body: some View {
-        ZStack(alignment: .center) {
+        ZStack {
             HStack(spacing: 32) {
                 Spacer()
                 if let onLeadingIconClick = onLeadingIconClick {
@@ -62,6 +66,30 @@ public struct VideoPlayerControl: VideoPlayerControlable {
                 }
                 Spacer()
             }
+            HStack {
+                Spacer()
+                VStack {
+                    Spacer()
+                    if let onRightBottomIconClick = onRightBottomIconClick {
+                        Button {
+                            onRightBottomIconClick()
+                        } label: {
+                            Image(uiImage: icons.expand)
+                                .padding()
+                                .shadow(color: .black, radius: 5)
+                        }
+
+                    }
+                    
+                }
+
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 20))
+            }
+
+            
+
+        }.overlay {
+
         }
     }
 
@@ -98,12 +126,19 @@ public struct VideoPlayerControl: VideoPlayerControlable {
 }
 
 #Preview {
-    VideoPlayerControl(model: PlaybackStateModel(playbackState: .READY)) {
+    VideoPlayerControl(
+        model: PlaybackStateModel(playbackState: .READY)
+    ) {
 
     } onLeadingIconClick: {
 
     } onTrailingIconClick: {
 
+    } onRightBottomIconClick: {
+
     }
+    .frame(width: .infinity)
+    .aspectRatio( 16 / 9, contentMode: .fit)
+    .background(Color.gray)
 
 }

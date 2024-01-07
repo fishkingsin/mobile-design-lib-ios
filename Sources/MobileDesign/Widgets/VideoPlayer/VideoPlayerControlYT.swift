@@ -65,7 +65,9 @@ Content: View {
             YouTubePlayerView(youTubePlayer) { _ in
                 VideoPlayerOverlayView(
                     data: source, model: playbackStateModel) {
-                        VideoPlayerControl(model: playbackStateModel) {
+                        VideoPlayerControl(
+                            model: playbackStateModel
+                        ) {
                             youTubePlayer.play()
                         }
 

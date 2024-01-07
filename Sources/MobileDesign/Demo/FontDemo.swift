@@ -12,7 +12,7 @@ public struct FontItem: View {
     var size: CGFloat
     public var body: some View {
         HStack(spacing: 10) {
-            Text(String(format: "%.f", size)).font(.body)
+            Text(String(format: "%.f", size)).font(ThemeManager.shared.currentTheme.fonts.eleRegular16.uiFont)
 
             Text(key).font(font)
         }
