@@ -114,7 +114,13 @@ Content: View {
                 self.startCountdown()
             }
         }
+        .onChange(of: source) { source in
+            debugPrint("\(tag) onChange source \(source)")
+            playbackStateModel.updateState(playbackState: .INIT)
+            self.load(source: source)
+        }
         .onAppear {
+            playbackStateModel.updateState(playbackState: .INIT)
             self.model.onAppear()
             self.load(source: source)
             self.startCountdown()
@@ -140,15 +146,8 @@ Content: View {
     }
 
     private func load(source: Source) {
-        guard let urlString = source.url, let url = URL(string: urlString)
-        else {
-            playbackStateModel.updateState(playbackState: .ERROR)
-            return
-        }
-        let item = AVPlayerItem(url: url)
-        model.player.replaceCurrentItem(with: item)
-        model.player.play()
-        playbackStateModel.updateState(playbackState: .PLAYING)
+        let state = model.load(source: source)
+        playbackStateModel.updateState(playbackState: state)
     }
 
     private func startCountdown() {

@@ -44,6 +44,17 @@ public class AVPlayerObserverModel: ObservableObject {
         player.play()
     }
 
+    func load(source: any VideoPlayerSourceProtocol) -> VideoPlayerControlState {
+        guard let urlString = source.url, let url = URL(string: urlString)
+        else {
+            return .ERROR
+        }
+        let item = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: item)
+        player.play()
+        return .PLAYING
+    }
+
     func seek(_ to: Double) {
         guard let duration = VideoHelper.getDuration(player) else { return }
         player.seek(to: CMTimeMultiplyByFloat64(duration, multiplier: Float64(to)))
