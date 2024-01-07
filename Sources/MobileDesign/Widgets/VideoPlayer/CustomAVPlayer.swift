@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 import AVKit
-
+@available(*, deprecated, message: "deprecated")
 public struct CustomAVPlayer<
     PlaceholderView: View, PlayFinishView: View
 >: View {
@@ -57,7 +57,7 @@ public struct CustomAVPlayer<
             /// Custom Vide Player
             ZStack {
                 if let player {
-                    CustomVideoPlayer(player: player)
+                    CustomVideoPlayer(player: player) { _ in }
                         .overlay {
                             Rectangle()
                                 .fill(.black.opacity(0.4))

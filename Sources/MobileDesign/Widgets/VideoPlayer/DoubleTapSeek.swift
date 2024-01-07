@@ -34,11 +34,11 @@ struct DoubleTapSeek: View {
                                 .opacity(showArrows[index] ? 1 : 0.2)
                         }
                     }
-                    .font(.title)
+                    .font(ThemeManager.shared.currentTheme.fonts.eleRegular14.uiFont)
                     .rotationEffect(.init(degrees: isForward ? 180 : 0))
 
                     Text("15 Seconds")
-                        .font(.caption)
+                        .font(ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont)
                         .fontWeight(.semibold)
                 }
                 .foregroundColor(.white)

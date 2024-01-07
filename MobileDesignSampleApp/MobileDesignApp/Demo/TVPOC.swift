@@ -41,7 +41,7 @@ struct TVPOC<ContentView>: View where ContentView: View {
             VStack {
                 content(url).frame(maxHeight: (proxy.size.width / 16) * 9)
                     .onAppear {
-                        viewModel.load()
+//                        viewModel.load
                     }
                 ScrollViewWithStickyHeader(
                     header: header,
