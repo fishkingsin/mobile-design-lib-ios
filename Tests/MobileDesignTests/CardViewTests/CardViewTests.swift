@@ -11,67 +11,74 @@ import XCTest
 
 class CardViewTests: XCTestCase {
 
-  override func setUp() {
-    super.setUp()
-  }
-
-  override func tearDown() {
-    super.tearDown()
-  }
-
-  func test_top_image_card_view_light_mode() {
-    let rootView = sut
-    let vc = UIHostingController(rootView: rootView)
-    vc.overrideUserInterfaceStyle = .light
-
-    let expectation = expectation(description: "loading image")
-    vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-
-      if let view = vc.view {
-        assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
-      } else {
-        XCTFail("view not found")
-      }
-      expectation.fulfill()
+    override func setUp() {
+        isRecording = true
+        super.setUp()
     }
 
-    wait(for: [expectation], timeout: 2)
-  }
-
-  func test_top_image_card_view_dark_mode() {
-    let rootView = sut
-    let vc = UIHostingController(rootView: rootView)
-    vc.overrideUserInterfaceStyle = .dark
-    let expectation = expectation(description: "loading image")
-    vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() ) {
-      if let view = vc.view {
-        assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
-      } else {
-        XCTFail("view not found")
-      }
-      expectation.fulfill()
+    override func tearDown() {
+        super.tearDown()
     }
 
-    wait(for: [expectation], timeout: 1)
-  }
+    func test_top_image_card_view_light_mode() {
+        let rootView = sut
+        let vc = UIHostingController(rootView: rootView)
+        vc.overrideUserInterfaceStyle = .light
 
-  private var sut: some View {
-      List {
-          ForEach(1...100, id: \.self) { i in
-              VideoCardView<CardData>(data: CardData(
+        let expectation = expectation(description: "loading image")
+        vc.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+
+            if let view = vc.view {
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
+            } else {
+                XCTFail("view not found")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 2)
+    }
+
+    func test_top_image_card_view_dark_mode() {
+        let rootView = sut
+        let vc = UIHostingController(rootView: rootView)
+        vc.overrideUserInterfaceStyle = .dark
+        let expectation = expectation(description: "loading image")
+        vc.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() ) {
+            if let view = vc.view {
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13Pro))
+            } else {
+                XCTFail("view not found")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    private var sut: some View {
+        List(stride(from: 1, to: 100, by: 1).map { i in
+            CardData(
                 imageURL: "",
                 headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
                 leadingFootnote: "4小時前",
                 secondFootnote: "經人觀點",
                 timecode: "22:22"
-              ), onTabChanged: {
-                  debugPrint("22:22")
-              })
-              .listSeparatorStyle(.none)
+            )
+        }) { data in
+            VideoCardView<CardData>(data: data, onTabChanged: {
+                debugPrint("22:22")
+            })
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .listSeparatorStyle(.none)
+            .listRowSeparator(.hidden)
+            .background( data.imageURL.contains("13") ? .black.opacity(0.1) : .clear)
+            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
 
-          }
-      }.listStyle(.plain)
-  }
+        }
+        .listStyle(.plain)
+    }
 }

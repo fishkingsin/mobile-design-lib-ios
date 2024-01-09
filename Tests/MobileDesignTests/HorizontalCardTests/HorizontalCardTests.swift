@@ -14,6 +14,7 @@ import XCTest
 final class HorizontalCardTests: XCTestCase {
 
     override func setUpWithError() throws {
+        isRecording = true
     }
 
     override func tearDownWithError() throws {
@@ -77,14 +78,19 @@ final class HorizontalCardTests: XCTestCase {
     }
 
     func sut(start: Int, end: Int) -> some View {
-        List {
-            ForEach(start...end, id: \.self) { i in
-                HorizontalCard(data: CardData(
-                    imageURL: ( i % 2 == 0 ) ? "" : "https://placehold.co/358x200/png?text=\(i)",
-                    headline: "HKTVmall 2.0 ？拆解友和申請上市之謎 一年收入5億 ？｜抽新股｜IPO｜ 日本城｜ 港股｜王維基【經一解密】 經濟一週 EDigest".substring(start: 0, end: i),
-                    leadingFootnote: "4小時前",
-                    secondFootnote: "經人觀點"
-                )) {
+        List(stride(from: start, to: end, by: 1).map { i in
+            CardData(
+                imageURL: "\(i)",
+                headline: "HKTVmall 2.0 ？拆解友和申請上市之謎 一年收入5億 ？｜抽新股｜IPO｜ 日本城｜ 港股｜王維基【經一解密】 經濟一週 EDigest HKTVmall 2.0 ？拆解友和申請上市之謎 一年收入5億 ？｜抽新股｜IPO｜ 日本城｜ 港股｜王維基【經一解密】 經濟一週 EDigest HKTVmall 2.0 ？拆解友和申請上市之謎 一年收入5億 ？｜抽新股｜IPO｜ 日本城｜ 港股｜王維基【經一解密】 經濟一週 EDigest".substring(start: 0, end: i),
+                leadingFootnote: "4小時前",
+                secondFootnote: "經人觀點"
+            )
+        }) { data in
+
+            HorizontalCard(data: data) {
+                if !data.imageURL.contains("\(start + 3)") {
+                    EmptyView()
+                } else {
                     ZStack {
                         Rectangle()
                             .opacity(0.3)
@@ -92,10 +98,10 @@ final class HorizontalCardTests: XCTestCase {
                         Text("正在播放").foregroundStyle(.white)
                     }
                 }
-
-                .listRowSeparator(.hidden)
-                .background( i == (start + 3) ? .black.opacity(0.1) : .clear)
             }
+
+            .listRowSeparator(.hidden)
+            .background( data.imageURL.contains("\(start + 3)") ? .black.opacity(0.1) : .clear)
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
         .listRowInsets(.none)
