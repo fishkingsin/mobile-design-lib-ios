@@ -64,25 +64,26 @@ public struct HorizontalCard<Data, Content>: View where Data: CardDisplayable, C
 
 struct HorizontalCard_Previews: PreviewProvider {
     static var previews: some View {
-        List {
-            ForEach(10...50, id: \.self) { i in
-                HorizontalCard(data: CardData(
-                    imageURL: ( i % 2 == 0 ) ? "" : "https://placehold.co/358x200/png?text=\(i)",
-                    headline: String.random(length: i)!,
-                    leadingFootnote: "4小時前",
-                    secondFootnote: "經人觀點"
-                )) {
-                    ZStack {
-                        Rectangle()
-                            .opacity(0.3)
-                            .foregroundStyle(.black)
-                        Text("正在播放").foregroundStyle(.white)
-                    }
+        List(stride(from: 10, to: 50, by: 1).map { i in
+            CardData(
+                imageURL: ( i % 2 == 0 ) ? "" : "https://placehold.co/358x200/png?text=\(i)",
+                headline: String.random(length: i)!,
+                leadingFootnote: "4小時前",
+                secondFootnote: "經人觀點"
+            )
+        }) { data in
+
+            HorizontalCard(data: data) {
+                ZStack {
+                    Rectangle()
+                        .opacity(0.3)
+                        .foregroundStyle(.black)
+                    Text("正在播放").foregroundStyle(.white)
                 }
-                
-                .listRowSeparator(.hidden)
-                .background( i == 13 ? .black.opacity(0.1) : .clear)
             }
+
+            .listRowSeparator(.hidden)
+            .background( data.imageURL.contains("13") ? .black.opacity(0.1) : .clear)
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
         .listRowInsets(.none)
