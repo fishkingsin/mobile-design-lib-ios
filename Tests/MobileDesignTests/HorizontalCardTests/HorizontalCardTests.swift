@@ -14,7 +14,6 @@ import XCTest
 final class HorizontalCardTests: XCTestCase {
 
     override func setUpWithError() throws {
-        isRecording = true
     }
 
     override func tearDownWithError() throws {
