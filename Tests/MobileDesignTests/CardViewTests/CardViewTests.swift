@@ -12,7 +12,6 @@ import XCTest
 class CardViewTests: XCTestCase {
 
   override func setUp() {
-      
     super.setUp()
   }
 
@@ -59,17 +58,20 @@ class CardViewTests: XCTestCase {
   }
 
   private var sut: some View {
-    VideoCardView<CardData>(
-      data: CardData(
-        imageURL: "",
-        headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
-        leadingFootnote: "4小時前",
-        secondFootnote: "經人觀點",
-        timecode: "22:22"
-      ),
-      onTabChanged: {
-        print("pressed")
-      }
-    ).frame(minWidth: 320, minHeight: 680)
+      List {
+          ForEach(1...100, id: \.self) { i in
+              VideoCardView<CardData>(data: CardData(
+                imageURL: "",
+                headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
+                leadingFootnote: "4小時前",
+                secondFootnote: "經人觀點",
+                timecode: "22:22"
+              ), onTabChanged: {
+                  debugPrint("22:22")
+              })
+              .listSeparatorStyle(.none)
+
+          }
+      }.listStyle(.plain)
   }
 }

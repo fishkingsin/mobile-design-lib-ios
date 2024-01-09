@@ -13,43 +13,103 @@ import XCTest
 
 final class HorizontalCardTests: XCTestCase {
 
-  override func setUpWithError() throws {
-  }
-
-  override func tearDownWithError() throws {
-  }
-
-  func test_horizontal_card_snapshot() throws {
-    let rootView = sut
-    let vc = UIHostingController(rootView: rootView)
-    vc.overrideUserInterfaceStyle = .light
-
-    let expectation = expectation(description: "loading horizontal card")
-    vc.viewDidLoad()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      if let view = vc.view {
-        assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
-      } else {
-        XCTFail("view not found")
-      }
-      expectation.fulfill()
+    override func setUpWithError() throws {
     }
 
-    wait(for: [expectation], timeout: 2)
-  }
-
-  var sut: some View {
-    HorizontalCard(
-      data: CardData(
-        imageURL: "",
-        headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
-        leadingFootnote: "4小時前",
-        secondFootnote: "經人觀點",
-        timecode: "22:22"
-      )
-    ) {
-      Text("Text")
+    override func tearDownWithError() throws {
     }
-  }
 
+    func test_horizontal_card_snapshot_short() throws {
+        let rootView = sut(start: 1, end: 10)
+        let vc = UIHostingController(rootView: rootView)
+        vc.overrideUserInterfaceStyle = .light
+
+        let expectation = expectation(description: "loading horizontal card")
+        vc.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if let view = vc.view {
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
+            } else {
+                XCTFail("view not found")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 2)
+    }
+
+    func test_horizontal_card_snapshot_medium() throws {
+        let rootView = sut(start: 20, end: 50)
+        let vc = UIHostingController(rootView: rootView)
+        vc.overrideUserInterfaceStyle = .light
+
+        let expectation = expectation(description: "loading horizontal card")
+        vc.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if let view = vc.view {
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
+            } else {
+                XCTFail("view not found")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 2)
+    }
+
+    func test_horizontal_card_snapshot_long() throws {
+        let rootView = sut(start: 50, end: 100)
+        let vc = UIHostingController(rootView: rootView)
+        vc.overrideUserInterfaceStyle = .light
+
+        let expectation = expectation(description: "loading horizontal card")
+        vc.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if let view = vc.view {
+                assertSnapshot(matching: vc, as: .image(on: .iPhone13(.portrait)))
+            } else {
+                XCTFail("view not found")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 2)
+    }
+
+    func sut(start: Int, end: Int) -> some View {
+        List {
+            ForEach(start...end, id: \.self) { i in
+                HorizontalCard(data: CardData(
+                    imageURL: ( i % 2 == 0 ) ? "" : "https://placehold.co/358x200/png?text=\(i)",
+                    headline: "HKTVmall 2.0 ？拆解友和申請上市之謎 一年收入5億 ？｜抽新股｜IPO｜ 日本城｜ 港股｜王維基【經一解密】 經濟一週 EDigest".substring(start: 0, end: i),
+                    leadingFootnote: "4小時前",
+                    secondFootnote: "經人觀點"
+                )) {
+                    ZStack {
+                        Rectangle()
+                            .opacity(0.3)
+                            .foregroundStyle(.black)
+                        Text("正在播放").foregroundStyle(.white)
+                    }
+                }
+
+                .listRowSeparator(.hidden)
+                .background( i == (start + 3) ? .black.opacity(0.1) : .clear)
+            }
+            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+        }
+        .listRowInsets(.none)
+        .listStyle(.plain)
+    }
+
+}
+
+extension String {
+    func substring(start: Int, end : Int) -> Self
+    {
+        let str = self
+        let startIndex = str.index(str.startIndex, offsetBy: start)
+        let endIndex = str.index(str.startIndex, offsetBy: end)
+        return String(str[startIndex..<endIndex])
+    }
 }

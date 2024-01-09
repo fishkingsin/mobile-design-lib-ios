@@ -48,6 +48,7 @@ open class NMGDefaultFonts: NMGThemeableFonts {
     open var eleSemiBold22: UIFont { semibold(ofSize: 22) }
 
     open var eleMedium18: UIFont { medium(ofSize: 18) }
+    open var eleMedium16: UIFont { medium(ofSize: 16) }
     open var eleMedium14: UIFont { medium(ofSize: 14) }
 
     open var eleRegular24: UIFont { regular(ofSize: 24) }

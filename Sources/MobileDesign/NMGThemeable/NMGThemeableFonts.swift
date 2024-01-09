@@ -11,6 +11,7 @@ public protocol NMGThemeableFonts: AnyObject {
     var eleSemiBold24: UIFont { get }
     var eleSemiBold22: UIFont { get }
     var eleMedium18: UIFont { get }
+    var eleMedium16: UIFont { get }
     var eleMedium14: UIFont { get }
     var eleRegular24: UIFont { get }
     var eleRegular18: UIFont { get }
@@ -35,6 +36,7 @@ extension NMGThemeableFonts {
             "eleSemiBold24": eleSemiBold24,
             "eleSemiBold22": eleSemiBold22,
             "eleMedium18": eleMedium18,
+            "eleMedium16": eleMedium16,
             "eleMedium14": eleMedium14,
             "eleRegular24": eleRegular24,
             "eleRegular18": eleRegular18,

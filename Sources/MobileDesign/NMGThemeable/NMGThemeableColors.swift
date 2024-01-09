@@ -56,7 +56,7 @@ extension NMGThemeableColors {
     public var white: UIColor { UIColor.color(from: "Common", named: "White")! }
     public var alert: UIColor { UIColor.color(from: "Common", named: "Alert")! }
     public var success: UIColor { UIColor.color(from: "Common", named: "Success")! }
-    public var headline: UIColor { neutralGray70 }
+    public var headline: UIColor { neutralGray90 }
     public var footnote: UIColor { neutralGray30 }
 
     public var neutralGray90: UIColor { UIColor.color(from: "Common", named: "NeutralGray90")! }

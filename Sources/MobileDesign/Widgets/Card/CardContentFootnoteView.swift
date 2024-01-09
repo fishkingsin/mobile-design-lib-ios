@@ -7,8 +7,7 @@
 import SwiftUI
 
 struct CardContentFootnoteView: View {
-//    let font = ThemeManager.shared.currentTheme.fonts.caption.uiFont
-    let font = ThemeManager.shared.currentTheme.fonts.eleRegular12.uiFont
+    let font = ThemeManager.shared.currentTheme.fonts.eleRegular14.uiFont
     let foregroundColor = ThemeManager.shared.currentTheme.colors.footnote.color
     var leadingFootnote: String
     var secondFootnote: String

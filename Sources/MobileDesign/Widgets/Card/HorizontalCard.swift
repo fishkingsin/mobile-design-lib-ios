@@ -39,35 +39,73 @@ public struct HorizontalCard<Data, Content>: View where Data: CardDisplayable, C
     }
 
     public var body: some View {
-        VStack {
-            HStack {
-                HorizontalCardView(imageUrl: data.imageURL, overLayViewAlign: .bottomTrailing) {
-                    Rectangle().fill(.gray).frame(width: 133, height: 75)
-                } contentView: {
-                    CardContentHeadlineView(headline: data.headline, lineLimit: 3)
-                } overlayView: {
-                    content()
-                }
+
+        HStack {
+            HorizontalCardView(imageUrl: data.imageURL, overLayViewAlign: .bottomTrailing) {
+                Image(ImageResource.placeholder)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: 133, alignment: .topLeading)
+                    .aspectRatio( 133 / 75 , contentMode: .fit)
+                    .clipped()
+                    .cornerRadius(4)
+            } contentView: {
+                CardContentHeadlineView(headline: data.headline, lineLimit: 3)
+            } overlayView: {
+                content()
             }
-            .padding(12)
-            Rectangle()
-                .fill(ThemeManager.shared.currentTheme.colors.neutralGray5.color)
-                .frame(height: 2)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
         }
+
+
     }
 }
 
 struct HorizontalCard_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            HorizontalCard(data: CardData(
-                imageURL: "",
-                headline: "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式獨家專訪｜用科技顛覆金融 李小加革新小店投資模式",
-                leadingFootnote: "4小時前",
-                secondFootnote: "經人觀點"
-            )) {
-                EmptyView()
+        List {
+            ForEach(10...50, id: \.self) { i in
+                HorizontalCard(data: CardData(
+                    imageURL: ( i % 2 == 0 ) ? "" : "https://placehold.co/358x200/png?text=\(i)",
+                    headline: String.random(length: i)!,
+                    leadingFootnote: "4小時前",
+                    secondFootnote: "經人觀點"
+                )) {
+                    ZStack {
+                        Rectangle()
+                            .opacity(0.3)
+                            .foregroundStyle(.black)
+                        Text("正在播放").foregroundStyle(.white)
+                    }
+                }
+                
+                .listRowSeparator(.hidden)
+                .background( i == 13 ? .black.opacity(0.1) : .clear)
             }
+            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
+        .listRowInsets(.none)
+        .listStyle(.plain)
+    }
+}
+
+
+extension String {
+    fileprivate static func shuffeld(length: Int, alphabet:String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式獨家專訪｜用科技顛覆金融 李小加革新小店投資模式") -> String? {
+        guard
+            alphabet.count > 0
+                && length > 0
+        else { return nil }
+        return alphabet.shuffled().prefix(length).map {String($0)}.joined()
+    }
+}
+
+extension String {
+    fileprivate static func random(length: Int, alphabet:String = "獨家專訪｜用科技顛覆金融 李小加革新小店投資模式獨家專訪｜用科技顛覆金融 李小加革新小店投資模式") -> String? {
+        let a = (0..<length).reduce("") { partialResult, _ in
+            partialResult + alphabet
+        }
+        return shuffeld(length: length, alphabet: a)
     }
 }
