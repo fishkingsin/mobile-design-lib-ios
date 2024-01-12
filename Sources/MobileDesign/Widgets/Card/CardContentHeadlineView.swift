@@ -9,11 +9,14 @@ import SwiftUI
 struct CardContentHeadlineView: View {
     var headline: String
     var lineLimit: Int?
+
+    let theme = ThemeManager.shared.currentTheme
+
     var body: some View {
         Text(headline)
             .lineLimit(lineLimit ?? 2)
-            .font(ThemeManager.shared.currentTheme.fonts.eleMedium14.uiFont)
-            .foregroundColor(ThemeManager.shared.currentTheme.colors.headline.color)
+            .font(theme.fonts.eleMedium16.uiFont)
+            .foregroundColor(theme.colors.headline.color)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
